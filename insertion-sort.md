@@ -15,5 +15,3 @@ public class InsertionSort {
     }
 }
 ```
-
-![](./assets/images/test.jpg)
