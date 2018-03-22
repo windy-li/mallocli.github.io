@@ -15,5 +15,3 @@ public class InsertionSort {
     }
 }
 ```
-
-[返回首页](./)
