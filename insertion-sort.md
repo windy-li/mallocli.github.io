@@ -6,6 +6,8 @@
 
 ![](./assets/images/insertion-sort.png)
 
+用程序实现如下：
+
 ```java
 public class InsertionSort {
     public void insertionSort(int[] arr) {
@@ -18,6 +20,23 @@ public class InsertionSort {
             }
             arr[i + 1] = key;
         }
+    }
+}
+```
+
+我们还可以把插入排序表示为如下的一个递归过程：为了排序数组的前n项，我们递归地排序前n-1项，然后把第n项插入已排序的前n-1个元素中。
+
+```java
+public void recursiveInsertionSort(int[] arr, int n) {
+    if (n > 0) {
+        recursiveInsertionSort(arr, n - 1);
+        int key = arr[n];
+        int i = n - 1;
+        while (i >= 0 && arr[i] > key) {
+            arr[i + 1] = arr[i];
+            i--;
+        }
+        arr[i + 1] = key;
     }
 }
 ```
