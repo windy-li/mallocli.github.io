@@ -8,6 +8,33 @@
 
 当子问题足够大，需要递归求解时，我们称之为递归情况(recursive case)，当子问题变得足够小，不再需要递归时，我们说递归已经“触底”，进入了基本情况(base case)。有时，除了与原问题形式完全一样的规模更小的子问题外，还需要求解与原问题不完全一样的子问题，我们将这些子问题的求解看成合并步骤的一部分。
 
+我们把某数组的和最大的非空连续子数组称为最大连续子数组(maximum subarray)，通常说“一个最大子数组”而不是“最大子数组”，因为可能有多个子数组达到最大和。只有当数组中包含负数时，最大子数组问题才有意义，如果所有数组元素都是非负的，最大子数组问题没有任何难度，因为整个数组的和肯定是最大的。
+
+使用暴力法求解最大子数组问题，需要考虑数组的任意一个连续子数组，选出其中和最大者。
+
+```java
+bruteForceMaximumSubarray(int[] arr) {
+    int n = arr.length;
+    int start = 0;
+    int end = 0;
+    int max = Integer.MIN_VALUE;
+    for (int i = 0; i < n; i++) {
+        int sum = 0;
+        for (int j = i; j < n; j++) {
+            sum += arr[j];
+            if (sum > max) {
+                max = sum;
+                start = i;
+                end = j;
+            }
+        }
+    }
+    return new int[]{start, end, max};
+}
+```
+
+暴力法求解法穷举了所有可能的子数组，运行时间为O(n^2)。
+
 我们来思考如何使用分治法来求解最大子数组问题。假定我们要寻找子数组arr[low...high]的最大子数组。使用分治技术意味着我们要将子数组划分为两个规模尽可能相等的子数组，也就是说，找到子数组的中央位置，比如mid，然后考虑求解两个子数组arr[low...mid]和arr[mid + 1...high]。如图所示，arr[low...high]的任何连续子数组arr[i...j]所处的位置必然是以下三种情况之一：
 
 * 完全位于子数组arr[low...mid]中，因此low <= i <= j <= mid。
@@ -17,13 +44,13 @@
 因此，arr[low...high]的一个最大子数组所处的位置必然是这三种情况之一。实际上，arr[low...high]的一个最大子数组必然是完全位于arr[low...mid]中、完全位于arr[mid + 1...high]中或者跨越中点的所有子数组中的和最大者。我们可以递归地求解arr[low...mid]和arr[mid + 1...high]，因为这两个问题仍然是最大子数组问题，只是规模更小。因此，剩下的工作就是寻找跨越中点的最大子数组，然后在三种情况中选择和最大者。
 
 ```java
-public int[] maximumSubarray(int[] arr, int low, int high) {
+public int[] divideAndConquerMaximumSubarray(int[] arr, int low, int high) {
     if (low == high) {
         return new int[]{low, high, arr[low]};
     } else {
         int mid = (low + high) / 2;
-        int[] left = maximumSubarray(arr, low, mid);
-        int[] right = maximumSubarray(arr, mid + 1, high);
+        int[] left = divideAndConquerMaximumSubarray(arr, low, mid);
+        int[] right = divideAndConquerMaximumSubarray(arr, mid + 1, high);
         int[] cross = maxCrossingSubarray(arr, low, mid, high);
         int leftSum = left[2];
         int rightSum = right[2];
