@@ -103,7 +103,7 @@ public void increaseKey(int i, int newKey) {
 }
 ```
 
-最大堆的插入操作首先通过增加一个关键字为Integer.MIN_VALUE的叶节点来扩展最大堆，然后调用increaseKey为新结点设置对应的关键字，同时保持最大对的性质。
+最大堆的插入操作首先通过增加一个关键字为Integer.MIN_VALUE的叶节点来扩展最大堆，然后调用increaseKey为新结点设置对应的关键字，同时保持最大堆的性质。
 
 ```java
 public void insert(int key) {
