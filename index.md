@@ -42,3 +42,8 @@
 * [平均排序 (average sort)](average-sort.md).
 
 * [顺序统计量 (order statistics)](order-statistics.md).
+
+
+### 数据结构
+
+* [栈 (stack)](stack.md).
