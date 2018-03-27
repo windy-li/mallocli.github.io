@@ -40,3 +40,5 @@
 * [桶排序 (bucket sort)](bucket-sort.md).
 
 * [平均排序 (average sort)](average-sort.md).
+
+* [顺序统计量 (order statistics)](order-statistics.md).
