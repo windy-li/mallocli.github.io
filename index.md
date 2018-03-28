@@ -51,3 +51,11 @@
 * [队列 (queue)](queue.md).
 
 * [链表 (linked list)](linked-list.md).
+
+* [指针和对象的实现 (implementing pointers and objects)](implementing-pointers-and-objects.md).
+
+* [散列表 (hash table)](hash-table.md).
+
+* [二叉搜索树 (binary search tree)](binary-search-tree.md).
+
+* [红黑树 (red black tree)](red-black-tree.md).
