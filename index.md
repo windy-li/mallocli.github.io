@@ -59,4 +59,3 @@
 * [二叉搜索树 (binary search tree)](binary-search-tree.md).
 
 * [红黑树 (red black tree)](red-black-tree.md).
-
