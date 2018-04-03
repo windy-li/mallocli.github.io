@@ -69,5 +69,4 @@
 
 * [最长公共子序列 (longest common subsequence)](longest-common-subsequence.md).
 
-* [贪心算法 (greedy algorithm)](greedy-algorithm.md).
 
