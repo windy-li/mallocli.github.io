@@ -58,6 +58,8 @@
 
 * [红黑树 (red black tree)](red-black-tree.md).
 
+* [B树 (B tree)](b-tree.md).
+
 
 ### 高级设计和分析技术
 
@@ -71,4 +73,4 @@
 
 * [贪心算法 (greedy algorithm)](greedy-algorithm.md).
 
-* [赫夫曼编码 (Huffman code)](Huffman-code.md).
+* [赫夫曼编码 (Huffman code)](huffman-code.md).
