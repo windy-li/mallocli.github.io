@@ -1,12 +1,12 @@
 ## 快速排序
 
-对于包含n个数的输入数组来说，快速排序是一种最坏情况时间复杂度为Θ(n ^ 2)的排序算法。虽然最坏情况时间复杂度很差，但是快速排序通常是实际排序应用中最好的选择，因为它的平均性能非常好：它的期望运行时间为Θ(n * lgn)，而且Θ(n * lgn)中隐含的常熟因子非常小。
+对于包含n个数的输入数组来说，快速排序是一种最坏情况时间复杂度为Θ(n ^ 2)的排序算法。虽然最坏情况时间复杂度很差，但是快速排序通常是实际排序应用中最好的选择，因为它的平均性能非常好：它的期望运行时间为Θ(n * lgn)，而且Θ(n * lgn)中隐含的常数因子非常小。
 
 ### 快速排序的描述
 
 与归并排序一样，快速排序也使用了分治法的思想，下面是对一个典型的子数组arr[p...r]进行快速排序的三步分治过程：
 
-1. 分解：数组arr[p...r]被划分为两个（可能为空）的子数组arr[p...q - 1]和arr[q + 1...r]，使得arr[p...q - 1]中的每个元素都小于等于arr[q]，而arr[q]也小于等于arr[q + 1...r]中的每个元素。其中，计算数组下标q也是划分过程的一部分。
+1. 分解：数组arr[p...r]被划分为两个（可能为空）的子数组arr[p...q - 1]和arr[q + 1...r]，使得arr[p...q - 1]中的每个元素都小于等于arr[q]，arr[q + 1...r]中的每个元素都大于arr[q]。其中，计算数组下标q也是划分过程的一部分。
 2. 解决：通过递归调用快速排序，对子数组arr[p...q - 1]和arr[q + 1...r]进行排序。
 3. 合并：因为子数组都是原址排序的，所以不需要合并操作，数组arr[p...r]已经有序。
 
@@ -20,13 +20,7 @@ public void quickSort(int[] arr, int p, int r) {
         quickSort(arr, q + 1, r);
     }
 }
-```
 
-为了排序一个数组arr的全部元素，初始调用的是quickSort(arr, 0, arr.length - 1);
-
-算法的关键步骤是partition过程，它实现了对子数组arr[p...r]的原址重排。
-
-```java
 private int partition(int[] arr, int p, int r) {
     int i = p - 1;
     for (int j = p; j <= r - 1; j++) {
@@ -45,6 +39,10 @@ private void swap(int[] arr, int i, int j) {
     arr[j] = temp;
 }
 ```
+
+为了排序一个数组arr的全部元素，初始调用的是quickSort(arr, 0, arr.length - 1);
+
+算法的关键步骤是partition过程，它实现了对子数组arr[p...r]的原址重排。
 
 partition总是选择一个元素arr[r]作为主元(pivot element)，并围绕它来划分数组arr[p...r]。
 
@@ -89,7 +87,7 @@ public void randomizedQuickSort(int[] arr, int p, int r) {
     }
 }
 
-public int randomizedPartition(int[] arr, int p, int r) {
+private int randomizedPartition(int[] arr, int p, int r) {
     int i = p + (int) (Math.random() * (r - p + 1));
     swap(arr, i, r);
     return partition(arr, p, r);
@@ -147,7 +145,8 @@ private int hoarePartition(int[] arr, int p, int r) {
 * arr[q...t]中的所有元素都相等。
 * arr[p...q - 1]中的每个元素都小于arr[q]。
 * arr[t + 1...r]中的每个元素都大于arr[q]。
-与partition类似，新构造的partition的时间复杂度是Θ(r - p)。通过修改randomizedPartition，只有分区内的元素互不相同的时候才做递归调用。
+
+与partition类似，新构造的partition的时间复杂度是Θ(r - p)，只有分区内的元素互不相同的时候才做递归调用。
 
 ### 快速排序的栈深度
 
