@@ -324,7 +324,7 @@ insertFixUp恢复性质1、性质2和性质4。while循环的目标是将额外�
 
 在while循环中，x总是指向一个具有双重黑色的非根结点。由于结点x是双重黑色的，故w不可能是nil，因为否则，从x.parent至单黑色叶子w的简单路径上的黑结点个数就会小于从x.parent到x的简单路径上的黑结点个数。
 
-下图给出了代码中的4中情况。
+下图给出了代码中的4种情况。
 
 ![](./assets/images/part3/red-black-tree8.png)
 
