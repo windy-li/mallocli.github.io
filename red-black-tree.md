@@ -190,19 +190,21 @@ while循环在每次迭代的开头保持下列三个部分的不变式：
 
 需要考虑while循环中的6种情况，而其中三种与另外三种是对称的。这取决于z的父结点z.parent是z的祖父结点z.parent.parent的左孩子还是右孩子。根据循环不变式，如果z.parent是根结点，那么z.parent是黑色的，可知结点z.parent.parent存在。因为只有在z.parent是红色时才进入一次循环迭代，所以z.parent不可能是根结点，因此z.parent.parent存在。
 
-![](./assets/images/data-structure/RBT6.png)
-
 情况1和情况2、情况3的区别在于z父亲的兄弟结点(或称为叔结点)的颜色不同。
 
 情况1：z的叔结点y是红色的。
 
 这种情况在z.parent和y都是红色时发生。因为z.parent.parent是黑色的，所以将z.parent和y都着为黑色，以此解决z和z.parent都是红色的问题，将z.parent.parent着为红色以保持性质5，然后把z.parent.parent作为新结点z来重复while循环。指针z在树中上移两层。
 
+![](./assets/images/part3/red-black-tree6.png)
+
 情况2：z的叔结点y是黑色的且z是一个右孩子。
 
 情况3：z的叔结点y是黑色的且z是一个左孩子。
 
 在情况2和情况3中，z的叔结点y是黑色的，通过z是z.parent的右孩子还是左孩子来区别这两种情况。在情况2中，结点z是它的父结点的右孩子，可以立即使用一个左旋来将此情形转变为情况3，此时结点z为左孩子。因为z和z.parent都是红色的，所以该旋转对结点的黑高和性质5都无影响。无论是直接进入情况2，还是通过情况3进入情况2，z的叔结点y总是黑色的，因为否则就要执行情况1。此外，z.parent.parent一定存在。在情况3中，改变某些结点的颜色并做一次右旋，以保持性质5，这样，由于一行中不再有两个红色结点，所有的处理到此完毕。因为此时z.parent是黑色的，所以无需再执行while循环。
+
+![](./assets/images/part3/red-black-tree7.png)
 
 ### 删除
 
