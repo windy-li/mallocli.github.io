@@ -18,7 +18,7 @@ appear above the rectangles, and values stored in the array positions appear wit
 
 ```java
 public void insertionSort(int[] A) {
-    for (int i = 0; i < A.length; i++) {
+    for (int j = 1; j < A.length; j++) {
         int key = A[j];
         int i = j - 1;
         while (i >= 0 && A[i] > key) {
