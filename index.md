@@ -6,4 +6,4 @@
 
 * [Selection sort](./blog/selection-sort.md). May 5th, 2018
 
-* [divide-and-conquer](./blog/divide-and-conquer.md). May 6th, 2018
+* [Divide-and-conquer](./blog/divide-and-conquer.md). May 6th, 2018
