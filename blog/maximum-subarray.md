@@ -15,7 +15,7 @@
 使用暴力法求解最大子数组问题，需要考虑数组的每一个连续子数组，选出其中和最大者。
 
 ```java
-bruteForceMaximumSubarray(int[] arr) {
+public int[] bruteForceMaximumSubarray(int[] arr) {
     int n = arr.length;
     int left = 0;
     int right = 0;
