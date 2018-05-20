@@ -74,3 +74,8 @@
 * [贪心算法 (greedy algorithm)](blog/greedy-algorithm.md).
 
 * [赫夫曼编码 (Huffman code)](blog/huffman-code.md).
+
+
+### 设计模式
+
+* [动态规划 (dynamic programming)](blog/dynamic-programming.md).
