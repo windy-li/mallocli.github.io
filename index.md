@@ -21,57 +21,57 @@
 
 ### 排序和顺序统计量
 
-* [堆排序 (heap sort)](cn/heap-sort.md).
+* [堆排序 (heap sort)](sorting-and-order-statistics/heap-sort.md).
 
-* [优先队列 (priority queue)](cn/priority-queue.md).
+* [优先队列 (priority queue)](sorting-and-order-statistics/priority-queue.md).
 
-* [d叉堆 (d-ary-heap)](cn/d-ary-heap.md).
+* [d叉堆 (d-ary-heap)](sorting-and-order-statistics/d-ary-heap.md).
 
-* [杨氏矩阵 (Young tableau)](cn/young-tableau.md).
+* [杨氏矩阵 (Young tableau)](sorting-and-order-statistics/young-tableau.md).
 
-* [快速排序 (quick sort)](cn/quick-sort.md).
+* [快速排序 (quick sort)](sorting-and-order-statistics/quick-sort.md).
 
-* [对区间的模糊排序 (fuzzy sort)](cn/fuzzy-sort.md).
+* [对区间的模糊排序 (fuzzy sort)](sorting-and-order-statistics/fuzzy-sort.md).
 
-* [计数排序 (counting sort)](cn/counting-sort.md).
+* [计数排序 (counting sort)](sorting-and-order-statistics/counting-sort.md).
 
-* [桶排序 (bucket sort)](cn/bucket-sort.md).
+* [桶排序 (bucket sort)](sorting-and-order-statistics/bucket-sort.md).
 
-* [平均排序 (average sort)](cn/average-sort.md).
+* [平均排序 (average sort)](sorting-and-order-statistics/average-sort.md).
 
-* [顺序统计量 (order statistics)](cn/order-statistics.md).
+* [顺序统计量 (order statistics)](sorting-and-order-statistics/order-statistics.md).
 
 
 ### 数据结构
 
-* [栈 (stack)](cn/stack.md).
+* [栈 (stack)](data-structures/stack.md).
 
-* [队列 (queue)](cn/queue.md).
+* [队列 (queue)](data-structures/queue.md).
 
-* [链表 (linked list)](cn/linked-list.md).
+* [链表 (linked list)](data-structures/linked-list.md).
 
-* [散列表 (hash table)](cn/hash-table.md).
+* [散列表 (hash table)](data-structures/hash-table.md).
 
-* [二叉搜索树 (binary search tree)](cn/binary-search-tree.md).
+* [二叉搜索树 (binary search tree)](data-structures/binary-search-tree.md).
 
-* [红黑树 (red black tree)](cn/red-black-tree.md).
+* [红黑树 (red black tree)](data-structures/red-black-tree.md).
 
-* [B树 (B tree)](cn/b-tree.md).
+* [B树 (B tree)](data-structures/b-tree.md).
 
-* [用于不相交集合的数据结构 (data structures for disjoint set)](cn/data-structures-for-disjoint-set.md).
+* [用于不相交集合的数据结构 (data structures for disjoint set)](data-structures/data-structures-for-disjoint-set.md).
 
 
 ### 高级设计和分析技术
 
-* [动态规划 (dynamic programming)](cn/dynamic-programming.md).
+* [动态规划 (dynamic programming)](advanced-design-and-analysis-techniques/dynamic-programming.md).
 
-* [钢条切割 (rod cutting)](cn/rod-cutting.md).
+* [钢条切割 (rod cutting)](advanced-design-and-analysis-techniques/rod-cutting.md).
 
-* [矩阵链乘法 (matrix-chain multiplication)](cn/matrix-chain-multiplication.md).
+* [矩阵链乘法 (matrix-chain multiplication)](advanced-design-and-analysis-techniques/matrix-chain-multiplication.md).
 
-* [最长公共子序列 (longest common subsequence)](cn/longest-common-subsequence.md).
+* [最长公共子序列 (longest common subsequence)](advanced-design-and-analysis-techniques/longest-common-subsequence.md).
 
-* [贪心算法 (greedy algorithm)](cn/greedy-algorithm.md).
+* [贪心算法 (greedy algorithm)](advanced-design-and-analysis-techniques/greedy-algorithm.md).
 
-* [赫夫曼编码 (Huffman code)](cn/huffman-code.md).
+* [赫夫曼编码 (Huffman code)](advanced-design-and-analysis-techniques/huffman-code.md).
 
