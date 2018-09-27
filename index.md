@@ -75,4 +75,3 @@
 
 * [赫夫曼编码 (Huffman code)](advanced-design-and-analysis-techniques/huffman-code.md).
 
-$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)
