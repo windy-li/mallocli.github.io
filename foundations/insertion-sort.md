@@ -16,9 +16,7 @@
 5. 将新元素插入到该位置后
 重复步骤2~5
 
-例如，对数组[4, 3, 2, 10, 12, 1, 5, 6]进行排序的过程如下：
-
-![](../assets/images/part1/insertion-sort-example.png)
+![](../assets/images/part1/insertion-sort.gif)
 
 用程序实现如下：
 
