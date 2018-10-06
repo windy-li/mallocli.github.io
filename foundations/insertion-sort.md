@@ -151,4 +151,21 @@ private int binarySearch(int[] arr, int fromIndex, int endIndex, int key) {
 
 最后以1步长进行排序，此时就是简单的插入排序了。
 
+```java
+public void shellSort(int[] arr) {
+    int n = arr.length;
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        for (int j = gap; j < n; j++) {
+            int key = arr[j];
+            int i = j - gap;
+            while (i >= 0 && arr[i] > key) {
+                arr[i + gap] = arr[i];
+                i -= gap;
+            }
+            arr[i + gap] = key;
+        }
+    }
+}
+```
+
 ### 单向链表中的插入排序
