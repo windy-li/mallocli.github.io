@@ -1,7 +1,8 @@
 ### 排序和顺序统计量
 
-* [插入排序 (Insertion Sort)](foundations/insertion-sort.md)
+* [插入排序 (Insertion Sort)](sorting-and-order-statistics/insertion-sort.md)
 
+* [归并排序 (Merge Sort)](sorting-and-order-statistics/merge-sort.md)
 
 ### 数据结构
 
