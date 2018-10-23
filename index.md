@@ -12,9 +12,9 @@
 
 * [桶排序 (Bucket Sort)](sorting-and-order-statistics/bucket-sort.md)
 
-* [平均排序 (average sort)](sorting-and-order-statistics/average-sort.md).
+* [平均排序 (Average Sort)](sorting-and-order-statistics/average-sort.md).
 
-* [顺序统计量 (order statistics)](sorting-and-order-statistics/order-statistics.md).
+* [顺序统计量 (Order Statistics)](sorting-and-order-statistics/order-statistics.md).
 
 
 ### 数据结构
