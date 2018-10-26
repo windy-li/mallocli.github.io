@@ -2,9 +2,9 @@
 
 This part presents several algorithms that solve the following sorting problem:
 
-**Input**: A sequence of n numbers <a1, a2, ..., an>.
+Input: A sequence of n numbers <a1, a2, ..., an>.
 
-**Output**: A permutation (reordering) <a1', a2', ..., an'> of the input sequence
+Output: A permutation (reordering) <a1', a2', ..., an'> of the input sequence
 such that a1' <= a2' <= ... <= an'.
 
 The input sequence is usually an n-element array, although it may be represented
