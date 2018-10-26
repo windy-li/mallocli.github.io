@@ -108,7 +108,6 @@ column gives the average-case or expected running time, indicating which it give
 when it differs from the worst-case running time. We omit the average-case running
 time of heap sort because we do not analyze it.
 
-
 | Algorithm  | Worst-case running time  | Average-case/expected running time  |
 |---|---|---|
 | Insertion sort  | O(n^2)  |  Θ(n^2) |
