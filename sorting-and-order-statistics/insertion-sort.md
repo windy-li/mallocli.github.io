@@ -19,7 +19,18 @@
 
 用程序实现如下：
 
+```python
+def insertion_sort(arr):
+    for j in range(0, len(arr)):
+        key = arr[j]
+        i = j - 1
+        while i >= 0 and arr[i] > key:
+            arr[i + 1] = arr[i]
+            i -= 1
+        arr[i + 1] = key
 ```
+
+```java
 public void insertionSort(int[] arr) {
     for (int j = 1; j < arr.length; j++) {
         int key = arr[j];
