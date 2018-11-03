@@ -19,19 +19,8 @@
 
 用程序实现如下：
 
-```python
-def insertion_sort(arr):
-    for j in range(0, len(arr)):
-        key = arr[j]
-        i = j - 1
-        while i >= 0 and arr[i] > key:
-            arr[i + 1] = arr[i]
-            i -= 1
-        arr[i + 1] = key
-```
-
 ```java
-public void insertionSort(int[] arr) {
+void insertionSort(int[] arr) {
     for (int j = 1; j < arr.length; j++) {
         int key = arr[j];
         int i = j - 1;
@@ -59,7 +48,7 @@ public void insertionSort(int[] arr) {
 还可以把插入排序表示为如下的一个递归过程：为了排序数组的前n项，我们递归地排序前 n - 1 项，然后把第 n 项插入已排序的前 n - 1 个元素中。
 
 ```
-public void recursiveInsertionSort(int[] arr, int n) {
+void recursiveInsertionSort(int[] arr, int n) {
     if (n > 0) {
         recursiveInsertionSort(arr, n - 1);
         int key = arr[n];
@@ -78,7 +67,7 @@ public void recursiveInsertionSort(int[] arr, int n) {
 在插入排序中寻找一个元素合适的插入位置时，我们可以用二分查找法来减少比较的次数。在普通的插入排序中，我们第 i 次需要 O(i) 的时间才能找到一个元素合适的插入位置，使用二分查找法，可以将查找时间减少为 O(lgi)。但整个插入排序的时间复杂度仍然为 O(n^2)，因为第 i 次找到合适的位置，需要移动的元素个数没有改变，移动的时间复杂度仍然为 O(i)。
 
 ```
-public void binaryInsertionSort(int[] arr) {
+void binaryInsertionSort(int[] arr) {
     for (int j = 1; j < arr.length; j++) {
         int key = arr[j];
         int location = Math.abs(binarySearch(arr, 0, j, key) + 1);
@@ -91,7 +80,7 @@ public void binaryInsertionSort(int[] arr) {
     }
 }
 
-private int binarySearch(int[] arr, int fromIndex, int endIndex, int key) {
+int binarySearch(int[] arr, int fromIndex, int endIndex, int key) {
     int low = fromIndex;
     int high = endIndex;
     while (low <= high) {
@@ -159,7 +148,7 @@ private int binarySearch(int[] arr, int fromIndex, int endIndex, int key) {
 最后以 1 步长进行排序，此时就是简单的插入排序了。
 
 ```
-public void shellSort(int[] arr) {
+void shellSort(int[] arr) {
     int n = arr.length;
     for (int gap = n / 2; gap > 0; gap /= 2) {
         for (int j = gap; j < n; j++) {
