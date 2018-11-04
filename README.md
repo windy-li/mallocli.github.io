@@ -1,1 +1,1 @@
-[https://sharpmathemacits.github.io](https://sharpmathemacits.github.io)
+[https://sharpmathematics.github.io](https://sharpmathematics.github.io)
