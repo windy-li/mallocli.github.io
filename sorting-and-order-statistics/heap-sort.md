@@ -76,7 +76,7 @@ void swap(int[] arr, int i, int j) {
 
 在程序执行的每一步中，从 arr[i]、arr[left(i)] 和 arr[right(i)] 中选出最大的，并将其下标存储在 largest 中。如果 arr[i] 是最大的，那么以 i 为根节点的子树已经是最大堆，程序结束。否则，最大元素是 i 的某个孩子节点，则交换 arr[i] 和 arr[largest] 的值，从而使 i 及其孩子都满足最大堆的性质。在交换后，下标为 largest 的节点的值是原来的 arr[i]，于是以该节点为根的子树又可能会违反最大堆性质。因此，需要对该子树递归调用 maxHeapify。
 
-maxHeapify的代码效率较高，但递归调用可能除外，它可能使某些编译器产生低效的代码，可以使用循环控制结构取代递归，重写maxHeapify如下：
+maxHeapify 的代码效率较高，但递归调用可能除外，它可能使某些编译器产生低效的代码，可以使用循环控制结构取代递归，重写 maxHeapify 如下：
 
 ```
 void maxHeapify(int[] arr, int i) {
