@@ -95,4 +95,4 @@ private void merge(int[] arr, int p, int r) {
 
 ![](../assets/images/part1/merge-sort.png)
 
-完全扩展了的递归树具有 lgn + 1 层（如图所示，其高度为 lgn），每层将贡献总代价 c * n，所以，总代价为 c * n * lgn + c * n，归并排序的时间复杂度为 O(n * lgn)。
+完全扩展了的递归树具有 lgn + 1 层（如图所示，其高度为 lgn），每层将贡献代价 c * n，所以，总代价为 c * n * lgn + c * n，归并排序的时间复杂度为 O(n * lgn)。
