@@ -42,7 +42,7 @@ arr[parent(i)] <= arr[i]
 
 * void heapSort(int[] arr) 时间复杂度为 O(n * lgn)，功能是对一个数组进行原址排序。
 
-* void insert(int key)、int extractMax()、void increaseKey(int i, int newKey)和 int minimum() 时间复杂度为 O(lgn)，功能是利用堆实现一个优先队列。
+* void insert(int key)、int extractMax()、void increaseKey(int i, int newKey) 和 int minimum() 时间复杂度为 O(lgn)，功能是利用堆实现一个优先队列。
 
 ### 维护堆的性质
 
