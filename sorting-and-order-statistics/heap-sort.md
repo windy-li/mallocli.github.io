@@ -191,7 +191,7 @@ void increaseKey(int i, int newKey) {
     }
     arr[i] = newKey;
     while (i > 0 && arr[parent(i)] < arr[i]) {
-        Util.swap(arr, i, parent(i));
+        swap(arr, i, parent(i));
         i = parent(i);
     }
 }
