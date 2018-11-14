@@ -266,5 +266,3 @@ int medianOfThree(int[] arr, int a, int b, int c) {
         : arr[b] > arr[c] ? b : arr[a] > arr[c] ? c : a;
 }
 ```
-
-对于快速排序而言，三数取中法只影响其时间复杂度的常数因子。
