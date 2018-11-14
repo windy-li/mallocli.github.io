@@ -171,13 +171,48 @@ int hoarePartition(int[] arr, int p, int r) {
 
 如果所有输入元素都相同，那么随机化快速排序的每次划分步骤都会产生一个不平衡的划分，n - 1 个元素会全部被划分到数组的左边，因此，快速排序的运行时间是 Θ(n^2)。原始版本的partition 返回一个数组下标 q，使得 arr[p...q-1] 中的每一个元素都小于或等于 arr[q]，而 arr[q+1...r] 中的每个元素都大于 arr[q]。修改 partition 代码来构造一个新的 partition，它排列 arr[p...r] 的元素，返回值是两个数组下标 q 和 t，其中 p <= q <= t <= r，且有：
 
-* arr[q...t] 中的所有元素都相等。
-
 * arr[p...q-1] 中的每个元素都小于 arr[q]。
+
+* arr[q...t] 中的所有元素都相等。
 
 * arr[t+1...r] 中的每个元素都大于 arr[q]。
 
 与 partition 类似，新构造的 partition 的时间复杂度是 Θ(r - p)，只有分区内的元素互不相同的时候才做递归调用。
+
+下面的代码实现了 3 路快排，pivot 为 arr[r]，循环过程中始终保持 arr[l...lt] 小于 pivot，arr[gt...r] 大于 pivot，arr[lt+1...gt-1] 等于 pivot，partition 返回 lt 和 gt，之后只需对 arr[l...lt] 和 arr[gt...r] 两部分进行递归调用即可。
+
+```
+void threeWayQuickSort(int[] arr, int l, int r) {
+    if (l < r) {
+        int[] res = threeWayPartition(arr, l, r);
+        int lt = res[0];
+        int gt = res[1];
+        threeWayQuickSort(arr, l, lt);
+        threeWayQuickSort(arr, gt, r);
+    }
+}
+
+int[] threeWayPartition(int[] arr, int l, int r) {
+    int lt = l - 1;
+    int gt = r;
+    int i = l;
+    int pivot = arr[r];
+    while (i < gt) {
+        if (arr[i] < pivot) {
+            swap(arr, i, lt + 1);
+            lt++;
+            i++;
+        } else if (arr[i] > pivot) {
+            swap(arr, i, gt - 1);
+            gt--;
+        } else {
+            i++;
+        }
+    }
+    swap(arr, r, gt);
+    return new int[]{lt, gt + 1};
+}
+```
 
 ### 快速排序的栈深度
 
