@@ -251,7 +251,7 @@ void modifiedTailRecursiveQuickSort(int[] arr, int p, int r) {
 
 一种改进 randomizedQuickSort 的方法是在划分时，要从子数组中更细致地选择作为主元的元素（而不是简单地随机选择）。常用的做法是三数取中：从子数组中随机选出三个元素，取其中位数作为主元。
 
-```
+```java
 int medianOfThreePartition(int[] arr, int p, int r) {
     int a = p + (int) (Math.random() * (r - p + 1));
     int b = p + (int) (Math.random() * (r - p + 1));
@@ -262,7 +262,22 @@ int medianOfThreePartition(int[] arr, int p, int r) {
 }
 
 int medianOfThree(int[] arr, int a, int b, int c) {
-    return arr[a] < arr[b] ? (arr[b] < arr[c] ? b : arr[a] < arr[c] ? c : a)
-        : arr[b] > arr[c] ? b : arr[a] > arr[c] ? c : a;
+    if (x[a] < x[b]) {
+        if (x[b] < x[c]) {
+            return b;
+        } else if (x[a] < x[c]) {
+            return c;
+        } else {
+            return a;
+        }
+    } else {
+        if (x[b] > x[c]) {
+            return b;
+        } else if (x[a] > x[c]) {
+            return c;
+        } else {
+            return a;
+        }
+    }
 }
 ```
