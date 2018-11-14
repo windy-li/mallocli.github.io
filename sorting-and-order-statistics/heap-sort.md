@@ -213,7 +213,7 @@ void increaseKey(int i, int newKey) {
 }
 ```
 
-![](../assets/images/part1/heap-sort4.png)
+![](../assets/images/part1/heap-sort5.png)
 
 （a）图中的最大堆，下标为 i 的结点以深色阴影表示。（b）该结点的关键字增加到 15。（c）经过 while 循环的第一次迭代，该结点与其父结点交换关键字，同时下标 i 的指示上移到其父结点。（d）经过再一次迭代后得到的最大堆，此时， arr[parent(i)] >= arr[i]，最大堆的性质成立，程序终止。
 
