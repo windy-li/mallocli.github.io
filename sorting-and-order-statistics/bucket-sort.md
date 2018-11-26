@@ -11,7 +11,7 @@
 上图是当 n = 10 时桶排序操作过程。(a) 是输入数组，(b) 是排序完成后，已排序链表（桶）的情况。第 i 个桶中存放的是半开区间 [i/10, (i+1)/10] 中的值，排好序的输出是由链表（桶）依次连接而成。
 
 ```
-public void bucketSort(double[] arr) {
+void bucketSort(double[] arr) {
     int n = arr.length;
     LinkedList<Double>[] buckets = new LinkedList[n];
     for (int i = 0; i < n; i++) {
@@ -30,7 +30,7 @@ public void bucketSort(double[] arr) {
     }
 }
 
-private void insertionSort(LinkedList<Double> list) {
+void insertionSort(LinkedList<Double> list) {
     for (int j = 1; j < list.size(); j++) {
         double key = list.get(j);
         int i = j - 1;
