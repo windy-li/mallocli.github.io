@@ -29,6 +29,8 @@
 
 * [队列 (Queue)](data-structures/queue.md)
 
+* [链表 (Linked List)](data-structures/linked-list.md)
+
 ### 高级设计和分析技术
 
 
