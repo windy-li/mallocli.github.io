@@ -14,7 +14,7 @@
 
 下面的程序实现快速排序：
 
-```
+```java
 void quickSort(int[] arr, int p, int r) {
     if (p < r) {
         int q = partition(arr, p, r);
@@ -28,17 +28,11 @@ int partition(int[] arr, int p, int r) {
     for (int j = p; j <= r - 1; j++) {
         if (arr[j] <= arr[r]) {
             i++;
-            swap(arr, i, j);
+            Util.swap(arr, i, j);
         }
     }
-    swap(arr, i + 1, r);
+    Util.swap(arr, i + 1, r);
     return i + 1;
-}
-
-void swap(int[] arr, int i, int j) {
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
 }
 ```
 
@@ -102,7 +96,7 @@ T(n) = T(9n/10) + T(n/10) + cn
 
 只需要一个辅助的栈，我们可以就将递归版本的快速排序转化为迭代版本的，下面是它的实现。
 
-```
+```java
 void iterativeQuickSort(int[] arr, int p, int r) {
     int[] stack = new int[r - p + 1];
     int top = -1;
@@ -132,7 +126,7 @@ void iterativeQuickSort(int[] arr, int p, int r) {
 
 对 quickSort 和 partition 的改动非常小，在新的划分程序中，我们只是在真正进行划分前进行一次交换：
 
-```
+```java
 void randomizedQuickSort(int[] arr, int p, int r) {
     if (p < r) {
         int q = randomizedPartition(arr, p, r);
@@ -143,7 +137,7 @@ void randomizedQuickSort(int[] arr, int p, int r) {
 
 int randomizedPartition(int[] arr, int p, int r) {
     int i = p + (int) (Math.random() * (r - p + 1));
-    swap(arr, i, r);
+    Util.swap(arr, i, r);
     return partition(arr, p, r);
 }
 ```
@@ -152,7 +146,7 @@ int randomizedPartition(int[] arr, int p, int r) {
 
 前面给出的 partition 算法并不是其最初的版本，下面给出的是最早由 C. R. Hoare 所设计的快速排序及划分算法：
 
-```
+```java
 void hoareQuickSort(int[] arr, int p, int r) {
     if (p < r) {
         int q = hoarePartition(arr, p, r);
@@ -173,7 +167,7 @@ int hoarePartition(int[] arr, int p, int r) {
             j--;
         } while (arr[j] > x);
         if (i < j) {
-            swap(arr, i, j);
+            Util.swap(arr, i, j);
         } else {
             return j;
         }
@@ -201,7 +195,7 @@ int hoarePartition(int[] arr, int p, int r) {
 
 下面的代码实现了 3 路快排，pivot 为 arr[r]，循环过程中始终保持 arr[l...lt] 小于 pivot，arr[gt...r] 大于 pivot，arr[lt+1...gt-1] 等于 pivot，partition 返回 lt 和 gt，之后只需对 arr[l...lt] 和 arr[gt...r] 两部分进行递归调用即可。
 
-```
+```java
 void threeWayQuickSort(int[] arr, int l, int r) {
     if (l < r) {
         int[] res = threeWayPartition(arr, l, r);
@@ -219,17 +213,17 @@ int[] threeWayPartition(int[] arr, int l, int r) {
     int pivot = arr[r];
     while (i < gt) {
         if (arr[i] < pivot) {
-            swap(arr, i, lt + 1);
+            Util.swap(arr, i, lt + 1);
             lt++;
             i++;
         } else if (arr[i] > pivot) {
-            swap(arr, i, gt - 1);
+            Util.swap(arr, i, gt - 1);
             gt--;
         } else {
             i++;
         }
     }
-    swap(arr, r, gt);
+    Util.swap(arr, r, gt);
     return new int[]{lt, gt + 1};
 }
 ```
@@ -238,7 +232,7 @@ int[] threeWayPartition(int[] arr, int l, int r) {
 
 朴素 quickSort 算法包含了两个对其自身的递归调用。在调用 partition 后，quickSort 分别调用了左边的子数组和右边的子数组。quickSort 第二个递归调用并不是必须的，我们可以用一个循环控制结构来替代它。这一技术称为尾递归，好的编译器都提供这一功能。考虑下面这个版本的快速排序，它模拟了尾递归情况。
 
-```
+```java
 void tailRecursiveQuickSort(int[] arr, int p, int r) {
     while (p < r) {
         int q = partition(arr, p, r);
@@ -252,7 +246,7 @@ void tailRecursiveQuickSort(int[] arr, int p, int r) {
 
 通过修改 tailRecursiveQuickSort 的代码，使其最坏情况下栈深度是 Θ(lgn)，并且能够保持 O(n * lgn) 的期望时间复杂度。
 
-```
+```java
 void modifiedTailRecursiveQuickSort(int[] arr, int p, int r) {
     while (p < r) {
         int q = partition(arr, p, r);
@@ -271,13 +265,13 @@ void modifiedTailRecursiveQuickSort(int[] arr, int p, int r) {
 
 一种改进 randomizedQuickSort 的方法是在划分时，要从子数组中更细致地选择作为主元的元素（而不是简单地随机选择）。常用的做法是三数取中：从子数组中随机选出三个元素，取其中位数作为主元。
 
-```
+```java
 int medianOfThreePartition(int[] arr, int p, int r) {
     int a = p + (int) (Math.random() * (r - p + 1));
     int b = p + (int) (Math.random() * (r - p + 1));
     int c = p + (int) (Math.random() * (r - p + 1));
     int m = medianOfThree(arr, a, b, c);
-    swap(arr, m, r);
+    Util.swap(arr, m, r);
     return partition(arr, p, r);
 }
 
