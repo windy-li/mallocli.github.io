@@ -18,7 +18,7 @@
 
 下面是基数排序的代码实现，输入数组存放了 n 个 d 位元素，其中第 1 位是最低位，第 d 位是最高位。
 
-```
+```java
 void radixSort(int[] arr) {
     int d = maxBit(arr);
     int n = arr.length;
