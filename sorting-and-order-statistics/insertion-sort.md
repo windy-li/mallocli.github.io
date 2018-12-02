@@ -19,7 +19,7 @@
 
 用程序实现如下：
 
-```
+```java
 void insertionSort(int[] arr) {
     for (int j = 1; j < arr.length; j++) {
         int key = arr[j];
@@ -49,7 +49,7 @@ void insertionSort(int[] arr) {
 
 还可以把插入排序表示为如下的一个递归过程：为了排序数组的前n项，我们递归地排序前 n - 1 项，然后把第 n 项插入已排序的前 n - 1 个元素中。
 
-```
+```java
 void recursiveInsertionSort(int[] arr, int j) {
     if (j >= 1) {
         recursiveInsertionSort(arr, j - 1);
@@ -68,7 +68,7 @@ void recursiveInsertionSort(int[] arr, int j) {
 
 在插入排序中寻找一个元素合适的插入位置时，我们可以用二分查找法来减少比较的次数。在普通的插入排序中，第 i 次需要 O(i) 的时间才能找到一个元素合适的插入位置，使用二分查找法，可以将查找时间减少为 O(lgi)。但二分插入排序只能减小运行时间的常数系数，不能减小渐近运行时间，整个插入排序的时间复杂度仍然为 O(n^2)，因为第 i 次找到合适的位置，需要移动的元素个数没有改变，移动的时间复杂度仍然为 O(i)。
 
-```
+```java
 void binaryInsertionSort(int[] arr) {
     for (int j = 1; j < arr.length; j++) {
         int key = arr[j];
@@ -149,7 +149,7 @@ int binarySearch(int[] arr, int fromIndex, int endIndex, int key) {
 
 最后以 1 步长进行排序，此时就是简单的插入排序了。
 
-```
+```java
 void shellSort(int[] arr) {
     int n = arr.length;
     for (int gap = n / 2; gap > 0; gap /= 2) {
