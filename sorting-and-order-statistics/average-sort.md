@@ -5,7 +5,7 @@
 下面的算法能在 O(n * lg(n / k)) 时间内对一个包含 n 个元素的数组进行 k 排序，当 k 是一个常数时，对包含 n 个元素的数组进行 k 排序需要 Ω(n * lgn) 的时间。
 
 ```java
-public void kSort(int[] arr, int k, int p, int r) {
+void kSort(int[] arr, int k, int p, int r) {
     if (p < r && r - p >= k) {
         int q = partition(arr, p, r);
         kSort(arr, k, p, q - 1);
@@ -13,21 +13,15 @@ public void kSort(int[] arr, int k, int p, int r) {
     }
 }
 
-private int partition(int[] arr, int p, int r) {
+int partition(int[] arr, int p, int r) {
     int i = p - 1;
     for (int j = p; j <= r - 1; j++) {
         if (arr[j] <= arr[r]) {
             i++;
-            swap(arr, i, j);
+            Util.swap(arr, i, j);
         }
     }
-    swap(arr, i + 1, r);
+    Util.swap(arr, i + 1, r);
     return i + 1;
-}
-
-private void swap(int[] arr, int i, int j) {
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
 }
 ```
