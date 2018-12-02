@@ -267,9 +267,9 @@ void modifiedTailRecursiveQuickSort(int[] arr, int p, int r) {
 
 ```java
 int medianOfThreePartition(int[] arr, int p, int r) {
-    int a = p + (int) (Math.random() * (r - p + 1));
-    int b = p + (int) (Math.random() * (r - p + 1));
-    int c = p + (int) (Math.random() * (r - p + 1));
+    int a = p + Util.randomInt(0, r - p + 1);
+    int b = p + Util.randomInt(0, r - p + 1);
+    int c = p + Util.randomInt(0, r - p + 1);
     int m = medianOfThree(arr, a, b, c);
     Util.swap(arr, m, r);
     return partition(arr, p, r);
