@@ -201,7 +201,7 @@ int extractMax() {
 ```java
 void increaseKey(int i, int newKey) {
     if (newKey < arr[i]) {
-        throw new RuntimeException("new key is smaller than current key");
+        throw new RuntimeException("new key is less than current key");
     }
     arr[i] = newKey;
     while (i > 0 && arr[parent(i)] < arr[i]) {
