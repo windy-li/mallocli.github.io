@@ -130,7 +130,7 @@ void iterativeQuickSort(int[] arr, int p, int r) {
 void randomizedQuickSort(int[] arr, int p, int r) {
     if (p < r) {
         int q = randomizedPartition(arr, p, r);
-        randomizedQuickSort(arr, p, q);
+        randomizedQuickSort(arr, p, q - 1);
         randomizedQuickSort(arr, q + 1, r);
     }
 }
