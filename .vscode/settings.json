@@ -1,0 +1,8 @@
+{
+    "markdown.preview.fontSize": 16,
+    "markdown.preview.fontFamily": "Courier New",
+    "markdownConverter.ConversionType": [
+        "HTML",
+        "PDF"
+      ]
+}

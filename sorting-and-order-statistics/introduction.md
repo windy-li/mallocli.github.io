@@ -28,9 +28,7 @@ Many computer scientists consider sorting to be the most fundamental problem in 
 
 ### Sorting algorithms
 
-Insertion sort takes Θ(n^2) time in the worst case. Because its inner loops are tight, however, it is a fast in-place sorting algorithm for small input sizes. (Recall that
-a sorting algorithm sorts in place if only a constant number of elements of the input array are ever stored outside the array.) Merge sort has a better asymptotic running
-time, Θ(n*lgn), but the merge procedure it uses does not operate in place.
+Insertion sort takes Θ(n^2) time in the worst case. Because its inner loops are tight, however, it is a fast in-place sorting algorithm for small input sizes. (Recall that a sorting algorithm sorts in place if only a constant number of elements of the input array are ever stored outside the array.) Merge sort has a better asymptotic running time, Θ(n*lgn), but the merge procedure it uses does not operate in place.
 
 Heap sort sorts n numbers in place in O(n*lgn) time. It uses an important data structure, called a heap, with which we can also implement a priority queue.
 
@@ -54,5 +52,4 @@ The following table summarizes the running times of the sorting algorithms. As u
 
 #### Order statistics
 
-The ith order statistic of a set of n numbers is the ith smallest number in the set. We can, of course, select the ith order statistic by sorting the input and indexing the ith element of the output. With no assumptions about the input distribution, this method runs in Ω(n*lgn) time, as the lower bound proved in the decision-tree model shows. In [order-statistics](order-statistics.md), we show that we can find the ith smallest element in O(n) time, even when the elements are arbitrary real numbers. We present a randomized algorithm with tight code that runs in Θ(n^2) time in the worst case, but whose expected running time is O(n^2). We also give a more complicated algorithm that
-runs in O(n) worst-case time.
+The ith order statistic of a set of n numbers is the ith smallest number in the set. We can, of course, select the ith order statistic by sorting the input and indexing the ith element of the output. With no assumptions about the input distribution, this method runs in Ω(n*lgn) time, as the lower bound proved in the decision-tree model shows. In [order-statistics](order-statistics.md), we show that we can find the ith smallest element in O(n) time, even when the elements are arbitrary real numbers. We present a randomized algorithm with tight code that runs in Θ(n^2) time in the worst case, but whose expected running time is O(n^2). We also give a more complicated algorithm that runs in O(n) worst-case time.
