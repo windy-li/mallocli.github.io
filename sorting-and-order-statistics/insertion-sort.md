@@ -35,4 +35,7 @@ void insertionSort(int[] arr) {
 
 In insertion sort, the best case occurs if the array is already sorted. 
 For each j = 1, 2, 3, ..., n-1, we can find that arr[i] <= key when i
-has its initial value of j-1.
+has its initial value of j-1. Each element only compares one time,
+the running time is O(n). If the array is in reverse sorted order,
+that is, in decreasing order—the worst case results. We must compare
+each element arr[i] with each element in the entire sorted subarray
