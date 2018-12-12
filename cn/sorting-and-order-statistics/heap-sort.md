@@ -24,7 +24,7 @@ int right(int i) {
 }
 ```
 
-![](../assets/images/sorting-and-order-statistics/heap-sort.png)
+![](../../assets/images/sorting-and-order-statistics/heap-sort.png)
 
 上图是以（a）二叉树和（b）数组形式展现的一个最大堆。每个结点圆圈内部的数字是它所存储的数据。结点上方的数字是它在数组中相应的下标。数组上方和下方的连线显示的是父-子关系：父结点总是在它的孩子结点的左边。该树的高度为 3，下标为 4（值为8）的结点的高度为 1。
 
@@ -78,7 +78,7 @@ void maxHeapify(int[] arr, int i) {
 
 下图展示了 maxHeapify 的执行过程。在程序的每一步中，从 arr[i]、arr[left(i)] 和 arr[right(i)] 中选出最大的，并将其下标存储在 largest 中。如果 arr[i] 是最大的，那么以 i 为根结点的子树已经是最大堆，程序结束。否则，最大元素是 i 的某个孩子结点，交换 arr[i] 和 arr[largest] 的值，从而使 i 及其孩子都满足最大堆的性质。在交换后，下标为 largest 的结点的值是原来的 arr[i]，于是以该结点为根结点的子树又有可能会违反最大堆的性质，因此，需要对该子树递归调用 maxHeapify。
 
-![](../assets/images/sorting-and-order-statistics/heap-sort2.png)
+![](../../assets/images/sorting-and-order-statistics/heap-sort2.png)
 
 对于一棵以 i 为根结点、大小为 n 的子树， maxHeapify 的时间代价包括：调整 arr[i]、arr[left(i)] 和 arr[right(i)] 的关系的时间代价 Θ(1)，加上在一棵以 i 为根结点的子树上运行 maxHeapify 的时间代价（这里假设递归调用会发生），而 maxHeapify 最多运行的次数就是树高，因此，对于一个树高为 h 的结点来说， maxHeapify 的时间复杂度是 O(h)。
 
@@ -124,7 +124,7 @@ void buildMaxHeap(int[] arr) {
 
 我们可以在线性时间内，把一个无序数组构造成一个最大堆。下图是 buildMaxHeap 的操作过程。
 
-![](../assets/images/sorting-and-order-statistics/heap-sort3.png)
+![](../../assets/images/sorting-and-order-statistics/heap-sort3.png)
 
 ### 堆排序算法
 
@@ -145,7 +145,7 @@ heapSort 的时间复杂度是 O(n * lgn)，因为每次调用 buildMaxHeap 的�
 
 下图是 heapSort 的运行过程。（a）用 buildMaxHeap 构造得到的最大堆。（b）~（j）每次调用 maxHeapify 后得到的最大堆，并标识当次的 i 值，其中，仅仅浅色阴影的结点被保留在堆中。（k）最终数组的排序结果。
 
-![](../assets/images/sorting-and-order-statistics/heap-sort4.png)
+![](../../assets/images/sorting-and-order-statistics/heap-sort4.png)
 
 ### 优先队列
 
@@ -211,7 +211,7 @@ void increaseKey(int i, int key) {
 }
 ```
 
-![](../assets/images/sorting-and-order-statistics/heap-sort5.png)
+![](../../assets/images/sorting-and-order-statistics/heap-sort5.png)
 
 （a）图中的最大堆，下标为 i 的结点以深色阴影表示。（b）该结点的关键字增加到 15。（c）经过 while 循环的第一次迭代，该结点与其父结点交换关键字，同时下标 i 的指示上移到其父结点。（d）经过再一次迭代后得到的最大堆，此时， arr[parent(i)] >= arr[i]，最大堆的性质成立，程序终止。
 

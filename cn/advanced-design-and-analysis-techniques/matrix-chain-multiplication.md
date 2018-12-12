@@ -42,7 +42,7 @@ public int[][] matrixMultiply(int[][] a, int[][] b) {
 
 令P(n)表示可供选择的括号化方案的数量。当n = 1时，由于只有一个矩阵，因此只有一种完全括号化方案。当n >= 2时，完全括号化方案的矩阵乘积可描述为两个完全括号化的部分积相乘的形式，而两个部分积的划分点在第k个矩阵和第k + 1个矩阵之间，k为1, 2, ..., n - 1中的任意一个值。因此，我们可以得到如下递归公式：
 
-![](../assets/images/part4/matrix-chain-multiplication.png)
+![](../../assets/images/part4/matrix-chain-multiplication.png)
 
 括号化方案的数量与n呈指数关系，通过暴力搜索穷尽所有可能的括号化方案来寻找最优方案，是一个糟糕的策略。
 
@@ -74,7 +74,7 @@ m[i][j] = m[i][k] + m[k + 1][j] + p[i - 1] * p[k] * [pj]
 
 此递归公式假定最优分割点k是已知的，但实际上我们是不知道的。不过，k只有j - i种可能的取值，即k = i, i+1, ..., j-1。由于最优分割点必在其中，我们只需检查所有可能情况，找到最优解即可。因此，AiAi+1...Aj最小代价括号化方案的递归求解公式变为：
 
-![](../assets/images/part4/matrix-chain-multiplication2.png)
+![](../../assets/images/part4/matrix-chain-multiplication2.png)
 
 m[i][j]的值给出了子问题最优解的代价，但它并未提供足够的信息来构造最优解，为此，我们用s[i][j]保存AiAi+1..Aj最优括号化方案的分割点位置k，即使得m[i][j] = m[i][k] + m[k + 1][j] + p[i - 1] * p[k] * p[j]成立的k的值。
 

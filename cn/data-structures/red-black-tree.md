@@ -49,11 +49,11 @@ public class RedBlackTree {
 
 为了便于处理红黑树代码中的边界条件，使用一个哨兵来代表nil。对于一棵红黑树，哨兵nil是一个与树中普通结点有相同属性的对象，它的color属性为BLACK，而其它属性parent、left、right和key可以为任意值。
 
-![](../assets/images/part3/red-black-tree.png)
+![](../../assets/images/part3/red-black-tree.png)
 
 使用哨兵后，就可以将结点x的nil孩子视为一个普通结点，其父结点为x。尽管可以为树内的每一个nil新增一个不同的哨兵结点，使得每个nil的父结点都有这样的良定义，但这种做法会浪费空间。取而代之的是，使用一个哨兵nil来代表所有的nil：根结点的父结点和所有的叶结点。哨兵的属性parent、left、right和key的取值并不重要。
 
-![](../assets/images/part3/red-black-tree2.png)
+![](../../assets/images/part3/red-black-tree2.png)
 
 从某个结点x出发（不包含该结点）到达一个叶结点的任意一条简单路径上的黑色结点个数称为该结点的黑高(black height)。根据性质5，黑高的概念是明确定义的，因为从该结点出发的所有下降到其叶结点的简单路径的黑结点个数都相同。于是定义红黑树的黑高为其根结点的黑高。一棵有n个内部结点的红黑树的高度至多为2 * lg(n + 1)。
 
@@ -63,7 +63,7 @@ public class RedBlackTree {
 
 指针结构的修改是通过旋转(rotate)来完成的，这是一种能保持二叉搜索树性质的搜索树局部操作。下图给出了两种旋转：左旋和右旋。
 
-![](../assets/images/part3/red-black-tree3.png)
+![](../../assets/images/part3/red-black-tree3.png)
 
 ```
 void leftRotate(Node p) {
@@ -101,7 +101,7 @@ void rightRotate(Node p) {
 
 下图给出了一个leftRotate操作修改二叉搜索树的例子，rightRotate操作的代码是对称的。leftRotate和rightRotate都在O(1)时间内运行完成，在旋转操作中，只有指针改变，其它所有属性都保持不变。
 
-![](../assets/images/part3/red-black-tree4.png)
+![](../../assets/images/part3/red-black-tree4.png)
 
 ### 插入
 
@@ -176,7 +176,7 @@ void insertFixUp(Node node) {
 
 为了理解insertFixUp如何工作，把代码分为三个主要的步骤。首先，要确定当结点z被插入并着为红色后，红黑性质中有哪些不能继续保持。其次，应分析while循环的总目标。最后，要分析while循环体中的三种情况，看它们是如何完成目标的。下图给出一个范例，显示在一棵红黑树上insertFixUp如何操作。
 
-![](../assets/images/part3/red-black-tree5.png)
+![](../../assets/images/part3/red-black-tree5.png)
 
 在调用insertFixUp操作时，哪些红黑性质可能会被破坏呢？性质1和性质3继续成立，因为新插入的红结点两个子结点都是哨兵nil。性质5，即从一个指定结点开始的每条简单路径上的黑结点的个数都是相等的，也会成立，因为结点z代替了(黑色)哨兵，并且结点z本身是有哨兵孩子的红结点。这样来看，仅可能被破坏的就是性质2和性质4，即根结点需要为黑色以及一个红结点不能有红孩子。这两个性质可能被破坏是因为z被着为红色。如果z是根结点，则破坏了性质2，如果z的父结点是红结点，则破坏了性质4.
 
@@ -196,7 +196,7 @@ while循环在每次迭代的开头保持下列三个部分的不变式：
 
 这种情况在z.parent和y都是红色时发生。因为z.parent.parent是黑色的，所以将z.parent和y都着为黑色，以此解决z和z.parent都是红色的问题，将z.parent.parent着为红色以保持性质5，然后把z.parent.parent作为新结点z来重复while循环。指针z在树中上移两层。
 
-![](../assets/images/part3/red-black-tree6.png)
+![](../../assets/images/part3/red-black-tree6.png)
 
 **情况2：z的叔结点y是黑色的且z是一个右孩子。**
 
@@ -204,7 +204,7 @@ while循环在每次迭代的开头保持下列三个部分的不变式：
 
 在情况2和情况3中，z的叔结点y是黑色的，通过z是z.parent的右孩子还是左孩子来区别这两种情况。在情况2中，结点z是它的父结点的右孩子，可以立即使用一个左旋来将此情形转变为情况3，此时结点z为左孩子。因为z和z.parent都是红色的，所以该旋转对结点的黑高和性质5都无影响。无论是直接进入情况2，还是通过情况3进入情况2，z的叔结点y总是黑色的，因为否则就要执行情况1。此外，z.parent.parent一定存在。在情况3中，改变某些结点的颜色并做一次右旋，以保持性质5，这样，由于一行中不再有两个红色结点，所有的处理到此完毕。因为此时z.parent是黑色的，所以无需再执行while循环。
 
-![](../assets/images/part3/red-black-tree7.png)
+![](../../assets/images/part3/red-black-tree7.png)
 
 ### 删除
 
@@ -326,7 +326,7 @@ insertFixUp恢复性质1、性质2和性质4。while循环的目标是将额外�
 
 下图给出了代码中的4种情况。
 
-![](../assets/images/part3/red-black-tree8.png)
+![](../../assets/images/part3/red-black-tree8.png)
 
 **情况1：x的兄弟结点w是红色的。**
 

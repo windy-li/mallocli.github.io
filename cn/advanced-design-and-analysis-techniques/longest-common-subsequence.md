@@ -25,7 +25,7 @@ LCS的最优子结构：令X = <x[1], x[2], ..., x[m]>和Y = <y[1], y[2], ..., y
 
 设计LCS问题的递归算法首先要建立最优解的递归式。我们定义c[i][j]表示X[i]和Y[j]的LCS的长度，如果i == 0或j == 0，即一个序列长度为0，那么LCS的长度为0。根据LCS问题的最优子结构性质，可得如下公式：
 
-![](../assets/images/part4/longest-common-subsequence.png)
+![](../../assets/images/part4/longest-common-subsequence.png)
 
 观察到在递归公式中，我们通过限制条件限制了需要求解哪些问题。当x[i] == y[j]时，我们可以而且应该求解子问题X[i-1]和Y[j-1]的一个LCS。否则，应该求解两个子问题：X[i]和Y[j-1]的一个LCS及X[i-1]和Y的一个LCS。
 

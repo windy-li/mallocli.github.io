@@ -1,61 +1,129 @@
-## 概述
+## Introduction
 
-这一部分介绍了几种解决如下排序问题的算法：
+This part presents several algorithms that solve the following sorting problem:
 
-输入：一个 n 个数的序列 [a1, a2, ..., an]。  
-输出：输入序列的一个排列（重排） [a'1, a'2, ..., a'n]，使得 a'1 <= a'2 <= ... <= a'n。  
-输入序列通常是一个 n 元数组，尽管它可能用链表等其它方式描述。  
+Input: A sequence of n numbers [a1, a2, ..., an].  
+Output: A permutation (reordering) [a'1, a'2, ..., a'n] of the input sequence such
+that a'1 <= a'2 <= ... <= a'n.  
+The input sequence is usually an n-element array, although it may be represented
+in some other fashion, such as a linked list.
 
-### 数据的结构
+### The structure of the data
 
-实际上，待排序的数很少是单独的数值，而是数据集某条记录（record）的一部分，我们要排序的是这个数据集中所有的记录。每个记录包含一个关键字（key），就是排序问题中要重排的值。记录中的剩余部分由卫星数据（satellite data）组成，通常与关键字是一同存取的。在实际中，当一个排序算法重排关键字时，也必须要重排卫星数据。如果每个记录包含大量卫星数据，我们通常重排记录指针的数组，而不是记录本身，这样可以减少数据移动量。
+In practice, the numbers to be sorted are rarely isolated values. Each is usually part
+of a collection of data called a record. Each record contains a key, which is the
+value to be sorted. The remainder of the record consists of satellite data, which are
+usually carried around with the key. In practice, when a sorting algorithm permutes
+the keys, it must permute the satellite data as well. If each record includes a large
+amount of satellite data, we often permute an array of pointers to the records rather
+than the records themselves in order to minimize data movement.
 
-在某种意义上，正是这些实现的细节将一个算法与成熟的程序区分开来。一个排序算法描述排序的方法（method），而不管我们是在排序单独的数还是包含很多卫星数据的记录。因此，当关注排序问题时，我们通常假定输入只是由数字组成。将一个对数字进行排序的算法转换为一个对记录进行排序的程序，在概念上是很直接的。
+In a sense, it is these implementation details that distinguish an algorithm from
+a full-blown program. A sorting algorithm describes the method by which we
+determine the sorted order, regardless of whether we are sorting individual numbers
+or large records containing many bytes of satellite data. Thus, when focusing on the
+problem of sorting, we typically assume that the input consists only of numbers.
+Translating an algorithm for sorting numbers into a program for sorting records
+is conceptually straightforward, although in a given engineering situation other
+subtleties may make the actual programming task a challenge.
 
-### 为什么要排序？
+### Why sorting?
 
-很多计算机科学家认为排序是算法研究中最基础的问题，其原因有很多：
+Many computer scientists consider sorting to be the most fundamental problem in
+the study of algorithms. There are several reasons:
 
-* 有时应用本身就需要对信息进行排序。例如，为了准备用户财务报表，银行需要按编号对支票进行排序。
+* Sometimes an application inherently needs to sort information. For example,
+  in order to prepare customer statements, banks need to sort checks by check
+  number.
 
-* 很多算法通常把排序作为关键子程序。例如，在一个渲染图形对象的程序中，图形对象是分层叠在一起的，这个程序可能就需要按层次关系来排序对象，以便能够按自底向上的顺序绘制对象。我们将看到大量的算法将排序作为子程序来使用。
+* Algorithms often use sorting as a key subroutine. For example, a program that
+  renders graphical objects which are layered on top of each other might have
+  to sort the objects according to an "above" relation so that it can draw these
+  objects from bottom to top. We shall see numerous algorithms in this text that
+  use sorting as a subroutine.
 
-* 现有的排序算法数量非常庞大，其中所使用的技术也非常丰富。实际上，很多重要的算法设计技术都体现在多年来研究者所设计的排序算法中，从这个角度看，排序问题还有很好的历史价值。
+* We can draw from among a wide variety of sorting algorithms, and they employ
+  a rich set of techniques. In fact, many important techniques used throughout
+  algorithm design appear in the body of sorting algorithms that have been
+  developed over the years. In this way, sorting is also a problem of historical
+  interest.
 
-* 我们可以证明排序问题的一个非平凡下界。而我们的最佳上界能够与这个非平凡下界渐近相等，这就意味着我们介绍的算法是渐近最优的。而且，我们可以利用排序问题的下界来证明其它问题的下界。
+* We can prove a nontrivial lower bound for sorting. Our best upper bounds match
+  the lower bound asymptotically, and so we know that our sorting algorithms are
+  asymptotically optimal. Moreover, we can use the lower bound for sorting to prove
+  lower bounds for certain other problems.
 
-* 在实现排序算法时会出现很多工程问题。某个特定环境下的最快的排序算法可能取决于很多因素，例如，关于关键字和卫星数据的前提假设、计算机主机的内存层次（缓存和虚拟内存）、软件环境。很多这类问题最好在算法层面来处理，而不是通过代码调优来解决。
+* Many engineering issues come to the fore when implementing sorting algorithms.
+  The fastest sorting program for a particular situation may depend on
+  many factors, such as prior knowledge about the keys and satellite data, the
+  memory hierarchy (caches and virtual memory) of the host computer, and the
+  software environment. Many of these issues are best dealt with at the algorithmic
+  level, rather than by "tweaking" the code.
 
-### 排序算法
+### Sorting algorithms
 
-插入排序最坏情况下可以在 O(n^2) 时间内将 n 个数排好序。但是，由于其内层循环非常紧凑，对于小规模输入，插入排序是一种非常快的原址排序算法（如果在排序过程中始终只有常数个元素存储在数组外，则称算法是原址（in place）的）。
+Insertion sort takes Θ(n^2) time in the worst case. Because its inner loops are tight,
+however, it is a fast in-place sorting algorithm for small input sizes. (Recall that
+a sorting algorithm sorts in place if only a constant number of elements of the input
+array are ever stored outside the array.) Merge sort has a better asymptotic running
+time, Θ(n*lgn), but the merge procedure it uses does not operate in place.
 
-归并排序有更好的渐近运行时间 O(n * lgn)，但它所使用的 merge 过程并不是原址的。
+Heap sort sorts n numbers in place in O(n*lgn) time. It uses an important data structure,
+called a heap, with which we can also implement a priority queue.
 
-堆排序是一种 O(n * lgn) 时间的原址排序算法，它使用了一种被称为堆的重要数据结构，堆还可以用来实现优先队列。
+Quick sort also sorts n numbers in place, but its worst-case running time is Θ(n^2).
+Its expected running time is Θ(n*lgn), however, and it generally outperforms heapsort
+in practice. Like insertion sort, quick sort has tight code, and so the hidden constant
+factor in its running time is small. It is a popular algorithm for sorting large input arrays.
 
-快速排序也是一种原址排序算法，最坏情况运行时间为 O(n^2)。然而它的期望运行时间为 Θ(n * lgn)，而且在实际应用中通常比堆排序快。与插入排序类似，快速排序的代码也很紧凑，因此运行时间中隐含的常数系数很小。快速排序是排序大数组的最常用算法。
+Insertion sort, merge sort, heap sort, and quick sort are all comparison sorts: they
+determine the sorted order of an input array by comparing elements. By introducing
+the decision-tree model in order to study the performance limitations of comparison
+sorts. Using this model, we prove a lower bound of Ω(n*lgn) on the worst-case running
+time of any comparison sort on n inputs, thus showing that heap sort and merge sort
+are asymptotically optimal comparison sorts.
 
-插入排序、归并排序、堆排序及快速排序都是比较排序算法：它们都是通过对元素进行比较操作来确定输入数组的顺序。决策树模型可以用来研究比较排序算法的性能局限。使用决策树模型，我们可以证明任意比较排序算法排序 n 个元素的最坏情况运行时间的下界为 Ω(n * lgn)，从而证明堆排序和归并排序是渐近最优的比较排序算法。
+We then goes on to show that we can beat this lower bound of Ω(n*lgn)
+if we can gather information about the sorted order of the input by means other
+than comparing elements. The counting sort algorithm, for example, assumes that
+the input numbers are in the set {0, 1, ..., k}. By using array indexing as a tool
+for determining relative order, counting sort can sort n numbers in Θ(k + n) time.
+Thus, when k = O(n), counting sort runs in time that is linear in the size of the
+input array. A related algorithm, radix sort, can be used to extend the range of
+counting sort. If there are n integers to sort, each integer has d digits, and each
+digit can take on up to k possible values, then radix sort can sort the numbers
+in Θ(d(n + k)) time. When d is a constant and k is O(n), radix sort runs in
+linear time. A third algorithm, bucket sort, requires knowledge of the probabilistic
+distribution of numbers in the input array. It can sort n real numbers uniformly
+distributed in the half-open interval [0, 1) in average-case O(n) time.
 
-如果通过比较操作之外的方法来实现排序，就有可能打破 Ω(n * lgn) 的下界。例如，计数排序假定输入元素的值均在集合 {0, 1, ..., k} 内。通过使用数组索引来确定顺序，计数排序可以在 Θ(k + n) 的时间内将 n 个数排好序。因此，当 k = O(n) 时，计数排序算法的运行时间与输入数组的规模呈线性关系。另外一种相关的排序算法——基数排序，可以用来扩展计数排序的适用范围。如果有 n 个整数要进行排序，每个整数有 d 位数字，并且每个数字可能取 k 个值，那么基数排序就可以在 Θ(d(k + n)) 时间内完成排序工作。当 d 是常数且 k = O(n) 时，基数排序的运行时间就是线性的。
+The following table summarizes the running times of the sorting algorithms. As usual,
+n denotes the number of items to sort. For counting sort, the items to sort are
+integers in the set {0, 1, ..., k}. For radix sort, each item is a d-digit number,
+where each digit takes on k possible values. For bucket sort, we assume that the keys
+are real numbers uniformly distributed in the half-open interval [0, 1). The rightmost
+column gives the average-case or expected running time, indicating which it gives
+when it differs from the worst-case running time. We omit the average-case running
+time of heap sort because we do not analyze it.
 
-桶排序算法需要了解输入数组中数据的概率分布，对于半开区间 [0, 1) 内服从均匀分布的 n 个实数，桶排序的平均情况运行时间为 O(n)。
-
-下表介绍了上述排序算法的运行时间，其中 n 表示要排序的数组规模。对于计数排序，数据项均在集合 {0, 1, ..., k} 内。对于基数排序，每个数据项都是 d 位数字的整数，每位数字可能取 k 个值。对于桶排序，假定关键字是半开区间 [0, 1) 内服从均匀分布的 n 个实数。表的最后一列给出了平均情况或期望运行时间，可能与最坏情况运行时间不同。我们忽略了堆排序的平均情况运行时间。
-
-| 算法  | 最坏情况运行时间  | 平均情况/期望运行时间  |
+| Algorithm  | Worst-case running time  | Average-case/expected running time  |
 |---|---|---|
-| 插入排序  | O(n^2)  |  Θ(n^2) |
-| 归并排序 |  O(n * lgn) |  Θ(n * lgn) |
-| 堆排序  |  O(n * lgn) |  —— |
-| 快速排序  |  O(n^2) | Θ(n * lgn) （期望）  |
-| 计数排序  | O(k + n)  | Θ(k + n)  |
-| 基数排序  |  O(d(n + k)) |  Θ(d(n + k)) |
-| 桶排序  | O(n^2)  | Θ(n) （平均情况） |
+| Insertion sort  | O(n^2)  |  Θ(n^2) |
+|  Merge sort |  O(n*lgn) |  Θ(n*lgn) |
+| Heap sort  |  O(n*lgn) |  - |
+| Quick sort  |  O(n^2) | Θ(n*lgn) (expected)  |
+| Counting sort  | O(k + n)  | Θ(k + n)  |
+| Radix sort  |  O(d(n + k)) |  Θ(d(n + k)) |
+| Bucket sort  | O(n^2)  | Θ(n) (average-case) |
 
-### 顺序统计量
+#### Order statistics
 
-一个 n 个数的集合的第 i 个顺序统计量就是集合中第 i 小的元素。当然，我们可以通过将输入集合排序，取输出的第 i 个元素来选择第 i 个顺序统计量。当不知道输入数据的分布时，这种方法的运行时间为 O(n * lgn)，即比较排序算法的下界。
-
-但即使输入数据是任意实数，我们也可以在 O(n) 时间内找到第 i 小的元素。我们提出了一种随机算法，其代码非常紧凑，它的最坏情况运行时间为 O(n^2)，但期望运行时间为 O(n)。我们还给出了一种更复杂的算法，最坏情况运行时间为 O(n)。
+The ith order statistic of a set of n numbers is the ith smallest number in the set.
+We can, of course, select the ith order statistic by sorting the input and indexing
+the ith element of the output. With no assumptions about the input distribution,
+this method runs in Ω(n*lgn) time, as the lower bound proved in the decision-tree model shows.
+In [order-statistics](order-statistics.md), we show that we can find the ith smallest element in O(n) time,
+even when the elements are arbitrary real numbers. We present a randomized algorithm
+with tight code that runs in Θ(n^2) time in the worst case, but whose
+expected running time is O(n^2). We also give a more complicated algorithm that
+runs in O(n) worst-case time.

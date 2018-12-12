@@ -10,7 +10,7 @@ f[1] <= f[2] <= f[3] <= ... <= f[n-1] <= f[n]
 
 考虑下面的活动集合S:
 
-![](../assets/images/part4/greedy-algorithm.png)
+![](../../assets/images/part4/greedy-algorithm.png)
 
 对于这个例子，子集{a[3], a[9], a[11]}由相互兼容的活动组成，但它不是一个最大集，因为子集{a[1], a[4], a[8], a[11]}更大。实际上，{a[1], a[3], a[8], a[11]}是一个最大兼容活动子集，另一个最大子集是{a[2], a[4], a[9], a[11]}。
 
@@ -24,7 +24,7 @@ c[i][j] = c[i][k] + c[k][j] + 1
 
 当然，如果不知道S[i, j]的最优解包含a[k]，就需要考察S[i, j]中所有活动，寻找哪个活动可获得最优解。
 
-![](../assets/images/part4/greedy-algorithm2.png)
+![](../../assets/images/part4/greedy-algorithm2.png)
 
 于是接下来可以设计一个带备忘机制的递归算法，或者使用自底向上法填写表项，但我们可能忽略了活动选择问题的另一个重要性质，而这一性质可以极大地提高问题的求解速度。
 

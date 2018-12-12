@@ -8,7 +8,7 @@ B树以一种自然的方式推广了二叉搜索树。如果B树的一个内部
 
 下图给出了一棵关键字为英语中辅音字母的B树。一个内部结点x包含x.n个关键字以及x.n + 1个孩子，所有叶结点处于树中相同的深度，浅阴影的结点是在查找字母R时检查过的结点。
 
-![](../assets/images/part3/b-tree.png)
+![](../../assets/images/part3/b-tree.png)
 
 ### B树的定义
 
@@ -71,7 +71,7 @@ public class BTree {
 
 如果n >= 1，那么对任意一棵包含n个关键字、高度为h、最小度数t >= 2的B树T，有
 
-![](../assets/images/part3/b-tree2.png)
+![](../../assets/images/part3/b-tree2.png)
 
 ### B树上的基本操作
 
@@ -141,7 +141,7 @@ private void splitChild(Node x, int i) {
 
 下图显示了这个过程。满结点y = x.children[i]按照其中间关键字S进行分裂，S被提升到y的父结点x。y中的那些大于中间关键字的关键字够置于一个新的结点z中，它成为x的一个新的孩子。
 
-![](../assets/images/part3/b-tree3.png)
+![](../../assets/images/part3/b-tree3.png)
 
 splitChild以直接的“剪贴”方式工作。这里x是被分裂的结点，y是x的第i个孩子。开始时，结点y有2t个孩子(2t - 1个关键字)，在分裂后减少至t个孩子(t - 1个关键字)。结点z取走y的t个最大的孩子(t - 1个关键字)，并且z成为x的新孩子，它在x的孩子列表中仅位于y之后，y的中间关键字上升到x中，成为分隔y和z的关键字。
 
@@ -167,7 +167,7 @@ public void insert(String key) {
 
 当根结点为满时，原来的根结点被分裂，一个新的结点s(有两个孩子)称为根。对根进行分裂是增加B树高度的唯一途径，下图说明了这种情况。与二叉搜索树不同，B树高度的增加发生在顶部而不是底部。insert通过调用insertNonFull完成将关键字key插入以非满的根结点为根的树中。insertNonFull在需要时沿树向下递归，在必要时通过调用splitChild来保证任何时刻它所递归处理的结点都是非满的。
 
-![](../assets/images/part3/b-tree4.png)
+![](../../assets/images/part3/b-tree4.png)
 
 辅助的递归过程insertNonFull将关键字插入结点x，要求假定在调用该过程时x是非满的。操作insert和递归操作insertNonFull保证了这个假设成立。
 
@@ -200,7 +200,7 @@ private void insertNonFull(Node node, String key) {
 
 下图演示了向B树中插入关键字：
 
-![](../assets/images/part3/b-tree5.png)
+![](../../assets/images/part3/b-tree5.png)
 
 这棵B树的最小度数t为3，所以一个结点至多可包含5个关键字。在插入过程中被修改的结点由浅阴影标记。(a)这个例子初始时的树。(b)向初始树中插入B后的结果；这是一个对叶结点的简单插入。(c)将Q插入前一棵树中的结果。结点RSTUV被分裂为两个分别包含RS和UV的结点，关键字T被提升到根中，Q被插入两半的最左边(RS结点)。(d)将L插入前一棵树中的结果。由于根结点是满的，所以它立即被分裂，同时B树的高度增加1，然后L被插入包含JK的叶结点中。(e)将F插入前一棵树的结果。在将F插入两半的最右边(DE结点)之前，结点ABCDE会进行分裂。
 
@@ -212,7 +212,7 @@ delete从以x为根的子树中删除关键字k。我们设计的这个过程必
 
 现在我们来简要介绍删除操作是如何工作的，下图描绘了从B树中删除关键字的各种情况。
 
-![](../assets/images/part3/b-tree6.png)
+![](../../assets/images/part3/b-tree6.png)
 
 1. 如果关键字k在结点x中，并且x是叶结点，则从x中删除k。
 

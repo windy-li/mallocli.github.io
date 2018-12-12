@@ -65,15 +65,15 @@
 
 * [动态规划 (dynamic programming)](advanced-design-and-analysis-techniques/dynamic-programming.md).
 
-* [钢条切割 (rod cutting)](../../advanced-design-and-analysis-techniques/rod-cutting.md).
+* [钢条切割 (rod cutting)](../../cn/advanced-design-and-analysis-techniques/rod-cutting.md).
 
-* [矩阵链乘法 (matrix-chain multiplication)](../../advanced-design-and-analysis-techniques/matrix-chain-multiplication.md).
+* [矩阵链乘法 (matrix-chain multiplication)](../../cn/advanced-design-and-analysis-techniques/matrix-chain-multiplication.md).
 
-* [最长公共子序列 (longest common subsequence)](../../advanced-design-and-analysis-techniques/longest-common-subsequence.md).
+* [最长公共子序列 (longest common subsequence)](../../cn/advanced-design-and-analysis-techniques/longest-common-subsequence.md).
 
-* [贪心算法 (greedy algorithm)](../../advanced-design-and-analysis-techniques/greedy-algorithm.md).
+* [贪心算法 (greedy algorithm)](../../cn/advanced-design-and-analysis-techniques/greedy-algorithm.md).
 
-* [赫夫曼编码 (Huffman code)](../../advanced-design-and-analysis-techniques/huffman-code.md).
+* [赫夫曼编码 (Huffman code)](../../cn/advanced-design-and-analysis-techniques/huffman-code.md).
 
 
 $$E = M \cdot c^2$$

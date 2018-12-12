@@ -4,7 +4,7 @@
 
 顾名思义，二叉搜索树是以一棵二叉树的形式来组织的。如下图所示，这样一棵树可是使用一个链表数据结构来表示，其中每个节点是一个对象。除了key和卫星数据之外，每个节点还包含属性left、right和parent，它们分别指向节点的左孩子、右孩子和父结点。如果某个孩子节点或父结点不存在，则相应属性为null。根节点是树中唯一父指针为null的节点。
 
-![](../assets/images/part3/binary-search-tree.png)
+![](../../assets/images/part3/binary-search-tree.png)
 
 ```
 public class BinarySearchTree {
@@ -177,7 +177,7 @@ insert从树根开始，指针trailingPointer记录了一条向下的简单路�
 
 从一棵二叉搜索树中删除一个给定的节点z，考虑下图显示的4种情况，它与前面概括的三种情况有些不同。
 
-![](../assets/images/part3/binary-search-tree2.png)
+![](../../assets/images/part3/binary-search-tree2.png)
 
 1. 如果z没有左孩子，那么用其右孩子来替换z，这个右孩子可以是null，也可以不是。当z的右孩子是null时，此时这种情况归为z没有孩子结点的情形。当z的右孩子非null时，这种情况就是z仅有一个孩子结点的情形，该孩子是其右孩子。
 

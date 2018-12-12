@@ -4,7 +4,7 @@
 
 对于少量元素的排序，插入排序是一个高效的算法。插入排序的工作方式就像许多人排序一手的扑克牌，开始时，我们的左手只有一张牌，它当然是排好序的。然后，我们每次从桌子上拿走一张牌并将它插入到左手中正确的位置。为了找到一张牌的正确位置，我们从右到左将它与已在手中的每张牌进行比较。如下图所示。
 
-![](../assets/images/sorting-and-order-statistics/insertion-sort.png)
+![](../../assets/images/sorting-and-order-statistics/insertion-sort.png)
 
 具体算法描述如下：
 
@@ -15,7 +15,7 @@
 5. 将新元素插入到该位置后
 重复步骤 2 ~ 5
 
-![](../assets/images/sorting-and-order-statistics/insertion-sort.gif)
+![](../../assets/images/sorting-and-order-statistics/insertion-sort.gif)
 
 用程序实现如下：
 
