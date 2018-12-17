@@ -23,26 +23,26 @@ void radixSort(int[] arr) {
     int d = maxBit(arr);
     int n = arr.length;
     int[] temp = new int[n];
-    int[] count = new int[10];
+    int[] count = new int[10 + 1];
     int radix = 1;
-    for (int i = 1; i <= d; i++) {
-        for (int j = 0; j < 10; j++) {
-            count[j] = 0;
+    for (int j = 1; j <= d; j++) {
+        for (int i = 0; i <= 10; i++) {
+            count[i] = 0;
         }
-        for (int j = 0; j < n; j++) {
-            int k = (arr[j] / radix) % 10;
+        for (int i = 0; i < n; i++) {
+            int k = (arr[i] / radix) % 10;
             count[k]++;
         }
-        for (int j = 1; j < 10; j++) {
-            count[j] += count[j - 1];
+        for (int i = 1; i <= 10; i++) {
+            count[i] += count[i - 1];
         }
-        for (int j = n - 1; j >= 0; j--) {
-            int k = (arr[j] / radix) % 10;
-            temp[count[k] - 1] = arr[j];
+        for (int i = n - 1; i >= 0; i--) {
+            int k = (arr[i] / radix) % 10;
+            temp[count[k] - 1] = arr[i];
             count[k]--;
         }
-        for (int j = 0; j < n; j++) {
-            arr[j] = temp[j];
+        for (int i = 0; i < n; i++) {
+            arr[i] = temp[i];
         }
         Util.printArray(arr);
         radix *= 10;
