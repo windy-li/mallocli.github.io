@@ -1,4 +1,4 @@
-### 排序和顺序统计量
+### 排序和查找
 
 * [概述](sorting-and-order-statistics/introduction.md)
 
