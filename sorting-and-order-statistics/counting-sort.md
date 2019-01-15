@@ -7,25 +7,25 @@
 在计数排序算法的代码中，假设输入是数组 a[0...n-1]，我们还需要两个数组：b[0...n-1] 存放排序的输出，c[0...k] 提供临时存储空间。
 
 ```java
-int[] countingSort(int[] arr, int k) {
-    int n = arr.length;
-    int[] output = new int[n];
-    int[] count = new int[k + 1];
+int[] countingSort(int[] a, int k) {
+    int n = a.length;
+    int[] b = new int[n];
+    int[] c = new int[k + 1];
     for (int i = 0; i <= k; i++) {
-        count[i] = 0;
+        c[i] = 0;
     }
     for (int i = 0; i < n; i++) {
-        count[arr[i]]++;
+        c[a[i]]++;
     }
     for (int i = 1; i <= k; i++) {
-        count[i] += count[i - 1];
+        c[i] += c[i - 1];
     }
     for (int i = n - 1; i >= 0; i--) {
-        int x = arr[i];
-        output[count[x] - 1] = x;
-        count[x]--;
+        int x = a[i];
+        b[c[x] - 1] = x;
+        c[x]--;
     }
-    return output;
+    return b;
 }
 ```
 
@@ -44,22 +44,22 @@ int[] countingSort(int[] arr, int k) {
 基于计数排序，我们能设计一个算法，它能够对任何给定的介于 0 到 k 之间的 n 个整数进行预处理，然后在 O(1) 的时间内回答输入的 n 个整数中有多少个落在区间 [left...right] 内。该预处理时间为 Θ(n + k)。
 
 ```java
-int countingRange(int[] arr, int k, int left, int right) {
-    int n = arr.length;
-    int[] count = new int[k + 1];
-    for (int i = 0; i < k; i++) {
-        count[i] = 0;
+int countingRange(int[] a, int k, int left, int right) {
+    int n = a.length;
+    int[] c = new int[k + 1];
+    for (int i = 0; i <= k; i++) {
+        c[i] = 0;
     }
     for (int i = 0; i < n; i++) {
-        count[arr[i]]++;
+        c[a[i]]++;
     }
     for (int i = 1; i <= k; i++) {
-        count[i] += count[i - 1];
+        c[i] += c[i - 1];
     }
     if (left <= 0) {
-        return count[right];
+        return c[right];
     } else {
-        return count[right] - count[left - 1];
+        return c[right] - c[left - 1];
     }
 }
 ```
