@@ -6,7 +6,7 @@
 
 ```java
 void kSort(int[] arr, int k, int p, int r) {
-    if (p < r && r - p >= k) {
+    if (r - p >= k) {
         int q = partition(arr, p, r);
         kSort(arr, k, p, q - 1);
         kSort(arr, k, q + 1, r);
