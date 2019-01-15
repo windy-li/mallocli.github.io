@@ -197,10 +197,8 @@ void modifiedTailRecursiveQuickSort(int[] arr, int p, int r) {
 void threeWayQuickSort(int[] arr, int p, int r) {
     if (p < r) {
         int[] res = threeWayPartition(arr, p, r);
-        int lt = res[0];
-        int gt = res[1];
-        threeWayQuickSort(arr, p, lt);
-        threeWayQuickSort(arr, gt, r);
+        threeWayQuickSort(arr, p, res[0]);
+        threeWayQuickSort(arr, res[1], r);
     }
 }
 
