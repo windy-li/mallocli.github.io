@@ -26,6 +26,16 @@ void radixSort(int[] arr) {
     }
 }
 
+int maximum(int[] arr) {
+    int max = arr[0];
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
 void countingSort(int[] arr, int exp) {
     int n = arr.length;
     int k = 9;
@@ -48,16 +58,6 @@ void countingSort(int[] arr, int exp) {
     for (int i = 0; i < n; i++) {
         arr[i] = output[i];
     }
-}
-
-int maximum(int[] arr) {
-    int max = arr[0];
-    for (int i = 1; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-        }
-    }
-    return max;
 }
 ```
 
