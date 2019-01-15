@@ -190,17 +190,6 @@ int getMedian(int[] arr, int start, int end) {
     }
     return arr[(start + end) / 2];
 }
-
-int partition(int[] arr, int p, int r, int pivot) {
-    int i = p - 1;
-    for (int j = p; j <= r; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            Util.swap(arr, i, j);
-        }
-    }
-    return i + 1;
-}
 ```
 
 ![](../assets/images/sorting-and-order-statistics/order-statistic.png)
