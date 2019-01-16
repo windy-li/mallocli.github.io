@@ -159,14 +159,14 @@ int select(int[] arr, int p, int r, int i) {
         return arr[p];
     }
     int n = r - p + 1;
-    int group = (n + 4) / 5;
-    int[] medians = new int[group];
-    for (int j = 0; j < group; j++) {
+    int g = (n + 4) / 5;
+    int[] medians = new int[g];
+    for (int j = 0; j < g; j++) {
         int start = p + j * 5;
         int end = (start + 5 > r) ? r : (start + 5);
         medians[j] = getMedian(arr, start, end);
     }
-    int medOfMed = select(medians, 0, group - 1, (group - 1) / 2 + 1);
+    int medOfMed = select(medians, 0, g - 1, (g - 1) / 2 + 1);
     int q = partition(arr, p, r, medOfMed);
     int k = q - p + 1;
     if (i == k) {
