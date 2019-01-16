@@ -185,9 +185,6 @@ extractMax 的时间复杂度为 O(lgn)，因为除了时间复杂度为 O(lgn) 
 
 ```java
 int extractMax() {
-    if (heapSize < 1) {
-        throw new RuntimeException("heap underflow");
-    }
     int max = arr[0];
     Util.swap(arr, 0, heapSize - 1);
     heapSize--;
@@ -200,9 +197,6 @@ int extractMax() {
 
 ```java
 void increaseKey(int i, int key) {
-    if (key < arr[i]) {
-        throw new RuntimeException("new key is less than current key");
-    }
     while (parent(i) >= 0 && arr[parent(i)] < key) {
         arr[i] = arr[parent(i)];
         i = parent(i);
