@@ -23,9 +23,7 @@
 
 ### 数据结构
 
-* [栈 (Stack)](data-structures/stack.md)
-
-* [队列 (Queue)](data-structures/queue.md)
+* [栈和队列 (Stack and Queue)](data-structures/stack-and-queue.md)
 
 * [链表 (Linked List)](data-structures/linked-list.md)
 
