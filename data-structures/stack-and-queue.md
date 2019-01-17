@@ -64,7 +64,8 @@ public class Queue {
     
     Queue(int capacity) {
         keys = new int[capacity + 1];
-        head = tail = 0;
+        head = 0;
+        tail = 0;
     }
     
     boolean isEmpty() {
@@ -91,13 +92,13 @@ public class Queue {
         if (isEmpty()) {
             throw new RuntimeException("queue underflow");
         }
-        int ret = keys[head];
+        int res = keys[head];
         if (head == keys.length - 1) {
             head = 0;
         } else {
             head++;
         }
-        return ret;
+        return res;
     }
 }
 ```
