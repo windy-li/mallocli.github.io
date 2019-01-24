@@ -20,12 +20,12 @@ void bucketSort(double[] arr) {
     for (int i = 0; i < n; i++) {
         buckets[(int) (n * arr[i])].add(arr[i]);
     }
-    int pointer = 0;
+    int p = 0;
     for (int i = 0; i < n; i++) {
         LinkedList<Double> list = buckets[i];
         insertionSort(list);
         for (int j = 0; j < list.size(); j++) {
-            arr[pointer++] = list.get(j);
+            arr[p++] = list.get(j);
         }
     }
 }
