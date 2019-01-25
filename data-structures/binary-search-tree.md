@@ -206,15 +206,15 @@ void delete(int key) {
     } else if (node.right == null) {
         transplant(node.left, node);
     } else {
-        Node successor = minimum(node.right);
-        if (successor.panrent != node) {
-            transplant(successor.right, successor);
-            successor.right = node.right;
-            successor.right.parent = successor;
+        Node suc = minimum(node.right);
+        if (suc.panrent != node) {
+            transplant(suc.right, suc);
+            suc.right = node.right;
+            suc.right.parent = suc;
         }
-        transplant(successor, node);
-        successor.left = node.left;
-        successor.left.parent = successor;
+        transplant(suc, node);
+        suc.left = node.left;
+        suc.left.parent = suc;
     }
 }
 
