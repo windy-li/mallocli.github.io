@@ -156,8 +156,8 @@ Slot search(int key) {
         int j = h(key, i);
         if (slots[j] == null) {
             return null;
-        } else if (slots[j].key == key) {
-            return slots[j].deleted ? null : slots[j];
+        } else if (slots[j].key == key && !slots[j].deleted) {
+            return slots[j];
         }
         i++;
     }
