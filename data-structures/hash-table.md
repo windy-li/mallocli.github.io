@@ -132,18 +132,6 @@ public class HashTable {
         slots = new Slot[capacity];
     }
 
-    int h(int key, int i) {
-        return (h1(key) + i * h2(key)) % m;
-    }
-
-    int h1(int key) {
-        return key % m;
-    }
-
-    int h2(int key) {
-        return 1 + (key % (m - 1));
-    }
-
     void insert(int key) {
         int i = 0;
         do {
@@ -233,6 +221,20 @@ h2(k) = 1 + (k % m')
 ```
 
 其中 m' 略小于 m (比如 m - 1)。例如，如果 k = 123456, m = 701, m' = 700，则有 h1(k) = 80, h2(k) = 257，可知我们的第一个探查位置为 80，然后检查每第 257 个槽（模 m），直到找到该关键字，或者遍历了所有的槽。
+
+```java
+int h(int key, int i) {
+    return (h1(key) + i * h2(key)) % m;
+}
+
+int h1(int key) {
+    return key % m;
+}
+
+int h2(int key) {
+    return 1 + (key % (m - 1));
+}
+```
 
 当 m 为素数或者 2 的幂时，双重散列法中用到了 Θ(m^2) 中探查序列，而线性探查或二次探查中用了 Θ(m) 种，故前者是后两种方法的一种改进。因为每一对可能的 (h1(k), h2(k)) 都会产生一个不同的探查序列，因此，对于 m 的每一种可能的取值，双重散列的性能看起来就非常接近理想的均匀散列的性能。
 
