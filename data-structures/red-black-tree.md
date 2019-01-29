@@ -109,7 +109,7 @@ void rightRotate(Node p) {
 }
 ```
 
-下图给出了一个 leftRotate 操作修改二叉搜索树的例子，rightRotate 操作的代码是对称的。leftRotate 和 rightRotate 都在 O(1) 时间内运行完成，在旋转操作中，只有指针改变，其它所有属性都保持不变。
+下图给出了一个 leftRotate 操作修改二叉搜索树的例子，rightRotate 操作的代码是对称的。leftRotate 和 rightRotate 都在 O(1) 时间内完成，在旋转操作中只有指针改变，其它所有属性都保持不变。
 
 ![](../assets/images/part3/red-black-tree4.png)
 
@@ -143,7 +143,11 @@ void insert(int key) {
     node.color = RED;
     insertFixUp(node);
 }
+```
 
+红黑树的 RB-INSERT 和普通二叉搜索树的 TREE-INSERT 之间有 4 处不同：第一，TREE-INSERT 内的所有 null 都被 nil 代替。第二，RB-INSERT 置 z.left 和 z.right 为 nil，以保持合理的红黑树结构。第三，RB-INSERT 将 z 着为红色。第四，因为将 z 着为红色可能违反其中的一条红黑性质，所以在 RB-INSERT 的最后调用 insertFixUp 来保持红黑性质。 
+
+```java
 void insertFixUp(Node node) {
     while (node.parent.color == RED) {
         if (node.parent == node.parent.parent.left) {
