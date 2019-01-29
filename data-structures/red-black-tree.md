@@ -73,7 +73,7 @@ public class RedBlackTree {
 
 ![](../assets/images/part3/red-black-tree3.png)
 
-二叉搜索树上的旋转操作。leftRotate 通过改变常数个指针，可以将右边的结构转变成左边的结构。左边的结构可以使用相反的操作 rightRotate 来转变成右边的结构。字母 α、β 和 γ 代表任意的子树。旋转操作保持了二叉搜索树的性质：α 的关键字在 x.key 之前，x.key 在 β 的关键字之前，β 的关键字在 y.key 之前，y.key 在 γ 的关键字之前。在 leftRotate 中 x.right != nil，在 rightRotate 中 y.left != nil。 
+leftRotate 通过改变常数个指针，可以将右边的结构转变成左边的结构。左边的结构可以使用相反的操作 rightRotate 来转变成右边的结构。字母 α、β 和 γ 代表任意的子树。旋转操作保持了二叉搜索树的性质：α 的关键字在 x.key 之前，x.key 在 β 的关键字之前，β 的关键字在 y.key 之前，y.key 在 γ 的关键字之前。在 leftRotate 中 x.right != nil，在 rightRotate 中 y.left != nil。 
 
 ```java
 void leftRotate(Node p) {
