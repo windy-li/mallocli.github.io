@@ -342,7 +342,7 @@ void deleteFixUp(Node node) {
 }
 ```
 
-insertFixUp 恢复性质 1、性质 2 和性质 4。while 循环的目标是将额外的黑色沿树上移，直到：
+deleteFixUp 恢复性质 1、性质 2 和性质 4。while 循环的目标是将额外的黑色沿树上移，直到：
 
 1. x 指向红黑结点，此时在最后一行将 x 着为单个黑色。
 
