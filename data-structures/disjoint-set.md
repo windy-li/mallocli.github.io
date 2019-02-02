@@ -26,60 +26,6 @@
 
 在使用链表集合表示的实现中，union 操作的最简单实现明显比 makeSet 或 findSet 花费的时间多。如图（b）所示，我们通过把 y 所在的链表拼接到 x 所在的链表实现了 union(x, y)，x 所在的链表的代表成为结果集的代表。利用 x 所在链表的 tail 指针，可以迅速地找到拼接 y 所在的链表的位置。因为 y 所在的链表的所有成员加入了 x 所在的链表，此时可以删除 y 所在的链表的集合对象。遗憾的是，对于 y 所在链表的每个对象，我们必须更新指向集合对象的指针，这将花费的时间与 y 所在链表长度呈线性关系。例如在上图中，union(g, e) 促使 c、h、e 和 b 对象的指针被更新。
 
-```java
-public class DisjointSet {
-    Node[] nodes;
-    int count;
-
-    class Node {
-        int id;
-        Node next;
-        Set set;
-
-        Node(int id) {
-            this.id = id;
-            set = new Set(this);
-        }
-    }
-
-    class Set {
-        Node head;
-        Node tail;
-
-        Set(Node node) {
-            head = node;
-            tail = node;
-        }
-    }
-
-    DisjointSet(int n) {
-        nodes = new Node[n];
-        count = n;
-        for (int i = 0; i < n; i++) {
-            nodes[i] = new Node(i);
-        }
-    }
-
-    void union(int x, int y) {
-        link(nodes[x].set, nodes[y].set);
-    }
-
-    void link(Set x, Set y) {
-        x.tail.next = y.head;
-        Node z = y.head;
-        while (z.next != null) {
-            z.set = x;
-        }
-        x.tail = y.tail;
-        count--;
-    }
-
-    boolean isConnected(int x, int y) {
-        return nodes[x].set == nodes[y].set;
-    }
-}
-```
-
 #### 一种加权合并的启发式策略
 
 在最坏情况下，上面给出的 union 过程的每次调用平均需要 Θ(n) 的时间，这是因为需要把一个较长的表拼接到一个较短的表上，此时必须对较长表的每个成员更新其指向集合对象的指针。现在换一种做法，假设每个表中还包含了表的长度（这是很容易维护的）以及拼接次序可以任意的话，我们总是把较短的表拼接到较长的表中。使用这种简单的加权合并启发式策略（weighted-union heuristic），如果两个集合都有 Ω(n) 个成员，则单个的 union 操作仍然需要 Ω(n) 的时间。然而下面的定理表明，一个具有 m 个 makeSet、union 和 findSet 操作的序列（其中有 n 个是 makeSet 操作）需要耗费 O(m + n * lgn) 的时间。
@@ -89,6 +35,69 @@ public class DisjointSet {
 证明：由于每个 union 操作合并两个不相交集合，因此总共至多执行 n - 1 个 union 操作。现在来确定由这些 union 操作所花费时间的上界。我们先确定每个对象指向它的集合对象的指针被更新次数的上界。考虑某个对象 x，我们知道每次 x 的指针被更新，x 早先一定在一个规模较小的集合中，因此第一次 x 的指针被更新后，结果集一定至少有 2 个成员。类似地，下次 x 的指针被更新后，结果集一定至少有 4 个成员。一直继续下去，注意到对于任意的 k <= n，在 x 的指针被更新 ceil(lgk) 次后，结果集一定至少有 k 个成员。因为最大集合至多包含 n 个成员，故每个对象的指针在所有的 union 操作中最多被更新 ceil(lgn) 次。因此在所有的 union 操作中被更新的对象的指针总数为 O(n * lgn)。当然，我们也必须考虑 tail 指针和表长度的更新，而它们在每个 union 操作中只花费 Θ(1) 时间，至多执行 n - 1 个 union 操作，花费 O(n) 时间。所以总共花在 union 操作的时间为 O(n * lgn)。
 
 整个 m 个操作的序列所需的时间很容易求出。每个 makeSet 和 findSet 操作需要 O(1) 时间，它们的总数为 O(m)，所以整个序列的总时间是 O(m + n * lgn)。
+
+```java
+public class DisjointSet {
+    class Node {
+        int key;
+        Node next;
+        Set set;
+
+        Node(int key) {
+            this.key = key;
+        }
+    }
+
+    class Set {
+        Node head;
+        Node tail;
+        int weight = 0;
+
+        void insert(Node node) {
+            weight++;
+            node.set = this;
+            if (head == null) {
+                head = node;
+            }
+            if (tail == null) {
+                tail = node;
+            } else {
+                tail.next = node;
+                tail = node;
+            }
+        }
+    }
+
+    Node makeSet(int key) {
+        Node node = new Node(key);
+        Set set = new Set();
+        set.insert(node);
+        return node;
+    }
+
+    void union(Node node1, Node node2) {
+        Set set1 = node1.set;
+        Set set2 = node2.set;
+        if (set1.weight < set2.weight) {
+            link(set1, set2);
+        } else {
+            link(set2, set1);
+        }
+    }
+
+    void link(Set src, Set dest) {
+        Node node = src.head;
+        while (node.next != null) {
+            dest.insert(node);
+            node = node.next;
+        }
+    }
+
+    Node findSet(Node node) {
+        return node.set.head;
+    }
+}
+```
 
 ### 不相交集合森林
 
