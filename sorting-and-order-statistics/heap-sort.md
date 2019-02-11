@@ -60,11 +60,9 @@ maxHeapify 是维护最大堆性质的关键，它的输入为一个下标 i。�
 void maxHeapify(int[] arr, int i) {
     int l = left(i);
     int r = right(i);
-    int largest;
+    int largest = i;
     if (l < heapSize && arr[l] > arr[i]) {
         largest = l;
-    } else {
-        largest = i;
     }
     if (r < heapSize && arr[r] > arr[largest]) {
         largest = r;
@@ -89,11 +87,9 @@ void maxHeapify(int[] arr, int i) {
     while (true) {
         int l = left(i);
         int r = right(i);
-        int largest;
+        int largest = i;
         if (l < heapSize && arr[l] > arr[i]) {
             largest = l;
-        } else {
-            largest = i;
         }
         if (r < heapSize && arr[r] > arr[largest]) {
             largest = r;
