@@ -72,13 +72,13 @@ public class DisjointSet {
         Set set1 = x.set;
         Set set2 = y.set;
         if (set1.weight < set2.weight) {
-            return link(set1, set2);
+            link(set1, set2);
         } else {
-            return link(set2, set1);
+            link(set2, set1);
         }
     }
 
-    Node link(Set src, Set dest) {
+    void link(Set src, Set dest) {
         dest.tail.next = src.head;
         Node node = src.head;
         while (node != null) {
