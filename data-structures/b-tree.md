@@ -203,7 +203,7 @@ void insertNonFull(Node node, int key) {
 }
 ```
 
-下图演示了向 B 树中插入关键字：
+下图演示了向 B 树中插入若干个关键字：
 
 ![](../assets/images/part3/b-tree5.png)
 
