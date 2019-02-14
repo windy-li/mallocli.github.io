@@ -242,7 +242,7 @@ public class Queue {
 用两个队列实现栈，队列轮流充当入栈和出栈的角色，在执行 pop 操作的时候两个队列会交换角色。push 操作只需将元素 enqueue 进队列中，运行时间为 O(1)。pop 操作需要把一个队列中的所有元素依次 dequeue 出来并 enqueue 进另一个队列中，当队列中只剩一个元素的时候，将这个唯一的元素 dequeue 出来返回，并停止 enqueue。pop 操作运行时间为 O(n)。
 
 ```java
-public class P131_Stack {
+public class Stack {
     Queue queue1;
     Queue queue2;
 
