@@ -82,7 +82,23 @@ void delete(Node node) {
 
 ### 链表的反转
 
+链表的反转就是交换所有的 prev 和 next 指针，head 从原来的头部转移到尾部。下面是反转的的实现，其时间复杂度为 O(n)，并且除存储链表本身所需的空间外，只使用固定大小的额外存储空间。
 
+```java
+void reverse() {
+    Node temp = null;
+    Node current = head;
+    while (current != null) {
+        temp = current.prev;
+        current.prev = current.next;
+        current.next = temp;
+        current = current.prev;
+    }
+    if (temp != null) {
+        head = temp.prev;
+    }
+}
+```
 
 ### 单向链表
 
