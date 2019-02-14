@@ -27,6 +27,8 @@
 
 * [散列表 (Hash Table)](data-structures/hash-table.md)
 
+* [跳跃表 (Skip List)](data-structures/skip-list.md)
+
 * [二叉搜索树 (Binary Search Tree)](data-structures/binary-search-tree.md)
 
 * [基数树 (Radix Tree)](data-structures/radix-tree.md)
