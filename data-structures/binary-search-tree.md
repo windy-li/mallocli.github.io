@@ -39,6 +39,22 @@ void inorderTreeWalk(Node node) {
         inorderTreeWalk(node.right);
     }
 }
+
+void preorderTreeWalk(Node node) {
+    if (node != null) {
+        System.out.println(node);
+        preorderTreeWalk(node.left);
+        preorderTreeWalk(node.right);
+    }
+}
+
+void postorderTreeWalk(Node node) {
+    if (node != null) {
+        postorderTreeWalk(node.left);
+        postorderTreeWalk(node.right);
+        System.out.println(node);
+    }
+}
 ```
 
 遍历一棵有 n 个结点的二叉搜索树需要耗费 Θ(n) 的时间，因为初次调用后，对于树中的每个结点这个过程恰好要自己调用两次：一次是它的左孩子，一次是它的右孩子。
