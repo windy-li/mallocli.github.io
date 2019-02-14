@@ -325,3 +325,44 @@ public class Stack {
 
 #### 用一个单链表实现一个队列
 
+修改单链表的结构，使它含有 head 和 tail 两个属性。enqueue 操作只需将新结点插入到链表的尾部，运行时间为 O(1)。dequeue 操作只需删除链表的头部并将其返回，运行时间为 O(1)。
+
+```java
+public class Queue {
+    Node head;
+    Node tail;
+
+    class Node {
+        int key;
+        Node next;
+
+        Node(int key) {
+            this.key = key;
+        }
+    }
+
+    boolean isEmpty() {
+        return head == null;
+    }
+
+    void enqueue(int key) {
+        Node node = new Node(key);
+        if (isEmpty()) {
+            head = node;
+            tail = node;
+        } else {
+            tail.next = node;
+            tail = node;
+        }
+    }
+
+    int dequeue() {
+        if (isEmpty()) {
+            throw new RuntimeException("underflow");
+        }
+        int res = head.key;
+        head = head.next;
+        return res;
+    }
+}
+```
