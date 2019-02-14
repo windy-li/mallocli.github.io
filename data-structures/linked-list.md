@@ -80,7 +80,11 @@ void delete(Node node) {
 }
 ```
 
-### 单向链表及其翻转
+### 链表的反转
+
+
+
+### 单向链表
 
 单向链表的 search 和 insert 操作运行时间和双向链表一样，分别是 O(n) 和 O(1)，但单链表的删除操作比双链表慢，双链表只需简单的修改被删除结点的 prev 和 next 指针就能将该结点从链表中删除，运行时间为 O(1)，而单链表需要从 head 开始，沿着 next 指针找到结点所在的位置，通过修改该结点前驱的 next 指针才能将其删除，运行时间为 O(n)。
 
@@ -124,20 +128,25 @@ public class SinglyLinkedList {
         }
         prev.next = node.next;
     }
+    
+    void delete(int key) {
+        Node node = search(key);
+        if (node != null) {
+            delete(node);
+        }
+    }
 
     void reverse() {
-        if (head == null || head.next == null) {
-            return;
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
         }
-        Node a = head.next;
-        Node b = head;
-        while (a != null) {
-            Node temp = a.next;
-            a.next = b;
-            b = a;
-            a = temp;
-        }
-        head = b;
+        head = prev;
     }
 }
 ```
