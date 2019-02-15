@@ -288,3 +288,12 @@ void transplant(Node src, Node dest) {
 ```
 
 除了调用 minimum 之外，delete 的每一行，包括调用 transplant，都只花费常数时间，因此，在一棵高度为 h 的树上，delete 的运行时间为 O(h)。
+
+### 二叉搜索树的其它问题
+
+#### 树的最大和最小深度
+
+#### 树中结点的个数
+
+#### 第 k 层结点的个数
+
