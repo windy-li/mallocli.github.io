@@ -93,8 +93,7 @@ public class AVLTree {
         // Update height of this ancestor node
         node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
 
-        // Get the balance factor of this ancestor node
-        // to check whether this node became unbalanced
+        // Get the balance factor of this ancestor node to check whether this node became unbalanced
         int balance = getDifference(node);
 
         // If this node becomes unbalanced, then there are 4 cases
