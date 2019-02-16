@@ -47,17 +47,21 @@ void inorderTreeWalk(Node node) {
 
 ```java
 void nonRecursiveInorderTreeWalk(Node node) {
-    if (node == null) {
-        return;
-    }
     Stack<Node> stack = new Stack<>();
     while (node != null || !stack.isEmpty()) {
+        // Reach the left most node of the current node
         while (node != null) {
+            // Place pointer to a tree node on the stack before traversing the node's left subtree
             stack.push(node);
             node = node.left;
         }
+        
+        // Current must be null at this point
         node = stack.pop();
+        
         System.out.println(node);
+        
+        // We have visited the node and it's left subtree, now, it's right subtree's turn
         node = node.right;
     }
 }
@@ -67,22 +71,24 @@ void nonRecursiveInorderTreeWalk(Node node) {
 
 ```java
 void MorrisTraversal(Node node) {
-    if (node == null) {
-        return;
-    }
     while (node != null) {
         if (node.left == null) {
             System.out.println(node);
             node = node.right;
         } else {
+            // Find the inorder predecessor of current
             Node pre = node.left;
             while (pre.right != null && pre.right != node) {
                 pre = pre.right;
             }
+
+            // Make current as right child of its inorder predecessor
             if (pre.right == null) {
                 pre.right = node;
                 node = node.left;
             } else {
+                // Revert the changes made in "if" part to restore the original tree, 
+                // fix the right child of predecessor
                 pre.right = null;
                 System.out.println(node);
                 node = node.right;

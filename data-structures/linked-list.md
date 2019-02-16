@@ -88,12 +88,14 @@ void delete(Node node) {
 void reverse() {
     Node temp = null;
     Node current = head;
+    // Swap next and prev for all nodes of doubly linked list
     while (current != null) {
         temp = current.prev;
         current.prev = current.next;
         current.next = temp;
         current = current.prev;
     }
+    // Before changing head, check for the case like empty list and list with only one node
     if (temp != null) {
         head = temp.prev;
     }
@@ -151,12 +153,18 @@ public class SinglyLinkedList {
     }
 
     void reverse() {
+        // Initialize prev, current, next pointers
         Node prev = null;
         Node current = head;
         Node next = null;
         while (current != null) {
+            // Store next
             next = current.next;
+
+            // Reverse current node's pointer
             current.next = prev;
+
+            // Move pointers one position ahead
             prev = current;
             current = next;
         }
