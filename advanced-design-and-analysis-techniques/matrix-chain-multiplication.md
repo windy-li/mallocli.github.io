@@ -2,13 +2,11 @@
 
 给定一个 n 个矩阵的序列（矩阵链） <A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>n</sub>>，我们希望计算它们的乘积 A<sub>1</sub>A<sub>2</sub>...A<sub>n</sub>。为了计算矩阵链乘积，我们可以先用括号明确计算次序，然后利用标准的矩阵相乘算法进行计算。由于矩阵乘法满足结合律，因此任何加括号的方法都会得到相同的计算结果。我们称有如下性质的矩阵乘积链为完全括号化的（fully parenthesized）：它是单一矩阵，或者是两个完全括号化的矩阵链的积，且已外加括号。例如，如果矩阵链为 <A<sub>1</sub>, A<sub>2</sub>, A<sub>3</sub>, A<sub>4</sub>>，则共有 5 种完全括号化的矩阵乘积链：
 
-<center>
-(A<sub>1</sub>(A<sub>2</sub>(A<sub>3</sub>A<sub>4</sub>)))  
-(A<sub>1</sub>((A<sub>2</sub>A<sub>3</sub>)A<sub>4</sub>))  
-((A<sub>1</sub>A<sub>2</sub>)(A<sub>3</sub>A<sub>4</sub>)  
-((A<sub>1</sub>(A<sub>2</sub>A<sub>3</sub>))A<sub>4</sub>)  
-(((A<sub>1</sub>A<sub>2</sub>)A<sub>3</sub>)A<sub>4</sub>)  
-</center>
+<center>(A<sub>1</sub>(A<sub>2</sub>(A<sub>3</sub>A<sub>4</sub>)))</center>  
+<center>(A<sub>1</sub>((A<sub>2</sub>A<sub>3</sub>)A<sub>4</sub>))</center>  
+<center>((A<sub>1</sub>A<sub>2</sub>)(A<sub>3</sub>A<sub>4</sub>)</center>  
+<center>((A<sub>1</sub>(A<sub>2</sub>A<sub>3</sub>))A<sub>4</sub>)</center>  
+<center>(((A<sub>1</sub>A<sub>2</sub>)A<sub>3</sub>)A<sub>4</sub>)</center>  
 
 对矩阵链加括号的方式会对乘积运算的代价产生巨大影响，我们先来分析两个矩阵相乘的代价。下面是两个矩阵相乘的标准乘法。
 
