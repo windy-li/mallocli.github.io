@@ -18,10 +18,10 @@
 n = i<sub>1</sub> + i<sub>2</sub> + ... + i<sub>k</sub>
 ```
 
-将钢条切割为长度分别为 i1, i2, i3, ..., ik 的小段，得到最大收益
+将钢条切割为长度分别为 i<sub>1</sub>, i<sub>2</sub>, i<sub>3</sub>, ..., i<sub>k</sub> 的小段，得到最大收益
 
 ```
-r[n] = p[i1] + p[i2] + ... + p[ik]
+r<sub>n</sub> = p<sub>i<sub>1</sub></sub> + p<sub>i<sub>2</sub></sub> + ... + p<sub>i<sub>k</sub></sub>
 ```
 
 对于上述价格表样例，我们可以观察所有最优收益值 r[i] (i = 1, 2, ..., 10) 及对应的最优切割方案：
