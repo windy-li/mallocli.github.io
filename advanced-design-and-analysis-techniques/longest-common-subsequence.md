@@ -110,7 +110,7 @@ Object[] extendedBottomUp(char[] x, char[] y) {
 }
 ```
 
-### 构造 LCS
+### 步骤 4：构造 LCS
 
 我们可以用 extendedBottomUp 返回的表 b 快速构造 X = <x[1], x[2], ..., x[m]> 和 Y = <y[1], y[2], ..., y[n]> 的 LCS，只需简单地从 b[m][n] 开始，并按箭头方向追踪下去即可。当在表项中遇到 TURN 时，意味着 x[i] = y[j] 是 LCS 的一个元素。按照这种方法，我们可以逆序依次构造出 LCS 的所有元素。
 
