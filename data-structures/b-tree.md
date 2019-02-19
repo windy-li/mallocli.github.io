@@ -150,7 +150,7 @@ splitChild 以直接的“剪贴”方式工作。这里 x 是被分裂的结点
 
 #### 沿树单程下行方式向 B 树插入关键字
 
-在一棵高度为 h 的 B 树中，插入一个关键字所需的时间为 O(th) = O(t * log(t, n))。insert 利用 splitChild 来保证递归始终不会降至一个满结点上。
+在一棵高度为 h 的 B 树中，插入一个关键字所需的时间为 O(th) = O(t log<sub>t</sub><sup>n</sup>)。insert 利用 splitChild 来保证递归始终不会降至一个满结点上。
 
 ```java
 void insert(int key) {
