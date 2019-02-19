@@ -130,7 +130,7 @@ Object[] extendedBottomUp(char[] x, char[] y) {
 
 ### 步骤 4：构造 LCS
 
-我们可以用 extendedBottomUp 返回的表 b 快速构造 X = <x[1], x[2], ..., x[m]> 和 Y = <y[1], y[2], ..., y[n]> 的 LCS，只需简单地从 b[m][n] 开始，并按箭头方向追踪下去即可。当在表项中遇到 TURN 时，意味着 x[i] = y[j] 是 LCS 的一个元素。按照这种方法，我们可以逆序依次构造出 LCS 的所有元素。
+我们可以用 extendedBottomUp 返回的表 b 快速构造 X = <x[1], x[2], ..., x[m]> 和 Y = <y[1], y[2], ..., y[n]> 的 LCS，只需简单地从 b[m][n] 开始，并按箭头方向追踪下去即可。当在表项 b[i][j] 中遇到一个“↖”时，意味着 x[i] = y[j] 是 LCS 的一个元素。按照这种方法，我们可以按逆序依次构造出 LCS 的所有元素。
 
 ```java
 void constructSolution(int[][] b, char[] x, int i, int j) {
@@ -149,3 +149,5 @@ void constructSolution(int[][] b, char[] x, int i, int j) {
     }
 }
 ```
+
+对于上图中的表 b，constructSolution 会打印出 BCBA，过程的运行时间为 O(m + n)，因为每次递归调用 i 和 j 至少有一个会减少 1。
