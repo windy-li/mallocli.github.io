@@ -87,7 +87,7 @@ m[i][j] = m[i][k] + m[k+1][j] + p[i-1] * p[k] * [pj]
 
 ![](../assets/images/part4/matrix-chain-multiplication2.png)
 
-m[i][j] 的值给出了子问题最优解的代价，但它并未提供足够的信息来构造最优解，为此，我们用 s[i][j] 保存 AiAi+1..Aj 最优括号化方案的分割点位置 k，即使得 m[i][j] = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j] 成立的 k 的值。
+m[i][j] 的值给出了子问题最优解的代价，但它并未提供足够的信息来构造最优解，为此，我们用 s[i][j] 保存 A<sub>i</sub>A<sub>i+1</sub>..A<sub>j</sub> 最优括号化方案的分割点位置 k，即使得 m[i][j] = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j] 成立的 k 的值。
 
 #### 步骤 3：计算最优代价
 
