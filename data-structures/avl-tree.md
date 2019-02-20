@@ -63,11 +63,27 @@ Node leftRotate(Node p) {
 void updateHeight(Node node) {
     node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
 }
+
+int getHeight(Node node) {
+    if (node == null) {
+        return 0;
+    } else {
+        return node.height;
+    }
+}
+
+int getDifference(Node node) {
+    if (node == null) {
+        return 0;
+    } else {
+        return getHeight(node.left) - getHeight(node.right);
+    }
+}
 ```
 
 插入一个结点后导致树不平衡的原因，是某个子树的高度增加了 1。从新插入的结点 w 开始往根结点回溯，假设 z 是第一个不平衡的结点，y 是从回溯路径上 z 的孩子，x 是回溯路径上 y 的孩子。根据 y 和 x 的方向不同，插入后的平衡操作需要考虑 4 中情况：
 
-**y 是 z 的左孩子， x 是 y 的左孩子**
+**1. y 是 z 的左孩子， x 是 y 的左孩子**
 
 令 T1, T2, T3 和 T4 为任意子树。
 
@@ -79,7 +95,7 @@ void updateHeight(Node node) {
 / \
 T1   T2
 
-**y 是 z 的左孩子，x 是 y 的右孩子**
+**2. y 是 z 的左孩子，x 是 y 的右孩子**
 
      z                               z                           x
     / \                            /   \                        /  \ 
@@ -89,7 +105,7 @@ T1   x                          y    T3                    T1  T2 T3  T4
     / \                        / \
   T2   T3                    T1   T2
 
-**y 是 z 的右孩子，x 是 y 的右孩子**
+**3. y 是 z 的右孩子，x 是 y 的右孩子**
 
   z                                y
  /  \                            /   \ 
@@ -99,7 +115,7 @@ T1   y     Left Rotate(z)       z      x
        / \
      T3  T4
 
-**y 是 z 的右孩子，x 是 y 的左孩子**
+**4. y 是 z 的右孩子，x 是 y 的左孩子**
 
    z                            z                            x
   / \                          / \                          /  \ 
@@ -108,4 +124,59 @@ T1   y   Right Rotate (y)    T1   x      Left Rotate(z)   z      y
    x   T4                      T2   y                  T1  T2  T3  T4
   / \                              /  \
 T2   T3                           T3   T4
+
+```java
+Node balanceInsert(Node node) {
+    // If this node becomes unbalanced, then there are 4 cases
+
+    // Left Left Case
+    if (getDifference(node) == 2 && getDifference(node.left) == 1) {
+        return rightRotate(node);
+    }
+
+    // Right Right Case
+    if (getDifference(node) == -2 && getDifference(node.right) == -1) {
+        return leftRotate(node);
+    }
+
+    // Left Right Case
+    if (getDifference(node) == 2 && getDifference(node.left) == -1) {
+        node.left = leftRotate(node.left);
+        return rightRotate(node);
+    }
+
+    // Right Left Case
+    if (getDifference(node) == -2 && getDifference(node.right) == 1) {
+        node.right = rightRotate(node.right);
+        return leftRotate(node);
+    }
+
+    // Return the (unchanged) node pointer
+    return node;
+}
+```
+
+有一个 balanceInsert 过程，我们就可以先将一个结点插入，然后沿着树根方向回溯，更新结点的高度，遇到第一个不平衡的结点，将其调整为平衡的，再往上就不会再出现不平衡的结点了，只需要更新高度即可。
+
+```java
+Node insert(Node node, int key) {
+    // Perform the normal BST insertion
+    if (node == null) {
+        return new Node(key);
+    }
+    if (key < node.key) {
+        node.left = insert(node.left, key);
+    } else if (key > node.key) {
+        node.right = insert(node.right, key);
+    } else {
+        // Duplicated keys not allowed
+        return node;
+    }
+
+    // Update height of this ancestor node
+    updateHeight(node);
+
+    return balanceInsert(node);
+}
+```
 
