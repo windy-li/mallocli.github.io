@@ -101,7 +101,7 @@ Object[] search(Node node, int key) {
 }
 ```
 
-就像二叉搜索树的搜索过程一样，在递归过程中所遇到的结点构成了一条从树根向下的简单路径。因此，由 search 过程访问的磁盘页面数为 O(h) = O(log(t, n))，其中 h 为 B 树的高度，n 为 B 树中所含的关键字个数。由于 x.n < 2t，所以 while 循环在每个结点中花费的时间为 O(t)，总的时间为 O(th) = O(t log<sub>t</sub><sup>n</sup>)。
+就像二叉搜索树的搜索过程一样，在递归过程中所遇到的结点构成了一条从树根向下的简单路径。因此，由 search 过程访问的磁盘页面数为 O(h) = O(log<sub>t</sub><sup>n</sup>)，其中 h 为 B 树的高度，n 为 B 树中所含的关键字个数。由于 x.n < 2t，所以 while 循环在每个结点中花费的时间为 O(t)，总的时间为 O(th) = O(t log<sub>t</sub><sup>n</sup>)。
 
 #### 向 B 树中插入一个关键字
 
