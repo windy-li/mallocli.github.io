@@ -161,13 +161,13 @@ class MaxPriorityQueue {
 
 优先队列（priority queue）是一种用来维护由一组元素构成的集合 S 的数据结构，其中的每一个元素都有一个相关的值，称为关键字（key）。一个最大优先队列支持以下操作：
 
-* void insert(int key) 把元素 x 插入到集合 S 中，这一操作等价于 S = S ∪ {x}。
+* insert 把元素 x 插入到集合 S 中，这一操作等价于 S = S ∪ {x}。
 
-* int maximum() 返回 S 中具有最大关键字的元素。
+* maximum 返回 S 中具有最大关键字的元素。
 
-* int extractMax() 去掉并返回 S 中具有最大关键字的元素。
+* extractMax 去掉并返回 S 中具有最大关键字的元素。
 
-* void increaseKey(int i, int newKey) 将下标为 i 的元素关键字值增加到 newKey。这里假设 newKey 不小于该元素的原关键字值。
+* increaseKey 将下标为 i 的元素关键字值增加到 newKey。这里假设 newKey 不小于该元素的原关键字值。
 
 下面的过程可以在 Θ(1) 的时间内实现 maximum 操作。
 
