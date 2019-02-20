@@ -42,7 +42,7 @@ int partition(int[] arr, int p, int r) {
 
 2. 若 i + 1 <= k <= j - 1，则 arr[k] > x。
 
-3. 若 k == r，则 arr[k] == x。
+3. 若 k = r，则 arr[k] = x。
 
 但是上述三种情况没有覆盖下标 j 到 r - 1，对应位置的值与主元之间也不存在特定的大小关系。
 
