@@ -50,7 +50,8 @@ public class Stack {
 
 队列上的插入操作称为入队 (enqueue)，删除操作称为出队 (dequeue)。正如栈的 pop 操作一样，dequeue 操作也没有元素参数。队列的先进先出特性类似于收银台前排队等待结账的一排顾客。队列有队头 (head) 和队尾 (tail)，当有一个元素入队时，它被放在队尾的位置，就像一个新到来的顾客排在队伍的末端一样，而出队的元素则总是在队头的那个，就像排在队伍前面等待最久的那个顾客一样。
 
-> ![](../assets/images/data-structures/queue.png)
+> ![](../assets/images/data-structures/queue.png) 测试文字
+测试文字1
 
 利用数组 arr[0...11] 实现一个队列。只有出现在浅灰色格子里的才是队列的元素。（a）列队包含 5 个元素，位于 arr[6...10]。（b）依次调用 enqueue(17)、enqueue(3) 和 enqueue(5) 后队列的构成。（c）在调用 dequeue 并返回原队头的关键字值 15 后，队列的构成，此时新的队头元素为 6。
 
