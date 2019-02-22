@@ -80,8 +80,8 @@ BFS 在无向图上的运行过程。添加了阴影的边是被 BFS 发现的�
 
 ```java
 void printPath(Graph graph, int srcId, int destId) {
-    Vertex src = graph.getVertexById(srcId);
-    Vertex dest = graph.getVertexById(destId);
+    Vertex src = graph.vertices[srcId];
+    Vertex dest = graph.vertices[destId];
     if (srcId == destId) {
         System.out.print(src + " ");
     } else {
