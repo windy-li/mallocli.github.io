@@ -4,6 +4,41 @@
 
 对于图 G = (V, E) 来说，其邻接链表表示由一个包含 V 条链表的数组 adj 所构成，每个结点有一条链表。对于每个结点 u ∈ V，邻接链表 adj[u] 包含所有与结点 u 之间有边相连的结点 v，即 adj[u] 包含图 G 中所有与 u 邻接的结点（也可以说，该链表里包含指向这些结点的指针）。
 
+对于邻接链表表示，先给出顶点和边的定义：
+
+```java
+public class Vertex {
+    int id;
+    String label;
+    
+    Vertex(int id) {
+        this.id = id;
+    }
+
+    Vertex(int id, String label) {
+        this.id = id;
+        this.label = label;
+    }
+}
+
+public class Edge {
+    int startId;
+    int endId;
+    int weight;
+    
+    Edge(int startId, int endId) {
+        this.startId = startId;
+        this.endId = endId;
+    }
+
+    Edge(int startId, int endId, int weight) {
+        this.startId = startId;
+        this.endId = endId;
+        this.weight = weight;
+    }
+}
+```
+
 ![](../assets/images/graph-algorithms/graph1.png)
 
 无向图的两种表示。(a) 一个有 5 个结点和 7 条边的无向图 G。(b) G 的邻接链表表示。(c) G 的邻接矩阵表示。
@@ -15,7 +50,7 @@ public class Graph {
     Vertex[] vertices;
     LinkedList<Edge>[] adj;
     
-    public Graph(int V) {
+    Graph(int V) {
         this.V = V;
         E = 0;
         vertices = new Vertex[V];
@@ -50,23 +85,12 @@ public class Graph {
         adj[endId].add(e);
         E += 2;
     }
-    
-    Edge[] allEdges() {
-        Edge[] edges = new Edge[E];
-        int i = 0;
-        for (int u = 0; u < V; u++) {
-            for (Edge e : adj[u]) {
-                edges[i++] = e;
-            }
-        }
-        return edges;
-    }
 }
 ```
 
 ![](../assets/images/graph-algorithms/graph2.png)
 
-有向图的两种表示。(a) 一个有 6 个结点和 8 条边的有向图 G。(b) G 的邻接链表表示。
+有向图的两种表示。(a) 一个有 6 个结点和 8 条边的有向图 G。(b) G 的邻接链表表示。(c) G 的邻接矩阵表示。
 
 ```java
 public class Digraph {
@@ -109,17 +133,6 @@ public class Digraph {
         Edge e = new Edge(startId, endId, weight);
         adj[startId].add(e);
         E++;
-    }
-    
-    Edge[] allEdges() {
-        Edge[] edges = new Edge[E];
-        int i = 0;
-        for (int j = 0; j < V; j++) {
-            for (Edge e : adj[j]) {
-                edges[i++] = e;
-            }
-        }
-        return edges;
     }
 }
 ```
