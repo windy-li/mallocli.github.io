@@ -13,6 +13,13 @@
 下面给出的广度优先搜索算法中，假定输入图 G = (V, E) 是以邻接链表所表示的。该算法为图中每个结点赋予了一些额外的属性：我们将每个结点 u 是否被发现存放在属性 u.isVisited 里，将 u 的前驱结点存放在属性 u.pre 里，如果 u 没有前驱结点（例如，如果 u = s 或者结点 u 尚未被发现），则 u.pre = null。属性 u.d 记录的是广度优先搜索算法所计算出的从源结点 s 到结点 u 之间的距离。该算法使用一个先进先出的队列来管理灰色结点集。
 
 ```java
+class Vertex {
+    // other fields and methods ...
+    boolean isVisited;
+    int d;
+    Vertex pre;
+}
+
 void BFS(Graph graph, int rootId) {
     int V = graph.V;
     for (int i = 0; i < V; i++) {
