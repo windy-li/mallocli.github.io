@@ -14,10 +14,29 @@
 
 ```java
 class Vertex {
-    // other fields and methods ...
+    // Other fields and methods ...
+
     boolean isVisited;
     int d;
     Vertex pre;
+}
+
+class Edge {
+    // Other fields and methods ...
+
+    int either() {
+        return startId;
+    }
+
+    int other(int vertexId) {
+        if (vertexId == startId) {
+            return endId;
+        } else if (vertexId == endId) {
+            return startId;
+        } else {
+            throw new IllegalArgumentException("No such vertex in this edge");
+        }
+    }
 }
 
 void BFS(Graph graph, int rootId) {
