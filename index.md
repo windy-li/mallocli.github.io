@@ -35,7 +35,7 @@
 
 * [跳跃表 (Skip List)](data-structures/skip-list.md)
 
-* [随机二叉搜索树 (Treap)](data-structures/treap.md)
+* [树堆 (Treap)](data-structures/treap.md)
 
 * [B树 (B Tree)](data-structures/b-tree.md)
 
