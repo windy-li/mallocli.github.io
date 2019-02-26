@@ -40,11 +40,9 @@ Node search(int key) {
     }
 
 Node search(Node node, int key) {
-    // Base Cases: root is null or key is present at root
     if (node == null || key == node.key) {
         return node;
     }
-
     if (key < node.key) {
         return search(node.left, key);
     } else {
@@ -85,27 +83,20 @@ void insert(int key) {
 }
 
 Node insert(Node node, int key) {
-    // If root is null, create a new node and return it
     if (node == null) {
         return new Node(key);
     }
-
     if (key < node.key) {
         node.left = insert(node.left, key);
-
-        // Fix heap property if it is violated
         if (node.left.priority > node.priority) {
             node = rightRotate(node);
         }
     } else {
         node.right = insert(node.right, key);
-
-        // Fix heap property if it is violated
         if (node.right.priority > node.priority) {
             node = leftRotate(node);
         }
     }
-
     return node;
 }
 ```
@@ -131,23 +122,16 @@ Node delete(Node node, int key) {
     if (node == null) {
         return null;
     }
-
     if (key < node.key) {
         node.left = delete(node.left, key);
     } else if (key > node.key) {
         node.right = delete(node.right, key);
     } else {
-        // If the key is same as root'key, then this is the node to be deleted
-
         if (node.left == null) {
-            // If left is null, make right child as root
             node = node.right;
         } else if (node.right == null) {
-            // If right is null, make left child as root
             node = node.left;
         } else {
-            // Both left and right are not null
-
             if (node.left.priority < node.right.priority) {
                 node = leftRotate(node);
                 node.left = delete(node.left, key);
@@ -157,7 +141,6 @@ Node delete(Node node, int key) {
             }
         }
     }
-
     return node;
 }
 ```
