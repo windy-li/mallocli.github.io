@@ -36,8 +36,8 @@ Treap 的搜索和普通二叉搜索树的搜索方式完全一样，下面是�
 
 ```java
 Node search(int key) {
-        return search(root, key);
-    }
+    return search(root, key);
+}
 
 Node search(Node node, int key) {
     if (node == null || key == node.key) {
