@@ -8,7 +8,7 @@
 
 * 如果 v 是 u 的右孩子，则 v.key > u.key。
 
-* 如果 v 是 u 的孩子，则 v.priority > u.priority。
+* 如果 v 是 u 的孩子，则 v.priority < u.priority。
 
 这两个性质的结合就是这种树被称为 treap 树的原因：它同时具有二叉搜索树和堆的特征。
 

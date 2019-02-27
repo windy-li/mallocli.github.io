@@ -131,23 +131,23 @@ public class SinglyLinkedList {
         node.next = head;
         head = node;
     }
-
-    void delete(Node node) {
-        if (node == head) {
-            head = head.next;
-            return;
-        }
-        Node prev = head;
-        while (prev.next != node) {
-            prev = prev.next;
-        }
-        prev.next = node.next;
-    }
     
     void delete(int key) {
         Node node = search(key);
         if (node != null) {
             delete(node);
+        }
+    }
+
+    void delete(Node node) {
+        if (node == head) {
+            head = head.next;
+        } else {
+            Node temp = head;
+            while (temp.next != node) {
+                temp = temp.next;
+            }
+            temp.next = node.next;
         }
     }
 
