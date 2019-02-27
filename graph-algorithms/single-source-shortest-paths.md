@@ -6,7 +6,7 @@ w(p) = ∑<sub>i=1</sub><sup>k</sup>w(v<sub>i-1</sub>, v<sub>i</sub>)
 
 定义从结点 u 到结点 v 的最短路径权重 δ(u, v) 如下：
 
-![](../assets/images/graph-algorithms/single-source-shortest-path1.png)
+![](../assets/images/part4/single-source-shortest-path1.png)
 
 从结点 u 到结点 v 的最短路径则定义为任何一条权重为 w(p) = δ(u, v) 的从 u 到 v 的路径 p。当然，边上的权重也可以代表非距离的度量单位，如时间、成本、罚款、损失，或者任何其它可以随路径长度的增加而线性积累的数量以及我们想要最小化的数量。
 
@@ -36,7 +36,7 @@ w(p) = ∑<sub>i=1</sub><sup>k</sup>w(v<sub>i-1</sub>, v<sub>i</sub>)
 
 下图描述的是负权重和权重为负值的环路对最短路径权重的影响。因为从结点 s 到结点 a 只有一条路径（路径 <s, a>），所以有 δ(s, a) = w(s, a) = 3。类似地，从结点 s 到结点 b 也只有一条路径，因此 δ(s, b) = w(s, a) + w(a, b) = 3 + (-4) = -1。从结点 s 到结点 c 则有无数条路径：<s, c>, <s, c, d, c>, <s, c, d, c, d, c> 等。因为环路 <c, d, c> 的权重为 6 + (-3) = 3 > 0，从结点 s 到结点 c 的最短路径是 <s, c>，其权重为 δ(s, c) = w(s, c) = 5.类似地，从结点 s 到结点 d 的最短路径为 <s, c, d>，其权重为 δ(s, d) = w(s, c) + w(c, d) = 11.类似地，从结点 s 到结点 e 也有无数条路径：<s, e>, <s, e, f, e>, <s, e, f, e, f, e> 等等。因为环路 <e, f, e> 的权重为 3 + (-6) = -1 < 0，从结点 s 到结点 e 没有最短路径。通过遍历负权重环路 <e, f, e> 任意次数，可以找打权重为任意负值的从结点 s 到结点 e 的路径，因此 δ(s, e) = -∞。类似地，δ(s, f) = -∞。因为结点 g 可以从结点 f 到达，我们可以找到一条权重为任意负值的从结点 s 到结点 g 的路径，因此 δ(s, g) = -∞。结点 h、i 和 j 也形成一个权重为负值的环路，但它们不能从结点 s 到达，因此，δ(s, h) = δ(s, i) = δ(s, j) = ∞。
 
-![](../assets/images/graph-algorithms/single-source-shortest-path2.png)
+![](../assets/images/part4/single-source-shortest-path2.png)
 
 有向图中的负权重边。从源结点 s 到每个结点之间的最短路径的权重标记在每个结点中。因为结点 e 和结点 f 形成一个权重为负值且可以从结点 s 到达的环路，它们的最短路径权重为 -∞。因为结点 g 可以从一个最短路径权重为 -∞ 的结点到达，它的最短路径权重也是 -∞。结点 h、i 和 j 不能从源结点 s 到达，因此，它们的最短路径权重为 ∞，即使它们也在一条权重为负值的环路上。
 
@@ -50,7 +50,7 @@ w(p) = ∑<sub>i=1</sub><sup>k</sup>w(v<sub>i-1</sub>, v<sub>i</sub>)
 
 最毒路径不一定是唯一的，最短路径树也不一定是唯一的，例如，下图描述的是一个带权重的有向图和两棵根结点相同的最短路径树。
 
-![](../assets/images/graph-algorithms/single-source-shortest-path3.png)
+![](../assets/images/part4/single-source-shortest-path3.png)
 
 (a) 带权重的有向图，具有从源结点 s 出发的最短路径权重。(b) 加了阴影的边形成一棵根结点为 s 的最短路径树。(c) 根结点相同的另一棵最短路径树。
 
@@ -72,7 +72,7 @@ w(p) = ∑<sub>i=1</sub><sup>k</sup>w(v<sub>i-1</sub>, v<sub>i</sub>)
 
 下图描述的是对一条边进行松弛的两个例子。在其中一个例子中，最短路径估计因松弛操作而减少了，在另一个例子中，最短路径估计则没有发生变化。
 
-![](../assets/images/graph-algorithms/single-source-shortest-path4.png)
+![](../assets/images/part4/single-source-shortest-path4.png)
 
 对权重 w(u, v) = 2 的边 (u, v) 进行的松弛操作。对每个结点的最短路径估计写在结点里面。(a) 因为在松弛操作前有 v.d > u.d + w(u, v)，因而 v.d 的值减少。(b) 在对边进行松弛操作前有 v.d <= u.d + w(u, v)，因此，松弛操作维持 v.d 的取值不变。
 
@@ -106,7 +106,7 @@ Bellman-Ford 算法通过对边进行松弛操作来渐进地降低从源结点 
 
 下图描述的是在有 5 个结点的图上运行 Bellman-Ford 算法的过程。在算法第 1 行对所有结点的 d 值和 pre 值进行初始化后，算法对图的每条边进行 ∣V∣ - 1 次处理，每一次处理对应的是算法第 2 ~ 4 行 for 循环的一次循环，该循环对图的每条边进行一次松弛操作。图 (b) ~ (e) 描述的是对边进行 4 次松弛操作时，每一次松弛后的算法状态。在进行了 ∣V∣ - 1 次松弛操作后，算法第 5 ~ 8 行负责检查图中是否存在权重为负值的环路并返回与之相适应的布尔值。
 
-![](../assets/images/graph-algorithms/single-source-shortest-path5.png)
+![](../assets/images/part4/single-source-shortest-path5.png)
 
 Bellman-Ford 算法的执行过程。源结点为 s，结点中的数值为该结点的 d 值，加了阴影的边表示前驱值：如果边 (u, v) 加了阴影，则 v.pre = u。在本图的例子中，每一次的松弛操作对边的处理次序都是：(t, x), (t, y), (t, z), (y, x), (y, z), (z, x), (z, s), (s, t), (s, y)。(a) 在第 1 次松弛操作前的场景。(b) ~ (e) 在对边进行每次松弛操作后的场景。图 (e) 中的 d 值和 pre 值为最终取值。在本例中，Bellman-Ford 算法返回的值为 true。
 
@@ -124,7 +124,7 @@ Bellman-Ford 算法的执行过程。源结点为 s，结点中的数值为该�
 
 下图描述的是 dagShortestPaths 的执行过程。
 
-![](../assets/images/graph-algorithms/single-source-shortest-path6.png)
+![](../assets/images/part4/single-source-shortest-path6.png)
 
 在有向无环图上执行最短路径算法 dagShortestPaths 的过程。图中的结点从左至右以拓扑排序的次序排列。源结点为 s，每个结点中的数值为 d 值，加了阴影的边表示 pre 值。(a) 在算法第 3 ~ 5 行 for 循环开始前的场景。(b) ~ (g) 第 3 ~ 5 行 for 循环在每次执行后的场景。每次循环时新变为黑色的结点作为该次循环里的 u 结点。图 (g) 中所显示的各种值都是最后的取值。
 
@@ -142,7 +142,7 @@ Dijkstra 算法在运行过程中维持的关键信息是一组结点集合 S。
 
 Dijkstra 算法对边的松弛操作如下图所示。算法第 1 行执行的是例行的 d 值和 pre 值的初始化，第 2 行将集合 S 初始化为一个空集。算法所维持的不变式为 Q = V - S，该不变式在算法第 4 ~ 8 行的 while 循环中保持不变。算法第 3 行对最小优先队列 Q 进行初始化，将所有的结点 V 都放在该队列里。由于此时的 S  = ∅，不变式在第 3 行执行完毕后成立。算法在每次执行第 4 ~ 8 行的 while 循环时，第 5 行从 Q = V - S 集合中抽取结点 u，第 6 行将该结点加入到集合 S 里从而继续保持不变式成立（注意，在第一次执行该循环时，u = s）。结点 u 是集合 V - S 中所有结点的最小最短路径估计。然后，在算法的第 7 ~ 8 行，我们队所有从结点 u 发出的边 (u, v) 进行松弛操作。如果一条经过结点 u 的路径能够使得源结点 s 到结点 v 的最短路径权重比当前的估计值更小，则我们对 v.d 的值和前驱 v.pre 的值执行更新。注意，在算法的第 3 行后，我们再不会在队列 Q 中插入任何结点，而每个结点从 Q 中被抽取的次数和加入集合 S 的次数均为一次。因此，算法第 4 ~ 8 行的 while 循环的执行次数刚好为 ∣V∣ 次。
 
-![](../assets/images/graph-algorithms/single-source-shortest-path7.png)
+![](../assets/images/part4/single-source-shortest-path7.png)
 
 Dijkstra 算法的执行过程。源结点 s 为最左边的结点。每个结点中的数值为该结点的最短路径的估计值，加了阴影的边表明前驱值。黑色的结点属于集合 S，白色的结点属于最小优先队列 Q = V - S。(a) 算法第 4 ~ 8 行的 while 循环首次执行前的场景。加了阴影的结点为 d 值最小的结点，该结点在算法的第 5 行被选择为结点 u。(b) ~ (f) 每次成功执行 while 循环后的场景。每幅图里加了阴影的结点是被算法第 5 行所选择出的下一次循环所用的结点 u。图 (f) 中的 d 值和前驱值都是最终值。
 

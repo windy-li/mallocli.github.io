@@ -4,7 +4,7 @@
 
 顾名思义，二叉搜索树是以一棵二叉树的形式来组织的。如下图所示，这样一棵树可是使用一个链表数据结构来表示，其中每个节点是一个对象。除了 key 和卫星数据之外，每个节点还包含属性 left、right 和 parent，它们分别指向节点的左孩子、右孩子和父结点。如果某个孩子节点或父结点不存在，则相应属性为 null。根节点是树中唯一父指针为 null 的节点。
 
-![](../assets/images/part3/binary-search-tree.png)
+![](../assets/images/part2/binary-search-tree.png)
 
 ```java
 public class BinarySearchTree {
@@ -168,7 +168,7 @@ Node successor(Node node) {
 }
 ```
 
-![](../assets/images/part3/binary-search-tree2.png)
+![](../assets/images/part2/binary-search-tree2.png)
 
 successor 的代码分两种情况：如果结点 x 的右子树非空，那么 x 的后继恰好是 x 右子树中的最左结点，通过调用 minimum 可以得到，例如，在上图中，15 的后继是 17。如果结点 x 的右子树为空并有一个后继 y，那么 y 就是 x 的有左孩子的第一个祖先，并且 x 在它的左子树上，例如，在上图中，13 的后继是 15。
 
@@ -246,7 +246,7 @@ insert 从树根开始，指针 temp 记录了一条向下的简单路径，该�
 
 从一棵二叉搜索树中删除一个给定的节点 z，考虑下图显示的 4 种情况，它与前面概括的 3 种情况有些不同。
 
-![](../assets/images/part3/binary-search-tree3.png)
+![](../assets/images/part2/binary-search-tree3.png)
 
 1. 如果 z 没有左孩子，那么用其右孩子来替换 z，这个右孩子可以是 null，也可以不是。当 z 的右孩子是 null 时，此时这种情况归为 z 没有孩子结点的情形。当 z 的右孩子非 null 时，这种情况就是 z 仅有一个孩子结点的情形，该孩子是其右孩子。
 

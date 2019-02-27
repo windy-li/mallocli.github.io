@@ -4,9 +4,9 @@
 
 这个问题称为最优二叉搜索树（optimal binary search tree）问题。其形式化定义如下：给定一个 n 个不同关键字的已排序的序列 K = <k<sub>1</sub>, k<sub>2</sub>, ..., k<sub>n</sub>>（因此 k<sub>1</sub> < k<sub>2</sub> < ... < k<sub>n</sub>），我们希望用这些关键字构造一棵二叉搜索树。对每个关键字 k<sub>i</sub>，都有一个概率 p<sub>i</sub> 表示其搜索频率。有些要搜索的值可能不在 K 中，因此我们还有 n + 1 个“伪关键字” d<sub>0</sub>, d<sub>1</sub>, d<sub>2</sub>, ..., d<sub>n</sub> 表示不在 K 中的值。d<sub>0</sub> 表示所有小于 k<sub>1</sub> 的值，d<sub>n</sub> 表示所有大于 k<sub>n</sub> 的值，对 i = 1, 2, ..., n-1，伪关键字 d<sub>i</sub> 表示所有在 k<sub>i</sub> 和 k<sub>i+1</sub> 之间的值。对每个伪关键字 d<sub>i</sub>，也有一个频率 p<sub>i</sub> 表示对应的搜索频率。下图显示了一个 n = 5 个关键字的集合构造的两棵二叉搜索树。每个关键字 k<sub>i</sub> 是一个内部结点，而每个伪关键字 d<sub>i</sub> 是一个叶结点。每次搜索要么成功（找到某个关键字 k<sub>i</sub>）要么失败（找到某个伪关键字 d<sub>i</sub>），因此有如下公式：
 
-![](../assets/images/part4/optimal-binary-search-tree.png)
+![](../assets/images/part3/optimal-binary-search-tree.png)
 
-![](../assets/images/part4/optimal-binary-search-tree2.png)
+![](../assets/images/part3/optimal-binary-search-tree2.png)
 
 （a）期望搜索代价为 2.80 的二叉搜索树。（b）期望搜索代价为 2.75（最优）的二叉搜索树
 
@@ -19,7 +19,7 @@
 
 由于我们知道每个关键字和伪关键字的搜索频率，因而可以确定在一棵给定的二叉搜索树 T 中进行一次搜索的期望代价。假定一次搜索的代价等于访问的结点数，即此次搜索找到的结点在 T 中的深度再加 1，那么在 T 中进行一次搜索的期望代价为：
 
-![](../assets/images/part4/optimal-binary-search-tree3.png)
+![](../assets/images/part3/optimal-binary-search-tree3.png)
 
 其中 depth<sub>T</sub> 表示一个结点在树 T 中的深度，最后一个等式是上上个公式推导而来。在上图（a）中，我们逐个结点计算期望搜索代价：
 
@@ -60,23 +60,23 @@ j = i - 1 的情况最简单，由于子树只包含伪关键字 d<sub>i-1</sub>
 
 当 j >= i 时，我们需要从 k<sub>i</sub>, ..., k<sub>j</sub> 中选择一个根结点 k<sub>r</sub>，然后构造一棵包含关键字 k<sub>i</sub>, ..., k<sub>r-1</sub> 的最优二叉搜索树作为其左子树，以及一棵包含关键字 k<sub>r+1</sub>, ..., k<sub>j</sub> 的二叉搜索树作为其右子树。当一棵子树成为一个结点的子树时，期望搜索代价有何变化？由于每个结点的深度都增加了 1，根据上面的公式，这棵子树的期望搜索代价的增加值应为所有概率之和。对于包含关键字 k<sub>i</sub>, ..., k<sub>j</sub> 的子树，所有概率之和为
 
-![](../assets/images/part4/optimal-binary-search-tree4.png)
+![](../assets/images/part3/optimal-binary-search-tree4.png)
 
 因此，若 k<sub>r</sub> 为包含关键字 k<sub>i</sub>, ..., k<sub>j</sub> 的最优二叉搜索树的根结点，我们有如下公式：
 
-![](../assets/images/part4/optimal-binary-search-tree5.png)
+![](../assets/images/part3/optimal-binary-search-tree5.png)
 
 注意
 
-![](../assets/images/part4/optimal-binary-search-tree6.png)
+![](../assets/images/part3/optimal-binary-search-tree6.png)
 
 因此 e[i][j] 可重写为
 
-![](../assets/images/part4/optimal-binary-search-tree7.png)
+![](../assets/images/part3/optimal-binary-search-tree7.png)
 
 上面的递归公式假定我们知道哪个结点 k 应该作为根结点，如果选取期望搜索代价最低者作为根结点，可得最终递归公式：
 
-![](../assets/images/part4/optimal-binary-search-tree8.png)
+![](../assets/images/part3/optimal-binary-search-tree8.png)
 
 e[i][j] 的值给出了最优二叉搜索树的期望搜索代价。为了记录最优二叉搜索树的结构，对于包含关键字 k<sub>i</sub>, ..., k<sub>j</sub> (i <= i <= j <= n) 的最优二叉搜索树，我们定义 root[i][j] 保存根结点 k<sub>r</sub> 的下标 r。
 

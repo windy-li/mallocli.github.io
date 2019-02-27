@@ -12,7 +12,7 @@
 
 比较排序可以被抽象为一棵决策树。决策树是一棵完全二叉树，它可以表示在给定输入规模情况下，某一特定排序算法对所有元素的比较操作。其中，控制、数据移动等其它操作都被忽略了。下图显示了插入排序算法作用于包含三个元素的输入序列的决策树情况。
 
-![](../assets/images/sorting-and-order-statistics/decision-tree.png)
+![](../assets/images/part1/decision-tree.png)
 
 作用于 3 个元素时的插入排序决策树。标记为 i : j 的内部结点表示 a<sub>i</sub> 和 a<sub>j</sub> 之间的比较。排列为 <s<sub>1</sub>, s<sub>2</sub>, ..., s<sub>n</sub>> 的叶结点表示得到的顺序 a<sub>s<sub>1</sub></sub> <= a<sub>s<sub>2</sub></sub> <= ... <= a<sub>s<sub>n</sub></sub>。加了阴影的路径表示在对输入序列 <a<sub>1</sub> = 6, a<sub>2</sub> = 8, a<sub>3</sub> = 5> 进行排序时所做的决策，叶结点上的排列 <3, 1, 2> 表示排序的顺序是 a<sub>3</sub> = 5 <= a<sub>1</sub> = 6 <= a<sub>2</sub> = 8。对于输入元素来说，共有 3! = 6 种可能的排列，因此决策树至少包含 6 个叶结点。
 

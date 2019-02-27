@@ -57,7 +57,7 @@ Node search(Node node, int key) {
 
 首先以普通二叉搜索树的方式插入一个新结点，这个结点被赋予了一个随机的 priority 值，所以最大堆性质可能会被破坏，因此需要调整树的结构以维持最大堆性质。树的结构调节是通过旋转来实现的：
 
-![](../assets/images/part3/red-black-tree3.png)
+![](../assets/images/part2/red-black-tree3.png)
 
 ```java
 Node leftRotate(Node p) {

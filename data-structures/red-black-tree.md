@@ -52,14 +52,14 @@ public class RedBlackTree {
 
 下图显示了一个红黑树的例子：
 
-![](../assets/images/part3/red-black-tree.png)
+![](../assets/images/part2/red-black-tree.png)
 
 
 为了便于处理红黑树代码中的边界条件，使用一个哨兵来代表 nil。对于一棵红黑树，哨兵 nil 是一个与树中普通结点有相同属性的对象，它的 color 属性为 BLACK，而其它属性 parent、left、right 和 key 可以为任意值。
 
 使用哨兵后，就可以将结点 x 的 nil 孩子视为一个普通结点，其父结点为 x。尽管可以为树内的每一个 nil 新增一个不同的哨兵结点，使得每个 nil 的父结点都有这样的良定义，但这种做法会浪费空间。取而代之的是，使用一个哨兵 nil 来代表所有的 nil：根结点的父结点和所有的叶结点。哨兵的属性 parent、left、right 和 key 的取值并不重要。
 
-![](../assets/images/part3/red-black-tree2.png)
+![](../assets/images/part2/red-black-tree2.png)
 
 从某个结点 x 出发（不包含该结点）到达一个叶结点的任意一条简单路径上的黑色结点个数称为该结点的黑高 (black height)。根据性质 5，黑高的概念是明确定义的，因为从该结点出发的所有下降到其叶结点的简单路径的黑结点个数都相同，于是定义红黑树的黑高为其根结点的黑高。利用黑高可以证明以下引理：
 
@@ -71,7 +71,7 @@ public class RedBlackTree {
 
 指针结构的修改是通过旋转 (rotate) 来完成的，这是一种能保持二叉搜索树性质的搜索树局部操作。下图给出了两种旋转：左旋和右旋。当在某个结点 x 上做左旋时，假设它的右孩子是 y 而不是 nil，x 可以为右孩子不是 nil 的树内任意结点。左旋以 x 到 y 的链为支轴进行，它使 y 成为该子树新的根结点，x 成为 y 的左孩子，y 的左孩子成为 x 的右孩子。
 
-![](../assets/images/part3/red-black-tree3.png)
+![](../assets/images/part2/red-black-tree3.png)
 
 leftRotate 通过改变常数个指针，可以将右边的结构转变成左边的结构。左边的结构可以使用相反的操作 rightRotate 来转变成右边的结构。字母 α、β 和 γ 代表任意的子树。旋转操作保持了二叉搜索树的性质：α 的关键字在 x.key 之前，x.key 在 β 的关键字之前，β 的关键字在 y.key 之前，y.key 在 γ 的关键字之前。在 leftRotate 中 x.right != nil，在 rightRotate 中 y.left != nil。 
 
@@ -111,7 +111,7 @@ void rightRotate(Node p) {
 
 下图给出了一个 leftRotate 操作修改二叉搜索树的例子，rightRotate 操作的代码是对称的。leftRotate 和 rightRotate 都在 O(1) 时间内完成，在旋转操作中只有指针改变，其它所有属性都保持不变。
 
-![](../assets/images/part3/red-black-tree4.png)
+![](../assets/images/part2/red-black-tree4.png)
 
 ### 插入
 
@@ -186,7 +186,7 @@ void insertFixUp(Node node) {
 
 为了理解 insertFixUp 如何工作，把代码分为三个主要的步骤。首先，要确定当结点 z 被插入并着为红色后，红黑性质中有哪些不能继续保持。其次，应分析 while 循环的总目标。最后，要分析 while 循环体中的三种情况，看它们是如何完成目标的。下图给出一个范例，显示在一棵红黑树上 insertFixUp 如何操作。
 
-![](../assets/images/part3/red-black-tree5.png)
+![](../assets/images/part2/red-black-tree5.png)
 
 （a）插入后的结点 z。由于 z 和它的父结点 z.parent 都是红色的，所以违反了性质 4。由于 z 的叔结点 y 是红色的，可以应用程序中的情况 1。结点被重新着色，并且指针 z 沿树上升，得到树（b）。再一次 z 及其父结点又都为红色，但 z 的叔结点 y 是黑色的。因为 z 是 z.parent 的右孩子，可以应用情况 2。在执行 1 次左旋之后，得到树（c）。现在，z 是其父结点的左孩子，可以应用情况 3。重新着色并执行一次右旋后得到（d）中的树，它是一棵合法的红黑树。
 
@@ -208,7 +208,7 @@ while 循环在每次迭代的开头保持下列三个部分的不变式：
 
 这种情况在 z.parent 和 y 都是红色时发生。因为 z.parent.parent 是黑色的，所以将 z.parent 和 y 都着为黑色，以此解决 z 和 z.parent 都是红色的问题，将 z.parent.parent 着为红色以保持性质 5，然后把 z.parent.parent 作为新结点 z 来重复 while 循环。指针 z 在树中上移两层。
 
-![](../assets/images/part3/red-black-tree6.png)
+![](../assets/images/part2/red-black-tree6.png)
 
 insertFixUp 的情况 1。性质 4 被违反，因为 z 和它的父结点 z.parent 都是红色的，无论 z 是一个右孩子（图(a)）还是一个左孩子（图(b)），都同样处理。每一棵子树 α、β、γ、δ 和 ε 都有一个黑色根结点，而且具有相同的黑高。情况 1 的代码改变了某些结点的颜色，但保持了性质 5：从一个结点向下到一个叶结点的所有简单路径都有相同数目的黑结点。while 循环将结点 z 的祖父 z.parent.parent 作为新的 z 以继续迭代。现在性质 4 的破坏只可能发生在新的红色结点 z 和它的父结点之间，条件是如果父结点也为红色的。
 
@@ -218,7 +218,7 @@ insertFixUp 的情况 1。性质 4 被违反，因为 z 和它的父结点 z.par
 
 在情况 2 和情况 3 中，z 的叔结点 y 是黑色的，通过 z 是 z.parent 的右孩子还是左孩子来区别这两种情况。在情况 2 中，结点 z 是它的父结点的右孩子，可以立即使用一个左旋来将此情形转变为情况 3，此时结点 z 为左孩子。因为 z 和 z.parent 都是红色的，所以该旋转对结点的黑高和性质 5 都无影响。无论是直接进入情况 2，还是通过情况 3 进入情况 2，z 的叔结点 y 总是黑色的，因为否则就要执行情况 1。此外，z.parent.parent 一定存在。在情况 3 中，改变某些结点的颜色并做一次右旋，以保持性质 5，这样，由于一行中不再有两个红色结点，所有的处理到此完毕。因为此时 z.parent 是黑色的，所以无需再执行 while 循环。
 
-![](../assets/images/part3/red-black-tree7.png)
+![](../assets/images/part2/red-black-tree7.png)
 
 insertFixUp 的情况 2 和 情况 3。如同情况 1，由于 z 和它的父结点 z.parent 都是红色的，性质 4 在情况 2 或情况 3 中会被破坏。每一棵子树 α、β、γ、δ 和 ε 都有一个黑色根结点（α、β 和 γ 是由性质 4 而来，δ 也有黑色根结点，因为否则将导致情况 1），而且具有相同的黑高。通过左旋将情况 2 转变为情况 3，以保持性质 5：从一个结点向下到一个叶结点的所有简单路径都有相同数目的黑结点。情况 3 引起某些结点颜色的改变，以及一个同样为了保持性质 5 的右旋，然后 while 循环终止，因为性质 4 已经得到了满足：红色结点的孩子是黑色的。
 
@@ -354,7 +354,7 @@ deleteFixUp 恢复性质 1、性质 2 和性质 4。while 循环的目标是将�
 
 下图给出了代码中的 4 种情况。
 
-![](../assets/images/part3/red-black-tree8.png)
+![](../assets/images/part2/red-black-tree8.png)
 
 deleteFixUp 中 while 循环的各种情况。加黑的结点 color 属性为 BLACK，深阴影的结点 color 属性为 RED，浅阴影的结点 color 属性用 c 和 c' 表示，它既可以为 RED 也可以为 BLACK。字母α，β，γ，...，ξ 代表任意的子树。在每种情况中，通过改变某些结点的颜色及/或进行一次旋转，可以将左边的结构转化为右边的结构。x 指向的任何结点都具有额外的一重黑色而成为双重黑色或红黑色。只有情况 2 引起循环重复。（a）通过交换结点 B 和 D 的颜色以及执行一次左旋，可将情况 1 转化为情况 2、3 或 4。（b）在情况 2 中，在将结点 D 着为红色，并将 x 设为指向结点 B 后，由指针 x 所表示的额外黑色沿树上升。如果通过情况 1 进入情况 2，则 while 循环结束，因为新的结点 x 是红黑色的，因此其 color 属性 c 是 RED。（c）通过交换结点 C 和 D 的颜色并执行一次右旋，可以将情况 3 转换成情况 4。（d）在情况 4 中，通过改变某些结点的颜色并执行一次左旋（不违反红黑性质），可以将由 x 表示的额外黑色去掉，然后循环终止。
 

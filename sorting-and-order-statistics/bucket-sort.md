@@ -6,7 +6,7 @@
 
 在桶排序的代码中，我们假设输入是一个包含 n 个元素的数组 arr，且每个元素 arr[i] 满足 0 <= arr[i] < 1。此外，算法还需要一个临时数组 b[0...n-1] 来存放链表（即桶）。
 
-![](../assets/images/sorting-and-order-statistics/bucket-sort.png)
+![](../assets/images/part1/bucket-sort.png)
 
 上图是当 n = 10 时桶排序操作过程。(a) 是输入数组，(b) 是排序完成后，已排序链表（桶）的情况。第 i 个桶中存放的是半开区间 [i/10, (i+1)/10) 中的值，排好序的输出是由链表（桶）依次连接而成。
 

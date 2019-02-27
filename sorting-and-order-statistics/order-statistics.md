@@ -203,7 +203,7 @@ int partition(int[] arr, int p, int r, int pivot) {
 }
 ```
 
-![](../assets/images/sorting-and-order-statistics/order-statistic.png)
+![](../assets/images/part1/order-statistic.png)
 
 对算法 select 的分析。所有 n 个元素都由圆圈来表示，并且每一组的 5 个元素在同一列上。其中，每组的中位数用白色圈表示，而中位数的中位数 x 也被标识出来（当查找偶数个元素的中位数时，使用较小的中位数）。箭头从较大的元素指向较小的元素，从图中可以看出，在 x 的右边，每一个包含 5 个元素的组中有 3 个元素大于 x。在 x 的左边，每一个包含 5 个元素的组中有 3 个元素小于 x。大于 x 的元素的背景以阴影来显示。
 

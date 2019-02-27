@@ -71,7 +71,7 @@ void BFS(Graph graph, int rootId) {
 
 下图描述的是 BFS 在一个样本图上的推进过程。
 
-![](../assets/images/graph-algorithms/BFS1.png)
+![](../assets/images/part4/BFS1.png)
 
 BFS 在无向图上的运行过程。添加了阴影的边是被 BFS 发现的边，每个结点 u 里面记录的是 u.d 的值。图中还给出了算法在 while 循环每次开始时队列中的内容。结点距离标记在队列相应结点的下方。
 

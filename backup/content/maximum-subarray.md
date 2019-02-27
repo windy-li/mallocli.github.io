@@ -10,7 +10,7 @@
 
 我们把某数组的和最大的非空连续子数组称为最大连续子数组(maximum subarray)，通常说“一个最大子数组”而不是“最大子数组”，因为可能有多个子数组达到最大和。只有当数组中包含负数时，最大子数组问题才有意义，如果所有数组元素都是非负的，最大子数组问题没有任何难度，因为整个数组的和肯定是最大的。
 
-![](../../assets/images/sorting-and-order-statistics/maximum-subarray1.png)
+![](../../assets/images/part1/maximum-subarray1.png)
 
 使用暴力法求解最大子数组问题，需要考虑数组的每一个连续子数组，选出其中和最大者。
 
@@ -43,7 +43,7 @@ bruteForceMaximumSubarray(int[] arr) {
 * 完全位于子数组arr[mid + 1, high]中，因此mid < i <= j <= high。
 * 跨越了中点，因此low <= i <= mid < j <= high。
 
-![](../../assets/images/sorting-and-order-statistics/maximum-subarray2.png)
+![](../../assets/images/part1/maximum-subarray2.png)
 
 因此，arr[low...high]的一个最大子数组所处的位置必然是这三种情况之一。我们可以递归地求解arr[low...mid]和arr[mid + 1...high]，因为这两个问题仍然是最大子数组问题，只是规模更小。因此，剩下的工作就是寻找跨越中点的最大子数组，然后在三种情况中选择和最大者。
 

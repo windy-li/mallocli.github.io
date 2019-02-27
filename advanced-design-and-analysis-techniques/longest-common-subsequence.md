@@ -36,7 +36,7 @@
 
 设计 LCS 问题的递归算法首先要建立最优解的递归式。我们定义 c[i][j] 表示 X<sub>i</sub> 和 Y<sub>j</sub> 的 LCS 的长度，如果 i = 0 或 j = 0，即一个序列长度为 0，那么 LCS 的长度为 0。根据 LCS 问题的最优子结构性质，可得如下公式：
 
-![](../assets/images/part4/longest-common-subsequence.png)
+![](../assets/images/part3/longest-common-subsequence.png)
 
 观察到在递归公式中，我们通过限制条件限制了需要求解哪些子问题。当 x<sub>i</sub> = y<sub>j</sub> 时，我们可以而且应该求解子问题：X<sub>i-1</sub> 和 Y<sub>j-1</sub> 的一个 LCS。否则，应该求解两个子问题：X<sub>i</sub> 和 Y<sub>j-1</sub> 的一个 LCS 及 X<sub>i-1</sub> 和 Y 的一个 LCS。
 
@@ -122,7 +122,7 @@ Object[] extendedBottomUp(char[] x, char[] y) {
 
 下图显示了 extendedBottomUp 对输入序列 X = <A, B, C, B, D, A, B> 和 Y = <B, D, C, A, B, A> 生成的结果。过程的运行时间为 Θ(mn)，因为每个表项的计算时间为 Θ(1)。
 
-![](../assets/images/part4/longest-common-subsequence1.png)
+![](../assets/images/part3/longest-common-subsequence1.png)
 
 图中第 i 行和第 j 列的方格包含了 c[i][j] 的值和 b[i][j] 记录的箭头。表项 c[7][6]（表的右下角）中的 4 即为 X 和 Y 的一个 LCS <B, C, B, A> 的长度。对所有 i, j > 0，表项 c[i][j] 仅依赖于是否 x<sub>i</sub> = y<sub>j</sub> 以及 c[i-1][j]、c[i][j-1] 和 c[i-1][j-1] 的值，这些值都会在 c[i][j] 之前计算出来。为了构造 LCS 中的元素，从右下角开始沿着 b[i][j] 的箭头前进即可，如图中阴影方格序列。阴影序列中每个“↖”对应的表项表示 x<sub>i</sub> = y<sub>j</sub> 是 LCS 的一个元素。
 

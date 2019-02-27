@@ -44,7 +44,7 @@ int[][] matrixMultiply(int[][] a, int[][] b) {
 
 在用动态规划方法求解矩阵链乘法问题之前，我们先说服自己——穷举所有可能的括号化方案不会产生一个高效的算法。对于一个 n 个矩阵的链，令 P(n) 表示可供选择的括号化方案的数量。当 n = 1 时，由于只有一个矩阵，因此只有一种完全括号化方案。当 n >= 2 时，完全括号化方案的矩阵乘积可描述为两个完全括号化的部分积相乘的形式，而两个部分积的划分点在第 k 个矩阵和第 k + 1 个矩阵之间，k 为 1, 2, ..., n-1 中的任意一个值。因此，我们可以得到如下递归公式：
 
-![](../assets/images/part4/matrix-chain-multiplication.png)
+![](../assets/images/part3/matrix-chain-multiplication.png)
 
 括号化方案的数量与 n 呈指数关系，通过暴力搜索穷尽所有可能的括号化方案来寻找最优方案，是一个糟糕的策略。
 
@@ -82,7 +82,7 @@ m[i][j] = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j]
 
 此递归公式假定最优分割点 k 是已知的，但实际上我们是不知道的。不过，k 只有 j - i 种可能的取值，即 k = i, i+1, ..., j-1。由于最优分割点必在其中，我们只需检查所有可能情况，找到最优解即可。因此，A<sub>i</sub>A<sub>i+1</sub>...A<sub>j</sub> 最小代价括号化方案的递归求解公式变为：
 
-![](../assets/images/part4/matrix-chain-multiplication2.png)
+![](../assets/images/part3/matrix-chain-multiplication2.png)
 
 m[i][j] 的值给出了子问题最优解的代价，但它并未提供足够的信息来构造最优解，为此，我们用 s[i][j] 保存 A<sub>i</sub>A<sub>i+1</sub>..A<sub>j</sub> 最优括号化方案的分割点位置 k，即使得 m[i][j] = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j] 成立的 k 的值。
 

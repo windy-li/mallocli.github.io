@@ -33,7 +33,7 @@ public class Edge {
 }
 ```
 
-![](../assets/images/graph-algorithms/graph1.png)
+![](../assets/images/part4/graph1.png)
 
 无向图的两种表示。(a) 一个有 5 个结点和 7 条边的无向图 G。(b) G 的邻接链表表示。(c) G 的邻接矩阵表示。
 
@@ -71,7 +71,7 @@ public class Graph {
 }
 ```
 
-![](../assets/images/graph-algorithms/graph2.png)
+![](../assets/images/part4/graph2.png)
 
 有向图的两种表示。(a) 一个有 6 个结点和 8 条边的有向图 G。(b) G 的邻接链表表示。(c) G 的邻接矩阵表示。
 
@@ -115,7 +115,7 @@ public class Digraph {
 
 对于邻接矩阵表示来说，我们通常会将图 G 中的结点编号为 1, 2, ..., V，这种编号可以是任意的。在进行此种编号后，图 G 的邻接矩阵表示由一个 V × V 的矩阵 A = (a<sup>ij</sup>) 表示，该矩阵满足下述条件：
 
-![](../assets/images/graph-algorithms/graph3.png)
+![](../assets/images/part4/graph3.png)
 
 ```java
 public class MatrixGraph {

@@ -20,7 +20,7 @@
 
 用这种链表表示，makeSet 操作和 findSet 操作是非常方便的，只需 O(1) 的时间。要执行 makeSet(x) 操作，我们需要创建一个只有 x 对象的新的链表。对于 findSet(x)，仅沿着 x 对象的返回指针返回到集合，然后返回 head 指向的对象。例如，在下图（a）中，findSet(g) 的调用将返回 f。
 
-![](../assets/images/part3/disjoint-set.png)
+![](../assets/images/part2/disjoint-set.png)
 
 （a）两个集合的链表表示。令集合 S<sub>1</sub> 包含成员 f、g 和 d，代表为 f。集合 S<sub>2</sub> 包含成员 c、h、e 和 b，代表为 c。链表中的每个对象包含一个集合成员、一个指向链表中下一个对象的指针和一个返回到集合的指针。每个集合有 head 和 tail 指针分别指向第一个对象和最后一个对象。（b）union(g, e) 的结果，使得包含 e 的链表加到包含 g 的链表中，结果集合的代表为 f，e 链表的集合对象被删除。
 
@@ -99,7 +99,7 @@ public class DisjointSet {
 
 在一个不相交集合更快的实现中，我们使用有根树来表示集合，树中每个结点包含一个成员，每棵树代表一个集合。在一个不相交集合森林（disjoint-set forest）中，如下图所示，每个成员仅指向它的父结点。每棵树的根包含集合的代表，并且是其自己的父结点。正如我们将要看到的那样，虽然使用这种表示的直接算法并不比使用链表表示的算法快，但通过引入两种启发式策略（“按秩合并”和“路径压缩”），我们能得到一个渐进最优的不相交集合数据结构。
 
-![](../assets/images/part3/disjoint-set2.png)
+![](../assets/images/part2/disjoint-set2.png)
 
 一个不相交集合森林。（a）两棵树表示图中的两个集合。左边的树表示集合 {b, h, c, e}，其中 c 作为集合的代表。右边的树表示集合 {d, f, g}，f 作为集合的代表。（b）union(e, g) 的结果。
 
@@ -113,7 +113,7 @@ public class DisjointSet {
 
 第二种启发式策略是路径压缩（path compression），也相当简单和高效。如下图所示，在 findSet 操作中，使用这种策略可以使查找路径中的每个结点直接指向根。路径压缩并不改变任何结点的秩。
 
-![](../assets/images/part3/disjoint-set3.png)
+![](../assets/images/part2/disjoint-set3.png)
 
 findSet 过程中的路径压缩。箭头和根结点的自环被略去了。（a）在执行 findSet(a) 之前代表一个集合的树。三角形代表一棵子树，其根为图中示出的结点。每个结点有一个指向父结点的指针。（b）在执行 findSet(a) 之后的同一个集合，现在在查找路径上每个结点都直接指向了根。
 

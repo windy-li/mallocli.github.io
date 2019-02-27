@@ -4,7 +4,7 @@
 
 这个问题称为**最优二叉搜索树(optimal binary search tree)** 问题。其形式化定义如下：给定一个n个不同关键字的已排序的序列K = <k1, k2, ..., kn>(因此k1 < k2 < k3 < ... < kn)，我们希望用这些关键字构造一棵二叉搜索树。对每个关键字ki，都有一个概率pi表示其搜索频率。有些要搜索的值可能不在K中，因此我们还有n + 1个“伪关键字”d0, d1, d2, ..., dn，表示不在K中的值。d0表示所有小于k1的值，dn表示所有大于kn的值，对i = 1, 2, ..., n - 1，伪关键字di表示所有在ki和ki+1之间的值。对每个伪关键字di，也有一个概率pi表示对应的搜索频率。每个关键字ki是一个内部结点，而每个伪关键字di是一个叶节点，每次搜索要么成功(找到某个关键字ki)要么失败(找到某个伪关键字di)，因此有如下公式：
 
-![](../../assets/images/part4/optimal-binary-search-tree.png)
+![](../../assets/images/part3/optimal-binary-search-tree.png)
 
 
 

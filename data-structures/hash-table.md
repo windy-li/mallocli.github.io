@@ -12,7 +12,7 @@
 
 为表示动态集合，我们用一个数组，或称为直接寻址表 (direct-address table)，记为 T[0...m-1]。其中每个位置称为槽 (slot)，对应全域 U 中的一个关键字。下图描绘了该方法，槽 k 指向集合中一个关键字为 k 的元素，如果该集合中没有关键字为 k 的元素，则 T[k] = null。
 
-![](../assets/images/data-structures/hash-table.png)
+![](../assets/images/part2/hash-table.png)
 
 上图用一个直接寻址表 T 来实现动态集合。全域 U = {0, 1, ..., 9} 中的每个关键字都对应于表中的一个下标值，由实际关键字构成的集合 K = {2, 3, 5, 8} 决定表中的一些槽，这些槽包含指向元素的指针，而另一些槽包含 null ，用深阴影表示。
 
@@ -30,7 +30,7 @@ h: U -> {0, 1, ..., m-1}
 
 这里散列表的大小 m 一般要比丨U丨小得多。我们可以说一个具有关键字 k 的元素被散列到槽 h(k) 上，也可以说 h(k) 是关键字 k 的散列值。散列函数缩小了数组下标的范围，即减小了数组的大小，使其由丨U丨减小为 m。
 
-![](../assets/images/data-structures/hash-table2.png)
+![](../assets/images/part2/hash-table2.png)
 
 这里存在一个问题：两个关键字可能映射到同一个槽中，例如上图的关键字 k<sub>2</sub> 和 k<sub>5</sub> 映射到同一个槽中，我们称这种情形为冲突 (collision)。幸运的是，我们能找到有效的方法来解决冲突。
 
@@ -40,7 +40,7 @@ h: U -> {0, 1, ..., m-1}
 
 在链接法中，把散列到同一槽中的所有元素都放在一个链表中，如下图所示。槽 j 中有一个指针，指向存储所有散列到 j 的元素的链表的表头，如果不存在这样的元素，则槽 j 中为 null。
 
-![](../assets/images/data-structures/hash-table3.png)
+![](../assets/images/part2/hash-table3.png)
 
 通过链接法解决冲突，每个槽 T[j] 都包含一个链表，其中所有关键字的散列值均为 j 。例如，h(k<sub>1</sub>) = h(k<sub>4</sub>)，还有 h(k<sub>5</sub>) = h(k<sub>7</sub>) = h(k<sub>2</sub>)。这个链表可以是单链接，也可以是双链接，图中链表为双链接，因为删除操作比较快。
 
@@ -233,6 +233,6 @@ int h2(int key) {
 
 尽管除素数和 2 的幂以外的 m 值在理论上也能用于双重散列中，但是在实际中，要高效地产生 h<sub>2</sub>(k) 确保其与 m 互素，将变得更加困难。
 
-![](../assets/images/data-structures/hash-table4.png)
+![](../assets/images/part2/hash-table4.png)
 
 上图为双重散列法的插入。此处，散列表的大小 m 为 13，h<sub>1</sub>(k) = k % 13, h<sub>2</sub>(k) = 1 - (k % 11)。因为 14 % 13 = 1，且 14 % 11 = 3，故在探查了槽 1 和槽 5，并发现它们被占用后，关键字 14 被插入到槽 9 中。

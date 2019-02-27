@@ -10,7 +10,7 @@ f<sub>1</sub> <= f<sub>2</sub> <= f<sub>3</sub> <= ... <= f<sub>n-1</sub> <= f<s
 
 考虑下面的活动集合 S:
 
-![](../assets/images/part4/greedy-algorithm.png)
+![](../assets/images/part3/greedy-algorithm.png)
 
 对于这个例子，子集 {a<sub>3</sub>, a<sub>9</sub>, a<sub>11</sub>} 由相互兼容的活动组成，但它不是一个最大集，因为子集 {a<sub>1</sub>, a<sub>4</sub>, a<sub>8</sub>, a<sub>11</sub>} 更大。实际上，{a<sub>1</sub>, a<sub>3</sub>, a<sub>8</sub>, a<sub>11</sub>} 是一个最大兼容活动子集，另一个最大子集是 {a<sub>2</sub>, a<sub>4</sub>, a<sub>9</sub>, a<sub>11</sub>}。
 
@@ -24,7 +24,7 @@ c[i][j] = c[i][k] + c[k][j] + 1
 
 当然，如果不知道 S<sub>ij</sub> 的最优解包含 a<sub>k</sub>，就需要考察 S<sub>ij</sub> 中所有活动，寻找哪个活动可获得最优解。
 
-![](../assets/images/part4/greedy-algorithm2.png)
+![](../assets/images/part3/greedy-algorithm2.png)
 
 于是接下来可以设计一个带备忘机制的递归算法，或者使用自底向上法填写表项，但我们可能忽略了活动选择问题的另一个重要性质，而这一性质可以极大地提高问题的求解速度。
 
