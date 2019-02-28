@@ -166,7 +166,6 @@ public class Deque {
         int res = arr[head];
         if (head == tail) {
             head = -1;
-            tail = -1;
         } else if (head == arr.length - 1) {
             head = 0;
         } else {
@@ -182,7 +181,6 @@ public class Deque {
         int res = arr[tail];
         if (head == tail) {
             head = -1;
-            tail = -1;
         } else if (tail == 0) {
             tail = arr.length - 1;
         } else {

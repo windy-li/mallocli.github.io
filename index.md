@@ -78,5 +78,7 @@
 
 * [字符串匹配 (String Matching)](string/string-matching.md).
 
+* [SQL](string/sql.md).
+
 
 ### 数论算法
