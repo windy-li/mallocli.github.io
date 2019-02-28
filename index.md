@@ -72,11 +72,3 @@
 * [所有节点对的最短路径 (All-Pairs Shortest Paths)](graph-algorithms/all-pairs-shortest-paths.md).
 
 * [最大流 (Maximum Flow)](graph-algorithms/maximum-flow.md).
-
-
-### 字符串
-
-* [字符串匹配 (String Matching)](string/string-matching.md).
-
-
-### 数论算法
