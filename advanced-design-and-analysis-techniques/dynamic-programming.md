@@ -153,7 +153,8 @@ int bottomUp(int[] p) {
 下面给出 bottomUp 的扩展版本，它对长度为 j 的钢条不仅计算最大收益值 r[j]，还保存最优解对应的第一段钢条的切割长度 s[j]。
 
 ```java
-Object[] extendedBottomUp(int[] p, int n) {
+Object[] extendedBottomUp(int[] p) {
+    int n = p.length;
     int[] r = new int[n + 1];
     int[] s = new int[n + 1];
     r[0] = 0;
