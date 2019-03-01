@@ -94,11 +94,41 @@ int getDifference(Node node) {
   T1   T2
 ```
 
-**2. y 是 z 的左孩子，x 是 y 的右孩子**
+**2. y 是 z 的左孩子，x 是 y 的右孩子（Left Right Case）**
 
-**3. y 是 z 的右孩子，x 是 y 的右孩子**
+```
+     z                               z                           x
+    / \                            /   \                        /  \ 
+   y   T4  Left Rotate (y)        x    T4  Right Rotate(z)    y      z
+  / \      - - - - - - - - ->    /  \      - - - - - - - ->  / \    / \
+T1   x                          y    T3                    T1  T2 T3  T4
+    / \                        / \
+  T2   T3                    T1   T2
+```
+
+**3. y 是 z 的右孩子，x 是 y 的右孩子（Right Right Case）**
+
+```
+  z                                y
+ /  \                            /   \ 
+T1   y     Left Rotate(z)       z      x
+    /  \   - - - - - - - ->    / \    / \
+   T2   x                     T1  T2 T3  T4
+       / \
+     T3  T4
+```
 
 **4. y 是 z 的右孩子，x 是 y 的左孩子**
+
+```
+   z                            z                            x
+  / \                          / \                          /  \ 
+T1   y   Right Rotate (y)    T1   x      Left Rotate(z)   z      y
+    / \  - - - - - - - - ->     /  \   - - - - - - - ->  / \    / \
+   x   T4                      T2   y                  T1  T2  T3  T4
+  / \                              /  \
+T2   T3                           T3   T4
+```
 
 ```java
 Node balanceInsert(Node node) {
