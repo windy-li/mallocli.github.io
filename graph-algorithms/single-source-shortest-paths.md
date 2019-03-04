@@ -242,7 +242,7 @@ Dijkstra 算法的执行过程。源结点 s 为最左边的结点。每个结�
 
 因为 Dijkstra 算法总是选择集合 V - S 中“最轻”或“最近”的结点来加入到集合 S 中，该算法使用的是贪心策略。虽然贪心策略并不总是能获得最优的结果，但是使用贪心策略的的 Dijkstra 算法确实能够计算出最短路径。
 
-Dijkstra 算法的运行速度有多快呢？该算法执行三种优先队列操作来维持最小优先队列：insert（算法第 3 行所隐含的操作）、extractMin（算法第 5 行）和 decreaseKey（隐含在算法第 8 行所调用的 relax 操作中）。该算法对每个结点调用一次 insert 和 extractMin 操作。因为每个结点仅被加入到集合 S 一次，邻接链表 adj[u] 中的每条边在整个算法运行期间也只被检查一次（算法第 7 ~ 8 行的 for 循环里）。由于所有邻接链表中的边的总数为 ∣E∣，该 for 循环的执行次一共为 ∣E∣次，因此，该算法调用 decreaseKey 最多 ∣E∣ 次。
+Dijkstra 算法的运行速度有多快呢？该算法执行三种优先队列操作来维持最小优先队列：insert（```minPriorityQueue.add(u);```）、extractMin（```Vertex u = minPriorityQueue.remove();```）和 decreaseKey（隐含在 relax 操作的 ```minPriorityQueue.remove(v); minPriorityQueue.add(v);```）。该算法对每个结点调用一次 insert 和 extractMin 操作。因为每个结点仅被加入到集合 S 一次，邻接链表 adj[u] 中的每条边在整个算法运行期间也只被检查一次（while 循环的 for 循环里）。由于所有邻接链表中的边的总数为 ∣E∣，该 for 循环的执行次数一共为 ∣E∣次，因此，该算法调用 decreaseKey 最多 ∣E∣ 次。
 
 Dijkstra 算法的总运行时间依赖于最小优先队列的实现。我们首先考虑第一种情况：通过利用结点的编号为 1 ~ ∣V∣ 来维持最小优先队列。在这种情况下，我们将 v.d 的值存放在数组的第 v 个记录里。每次 insert 和 decreaseKey 操作的执行时间为 O(1)，每次 extractMin 的操作时间为 O(V)（因为需要搜索整个数组），算法的总运行时间为 O(V<sup>2</sup> + E) = O(V<sup>2</sup>)。
 
