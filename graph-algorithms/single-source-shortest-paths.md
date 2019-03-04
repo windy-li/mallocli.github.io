@@ -136,7 +136,7 @@ Bellman-Ford 算法通过对边进行松弛操作来渐近地降低从源结点 
 boolean bellmanFord(Digraph digraph, int rootId) {
     Vertex root = digraph.vertices[rootId];
     initializeSingleSource(digraph, root);
-    int V = digraph.getV();
+    int V = digraph.V;
     for (int i = 0; i < V - 1; i++) {
         for (Edge e : digraph.allEdges()) {
             relax(digraph, e);
