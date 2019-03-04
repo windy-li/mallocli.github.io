@@ -68,8 +68,3 @@
 * [最小生成树 (Minimum Spanning Tree)](graph-algorithms/minimum-spanning-tree.md).
 
 * [单源最短路径 (Single-Source Shortest Paths)](graph-algorithms/single-source-shortest-paths.md).
-
-
-### 数论算法
-
-* [基础数论概念 (Elementary Number-Theoretic Notions)](number-theoretic-algorithms/elementary-number-theoretic-notions.md).
