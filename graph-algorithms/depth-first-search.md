@@ -233,7 +233,7 @@ class StronglyConnectedComponents {
 }
 ```
 
-上述算法背后的思想来自于分量图 G<sup>SCC</sup> = (V<sup>SCC</sup>, E<sup>SCC</sup>) 的一个关键性质，这个关键性质的定义如下：假定图 G 有强连通分量 C<sub>1</sub>, C<sub>2</sub>, ..., C<sub>k</sub>，结点集 V<sup>SCC</sup> 为 {v<sub>1</sub>, v<sub>2</sub>, ..., v<sub>k</sub>}，对于图 G 的每个强连通分量 C<sub>i</sub> 来说，该集合包含该分量的结点 v<sub>i</sub>。如果对某个 x ∈ C<sub>i</sub> 和 y ∈ C<sub>j</sub>，图 G 包含一条有向边 (x, y)，则边 (u<sub>i</sub>, v<sub>j</sub>) ∈ E<sup>SCC</sup>。从另一个角度来看，通过收缩所有相邻结点都在同一个强连通分量中的边，剩下的图就是 G<sup>SCC</sup>。图 (c) 描述的就是图 (a) 的分量图。
+上述算法背后的思想来自于分量图 G<sup>SCC</sup> = (V<sup>SCC</sup>, E<sup>SCC</sup>) 的一个关键性质，这个关键性质的定义如下：假定图 G 有强连通分量 C<sub>1</sub>, C<sub>2</sub>, ..., C<sub>k</sub>，结点集 V<sup>SCC</sup> 为 {v<sub>1</sub>, v<sub>2</sub>, ..., v<sub>k</sub>}，对于图 G 的每个强连通分量 C<sub>i</sub> 来说，该集合包含该分量的结点 v<sub>i</sub>。如果对某个 x ∈ C<sub>i</sub> 和 y ∈ C<sub>j</sub>，图 G 包含一条有向边 (x, y)，则边 (v<sub>i</sub>, v<sub>j</sub>) ∈ E<sup>SCC</sup>。从另一个角度来看，通过收缩所有相邻结点都在同一个强连通分量中的边，剩下的图就是 G<sup>SCC</sup>。图 (c) 描述的就是图 (a) 的分量图。
 
 分量图的关键性质是：分量图是一个有向无环图。该事实可由下面的引理所推出。
 
