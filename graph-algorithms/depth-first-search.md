@@ -165,7 +165,73 @@ class Digraph {
 下面的线性时间（即 Θ(V + E) 时间）算法使用两次深度优先搜索来计算有向图 G = (V, E) 的强连通分量。这两次深度优先搜索一次运行在图 G 上，一次运行在转置图 G<sup>T</sup> 上。
 
 ```java
+class StronglyConnectedComponents {
+    LinkedList<Vertex>[] components;
+    int count;
+    Stack<Vertex> stack;
+    Digraph resultDigraph;
 
+    StronglyConnectedComponents(Digraph digraph) {
+        int V = digraph.getV();
+        count = 0;
+        stack = new Stack<>();
+        for (int i = 0; i < V; i++) {
+            Vertex u = digraph.vertices[i];
+            u.visited = false;
+        }
+        for (int i = 0; i < V; i++) {
+            Vertex u = digraph.vertices[i];
+            if (!u.visited) {
+                dfs(digraph, u, false);
+            }
+        }
+
+        Digraph tDigraph = digraph.transpose();
+        for (int i = 0; i < V; i++) {
+            Vertex u = digraph.vertices[i];
+            u.visited = false;
+        }
+        while (!stack.isEmpty()) {
+            Vertex u = tDigraph.vertices[stack.pop().id];
+            if (!u.visited) {
+                dfs(tDigraph, u, true);
+                count++;
+            }
+        }
+
+        components = new LinkedList[count];
+        for (int i = 0; i < count; i++) {
+            components[i] = new LinkedList<>();
+        }
+        for (int i = 0; i < V; i++) {
+            Vertex u = tDigraph.vertices[i];
+            components[u.componentId].add(u);
+        }
+
+        resultDigraph = tDigraph;
+    }
+
+    void dfs(Digraph digraph, Vertex u, boolean isT) {
+        u.visited = true;
+        for (Edge e : digraph.adj[u.id]) {
+            Vertex v = digraph.vertices[e.other(u.id)];
+            if (!v.visited) {
+                dfs(digraph,v, isT);
+            }
+        }
+        if (isT) {
+            u.componentId = count;
+        } else {
+            stack.push(u);
+        }
+    }
+
+    boolean stronglyConnected(int uId, int vId) {
+        Vertex u = resultDigraph.vertices[uId];
+        Vertex v = resultDigraph.vertices[vId];
+        return u.componentId == v.componentId;
+    }
+}
 ```
 
 上述算法背后的思想来自于分量图 G<sup>SCC</sup> = (V<sup></sup>, E<sup></sup>) 的一个关键性质，这个关键性质的定义如下：假定图 G 有强连通分量 C<sub>1</sub>, C<sub>2</sub>, ..., C<sub>k</sub>，结点集 V<sup>SCC</sup> 为 {v<sub>1</sub>, v<sub>2</sub>, ..., v<sub>k</sub>}，对于图 G 的每个强连通分量 C<sub>i</sub> 来说，该集合包含该分量的结点 v<sub>i</sub>。如果对某个 x ∈ C<sub>i</sub> 和 y ∈ C<sub>j</sub>，图 G 包含一条有向边 (x, y)，则边 (u<sub>i</sub>, v<sub>j</sub>) ∈ E<sup>SCC</sup>。从另一个角度来看，通过收缩所有相邻结点都在同一个强连通分量中的边，剩下的图就是 G<sup>SCC</sup>。图 (c) 描述的就是图 (a) 的分量图。
