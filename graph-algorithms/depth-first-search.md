@@ -171,7 +171,7 @@ class StronglyConnectedComponents {
     Stack<Vertex> stack;
     Digraph resultDigraph;
 
-    void init(Digraph digraph) {
+    StronglyConnectedComponents(Digraph digraph) {
         int V = digraph.V;
         count = 0;
         stack = new Stack<>();
