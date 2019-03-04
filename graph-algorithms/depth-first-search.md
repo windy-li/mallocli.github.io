@@ -171,7 +171,7 @@ class KosarajuStronglyConnectedComponents {
     Stack<Vertex> stack;
     Digraph resultDigraph;
 
-    KosarajuStronglyConnectedComponents(Digraph digraph) {
+    void stronglyConnectedComponents(Digraph digraph) {
         int V = digraph.V;
         count = 0;
         stack = new Stack<>();
@@ -225,7 +225,7 @@ class KosarajuStronglyConnectedComponents {
         }
     }
 
-    boolean stronglyConnected(int uId, int vId) {
+    boolean connected(int uId, int vId) {
         Vertex u = resultDigraph.vertices[uId];
         Vertex v = resultDigraph.vertices[vId];
         return u.componentId == v.componentId;

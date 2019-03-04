@@ -36,7 +36,7 @@ class KruskalMinimumSpanningTree {
     double weight;
     DisjointSetForest.Node[] nodes;
 
-    KruskalMinimumSpanningTree(Graph graph) {
+    void minimumSpanningTree(Graph graph) {
         int V = graph.V;
         mst = new Edge[V - 1];
         weight = 0;
@@ -88,7 +88,7 @@ class PrimMinimumSpanningTree {
     Edge[] mst;
     double weight;
 
-    PrimMinimumSpanningTree(Graph graph) {
+    void minimumSpanningTree(Graph graph) {
         int V = graph.V;
         mst = new Edge[V - 1];
         weight = 0;
