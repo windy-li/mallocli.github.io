@@ -123,4 +123,4 @@ class PrimMinimumSpanningTree {
 
 Prim 算法的运行时间取决于最小优先队列 Q 的实现方式。如果将 Q 实现为一个二叉最小优先队列，我们可以使用 buildMinHeap 来执行算法的第二个 for 循环，即初始化一个最小堆，时间成本为 O(V)。while 循环中的语句一共要执行 ∣V∣ 次，由于每个 extractMin 操作需要的时间成本为 O(lgV)，extractMin 操作的总时间为 O(V lgV)。由于所有邻接链表的长度之和为 2∣E∣，while 循环里的 for 循环的总执行次数为 O(E)，在该 for 循环里面，我们可以在常数时间内完成对一个结点是否属于队列 Q 的判断，方法就是对每个结点维护一个标志位来指明该结点是否属于 Q，并在将结点从 Q 删除的时候对该标志位进行更新。if 内部的赋值操作涉及一个隐含的 decreaseKey 操作，该操作在二叉最小堆上执行的时间成本为 O(lgV)。因此，Prim 算法的总时间代价为 O(V lgV + E lgV) = O(E lgV)。从渐进意义上来说，它与 Kruskal 算法的运行时间相同。
 
-如果使用斐波那契堆来实现最小优先队列 Q，Prim 算法的渐进运行时间可以得到进一步改善。如果斐波那契堆中有 ∣V∣ 个元素，则 extractMin 操作的时间摊还代价为 O(lgV)，而 decreaseKey 操作（用于实现算法第 11 行的操作）的摊还代价为 O(1)。因此，如果使用斐波那契堆来实现最小优先队列 Q，则 Prim 算法的运行时间将改进到 O(E + V lgV)。
+如果使用斐波那契堆来实现最小优先队列 Q，Prim 算法的渐进运行时间可以得到进一步改善。如果斐波那契堆中有 ∣V∣ 个元素，则 extractMin 操作的时间摊还代价为 O(lgV)，而 decreaseKey 操作（用于实现 ```if (minPriorityQueue.contains(v) && e.weight < v.key)``` 内部的操作）的摊还代价为 O(1)。因此，如果使用斐波那契堆来实现最小优先队列 Q，则 Prim 算法的运行时间将改进到 O(E + V lgV)。
