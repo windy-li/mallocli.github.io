@@ -165,13 +165,13 @@ class Digraph {
 下面的线性时间（即 Θ(V + E) 时间）算法使用两次深度优先搜索来计算有向图 G = (V, E) 的强连通分量。这两次深度优先搜索一次运行在图 G 上，一次运行在转置图 G<sup>T</sup> 上。
 
 ```java
-class StronglyConnectedComponents {
+class KosarajuStronglyConnectedComponents {
     LinkedList<Vertex>[] components;
     int count;
     Stack<Vertex> stack;
     Digraph resultDigraph;
 
-    StronglyConnectedComponents(Digraph digraph) {
+    KosarajuStronglyConnectedComponents(Digraph digraph) {
         int V = digraph.V;
         count = 0;
         stack = new Stack<>();
