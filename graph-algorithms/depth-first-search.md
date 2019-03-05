@@ -182,7 +182,7 @@ class KosarajuStronglyConnectedComponents {
         for (int i = 0; i < V; i++) {
             Vertex u = digraph.vertices[i];
             if (!u.visited) {
-                dfs(digraph, u, false);
+                DFS(digraph, u, false);
             }
         }
 
@@ -193,7 +193,7 @@ class KosarajuStronglyConnectedComponents {
         while (!stack.isEmpty()) {
             Vertex u = tDigraph.vertices[stack.pop().id];
             if (!u.visited) {
-                dfs(tDigraph, u, true);
+                DFS(tDigraph, u, true);
                 count++;
             }
         }
@@ -210,12 +210,12 @@ class KosarajuStronglyConnectedComponents {
         resultDigraph = tDigraph;
     }
 
-    void dfs(Digraph digraph, Vertex u, boolean isT) {
+    void DFS(Digraph digraph, Vertex u, boolean isT) {
         u.visited = true;
         for (Edge e : digraph.adj[u.id]) {
             Vertex v = digraph.vertices[e.other(u.id)];
             if (!v.visited) {
-                dfs(digraph,v, isT);
+                DFS(digraph,v, isT);
             }
         }
         if (isT) {
