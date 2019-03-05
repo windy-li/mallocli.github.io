@@ -79,10 +79,6 @@ Node leftRotate(Node p) {
     return r;
 }
 
-void updateHeight(Node node) {
-    node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
-}
-
 int getHeight(Node node) {
     if (node == null) {
         return 0;
@@ -91,7 +87,11 @@ int getHeight(Node node) {
     }
 }
 
-int getDifference(Node node) {
+void updateHeight(Node node) {
+    node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+}
+
+int balanceFactor(Node node) {
     if (node == null) {
         return 0;
     } else {
@@ -155,23 +155,23 @@ Node balanceInsert(Node node) {
     // If this node becomes unbalanced, then there are 4 cases
 
     // Left Left Case
-    if (getDifference(node) == 2 && getDifference(node.left) == 1) {
+    if (balanceFactor(node) == 2 && balanceFactor(node.left) == 1) {
         return rightRotate(node);
     }
 
     // Right Right Case
-    if (getDifference(node) == -2 && getDifference(node.right) == -1) {
+    if (balanceFactor(node) == -2 && balanceFactor(node.right) == -1) {
         return leftRotate(node);
     }
 
     // Left Right Case
-    if (getDifference(node) == 2 && getDifference(node.left) == -1) {
+    if (balanceFactor(node) == 2 && balanceFactor(node.left) == -1) {
         node.left = leftRotate(node.left);
         return rightRotate(node);
     }
 
     // Right Left Case
-    if (getDifference(node) == -2 && getDifference(node.right) == 1) {
+    if (balanceFactor(node) == -2 && balanceFactor(node.right) == 1) {
         node.right = rightRotate(node.right);
         return leftRotate(node);
     }
@@ -255,23 +255,23 @@ Node balanceDelete(Node node) {
     // If this node becomes unbalanced, then there are 4 cases
 
     // Left Left Case
-    if (getDifference(node) == 2 && getDifference(node.left) >= 0) {
+    if (balanceFactor(node) == 2 && balanceFactor(node.left) >= 0) {
         return rightRotate(node);
     }
 
     // Right Right Case
-    if (getDifference(node) == -2 && getDifference(node.right) <= 0) {
+    if (balanceFactor(node) == -2 && balanceFactor(node.right) <= 0) {
         return leftRotate(node);
     }
 
     // Left Right Case
-    if (getDifference(node) == 2 && getDifference(node.left) == -1) {
+    if (balanceFactor(node) == 2 && balanceFactor(node.left) == -1) {
         node.left = leftRotate(node.left);
         return rightRotate(node);
     }
 
     // Right Left Case
-    if (getDifference(node) == -2 && getDifference(node.right) == 1) {
+    if (balanceFactor(node) == -2 && balanceFactor(node.right) == 1) {
         node.right = rightRotate(node.right);
         return leftRotate(node);
     }
