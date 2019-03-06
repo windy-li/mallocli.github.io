@@ -10,11 +10,11 @@
 
 在执行广度优先搜索的过程中将构造出一棵广度优先树。一开始，该树仅含有根结点，就是源结点 s。在扫描已发现结点 u 的邻接链表时，每当发现一个白色结点 v，就将结点 v 和边 (u, v) 同时加入该棵树中。在广度优先树中，称结点 u 是结点 v 的前驱或者父结点。由于每个结点最多被发现一次，它最多只有一个父结点。广度优先树中的祖先和后代关系皆以相对于根结点 s 的位置来进行定义：如果结点 u 是从根结点 s 到结点 v 的简单路径上的一个结点，则结点 u 是结点 v 的祖先，结点 v 是结点 u 的后代。
 
-下图描述的是 BFS 在一个样本图上的推进过程。
+下图描述的是 bfs 在一个样本图上的推进过程。
 
 ![](../assets/images/part4/BFS1.png)
 
-BFS 在无向图上的运行过程。添加了阴影的边是被 BFS 发现的边，每个结点 u 里面记录的是 u.d 的值。图中还给出了算法在 while 循环每次开始时队列中的内容。结点距离标记在队列相应结点的下方。
+bfs 在无向图上的运行过程。添加了阴影的边是被 bfs 发现的边，每个结点 u 里面记录的是 u.d 的值。图中还给出了算法在 while 循环每次开始时队列中的内容。结点距离标记在队列相应结点的下方。
 
 下面给出的广度优先搜索算法中，假定输入图 G = (V, E) 是以邻接链表所表示的。该算法为图中每个结点赋予了一些额外的属性：我们将每个结点 u 是否被发现存放在属性 u.visited 里，将 u 的前驱结点存放在属性 u.pre 里，如果 u 没有前驱结点（例如，如果 u = s 或者结点 u 尚未被发现），则 u.pre = null。属性 u.d 记录的是广度优先搜索算法所计算出的从源结点 s 到结点 u 之间的距离。该算法使用一个先进先出的队列来管理灰色结点集。
 
@@ -27,7 +27,7 @@ class Vertex {
     int d;
 }
 
-void BFS(Graph graph, int rootId) {
+void bfs(Graph graph, int rootId) {
     int V = graph.V;
     for (int i = 0; i < V; i++) {
         Vertex u = graph.vertices[i];
@@ -69,11 +69,11 @@ void BFS(Graph graph, int rootId) {
 
 ### 广度优先树
 
-过程 BFS 在对图进行搜索的过程中将创建一棵广度优先树，该棵树对应的是 pre 属性。更形式化地说，对于图 G = (V, E) 和源结点 s，我们定义图 G 的前驱子图为 G<sub>pre</sub> = (V<sub>pre</sub>, E<sub>pre</sub>)，其中 V<sub>pre</sub> = {v ∈ V : v.pre != null} ∪ {s}，E<sub>pre</sub> = {(v.pre, v) : v ∈ V<sub>pre</sub> - {s}}。
+过程 bfs 在对图进行搜索的过程中将创建一棵广度优先树，该棵树对应的是 pre 属性。更形式化地说，对于图 G = (V, E) 和源结点 s，我们定义图 G 的前驱子图为 G<sub>pre</sub> = (V<sub>pre</sub>, E<sub>pre</sub>)，其中 V<sub>pre</sub> = {v ∈ V : v.pre != null} ∪ {s}，E<sub>pre</sub> = {(v.pre, v) : v ∈ V<sub>pre</sub> - {s}}。
 
 如果 V<sub>pre</sub> 由源结点 s 可以到达的结点组成，并且对于所有的 v ∈ V<sub>pre</sub>，子图 G<sub>pre</sub> 包含一条从源结点 s 到结点 v 的唯一简单路径，且该路径也是图 G 里面从源结点 s 到结点 v 之间的一条最短路径，则前驱子图 G<sub>pre</sub> 是一棵广度优先树。广度优先树实际上就是一棵树，因为它是连通的，并且 ∣E<sub>pre</sub>∣ = ∣V<sub>pre</sub>∣ - 1。我们称 E<sub>pre</sub> 中的边为树边。
 
-下面的代码将打印出从源结点 s 到结点 v 的一条最短路径上的所有结点，这里假定 BFS 已经计算出一棵广度优先树。
+下面的代码将打印出从源结点 s 到结点 v 的一条最短路径上的所有结点，这里假定 bfs 已经计算出一棵广度优先树。
 
 ```java
 void printPath(Graph graph, int srcId, int destId) {

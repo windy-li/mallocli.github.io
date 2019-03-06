@@ -26,7 +26,7 @@ class Vertex {
 ```java
 int time;
 
-void DFS(Graph graph) {
+void dfs(Graph graph) {
     int V = graph.V;
     for (int i = 0; i < V; i++) {
         Vertex u = graph.vertices[i];
@@ -58,13 +58,13 @@ void visit(Graph graph, Vertex u) {
 }
 ```
 
-注意，深度优先搜索的结果可能依赖于算法 DFS 中第二个 for 循环对结点进行检查的次序和算法 visit 的 for 循环对一个结点的邻接结点进行访问的次序。不过，这些不同的访问次序在实际中并不会导致问题，因为我们通常可以对任意的深度优先搜索结果加以有效利用，并获得等价的结果。
+注意，深度优先搜索的结果可能依赖于算法 dfs 中第二个 for 循环对结点进行检查的次序和算法 visit 的 for 循环对一个结点的邻接结点进行访问的次序。不过，这些不同的访问次序在实际中并不会导致问题，因为我们通常可以对任意的深度优先搜索结果加以有效利用，并获得等价的结果。
 
 ![](../assets/images/part4/DFS1.png)
 
-深度优先搜索算法 DFS 在有向图上的运行过程。随着算法对边的探索的推进，这些边或者变成有阴影的边（如果它们是树边），或者变为虚线边（其它情况）。非树边则根据其后向（back）边、横向（cross）边或前向（forward）边而分别标记为 B、C 或 F。结点中的时间戳表明该结点的发现时间和完成时间。
+深度优先搜索算法 dfs 在有向图上的运行过程。随着算法对边的探索的推进，这些边或者变成有阴影的边（如果它们是树边），或者变为虚线边（其它情况）。非树边则根据其后向（back）边、横向（cross）边或前向（forward）边而分别标记为 B、C 或 F。结点中的时间戳表明该结点的发现时间和完成时间。
 
-DFS 的运行时间是多少呢？如果排除 visit 的时间，DFS 的两个 for 循环所需的时间为 Θ(V)。对每个结点 v ∈ V 来说，visit 被调用的次数刚好为一次，这是因为在对一个结点 u 调用 visit 时，该结点 u 必须是白色，而 visit 所做的第一件事情就是将结点 u 涂上灰色。在执行 visit 的过程中，for 循环的执行次数为 ∣adj[v]∣。由于 ∑<sub>v∈V</sub>∣adj[v]∣ = Θ(E)，执行 visit 的 for 循环的总成本是 Θ(E)。因此，深度优先搜索算法的运行时间为 Θ(V + E)。
+dfs 的运行时间是多少呢？如果排除 visit 的时间，dfs 的两个 for 循环所需的时间为 Θ(V)。对每个结点 v ∈ V 来说，visit 被调用的次数刚好为一次，这是因为在对一个结点 u 调用 visit 时，该结点 u 必须是白色，而 visit 所做的第一件事情就是将结点 u 涂上灰色。在执行 visit 的过程中，for 循环的执行次数为 ∣adj[v]∣。由于 ∑<sub>v∈V</sub>∣adj[v]∣ = Θ(E)，执行 visit 的 for 循环的总成本是 Θ(E)。因此，深度优先搜索算法的运行时间为 Θ(V + E)。
 
 ### 深度优先搜索的性质
 
@@ -104,11 +104,11 @@ DFS 的运行时间是多少呢？如果排除 visit 的时间，DFS 的两个 f
 LinkedList<Vertex> vertices = new LinkedList<>();
 
 LinkedList<Vertex> topologicalSort(Digraph digraph) {
-    DFS(digraph);
+    dfs(digraph);
     return vertices;
 }
 
-void DFS(Digraph digraph) {
+void dfs(Digraph digraph) {
     int V = digraph.V;
     for (int i = 0; i < V; i++) {
         Vertex u = digraph.vertices[i];
@@ -182,7 +182,7 @@ class KosarajuStronglyConnectedComponents {
         for (int i = 0; i < V; i++) {
             Vertex u = digraph.vertices[i];
             if (!u.visited) {
-                DFS(digraph, u, false);
+                dfs(digraph, u, false);
             }
         }
 
@@ -193,7 +193,7 @@ class KosarajuStronglyConnectedComponents {
         while (!stack.isEmpty()) {
             Vertex u = tDigraph.vertices[stack.pop().id];
             if (!u.visited) {
-                DFS(tDigraph, u, true);
+                dfs(tDigraph, u, true);
                 count++;
             }
         }
@@ -210,12 +210,12 @@ class KosarajuStronglyConnectedComponents {
         resultDigraph = tDigraph;
     }
 
-    void DFS(Digraph digraph, Vertex u, boolean isT) {
+    void dfs(Digraph digraph, Vertex u, boolean isT) {
         u.visited = true;
         for (Edge e : digraph.adj[u.id]) {
             Vertex v = digraph.vertices[e.other(u.id)];
             if (!v.visited) {
-                DFS(digraph,v, isT);
+                dfs(digraph,v, isT);
             }
         }
         if (isT) {
