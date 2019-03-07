@@ -41,17 +41,17 @@ class KruskalMinimumSpanningTree {
         mst = new Edge[V - 1];
         weight = 0;
         int N = 0;
-        DisjointSetForest disjointSetForest = new DisjointSetForest();
-        nodes = new DisjointSetForest.Node[V];
+        P328_DisjointSetForest disjointSetForest = new P328_DisjointSetForest();
+        nodes = new P328_DisjointSetForest.Node[V];
         for (int i = 0; i < V; i++) {
             nodes[i] = disjointSetForest.makeSet(i);
         }
-        PriorityQueue<Edge> priorityQueue = new PriorityQueue<>();
+        PriorityQueue<Edge> minPriorityQueue = new PriorityQueue<>();
         for (Edge e : graph.allEdges()) {
-            priorityQueue.add(e);
+            minPriorityQueue.add(e);
         }
-        while (!priorityQueue.isEmpty() && N < V - 1) {
-            Edge e = priorityQueue.remove();
+        while (!minPriorityQueue.isEmpty() && N < V - 1) {
+            Edge e = minPriorityQueue.remove();
             Vertex u = graph.vertices[e.either()];
             Vertex v = graph.vertices[e.other(u.id)];
             if (disjointSetForest.findSet(nodes[u.id]) != disjointSetForest.findSet(nodes[v.id])) {
