@@ -34,23 +34,19 @@ Kruskal算法是基于贪心的思想得到的。首先我们把所有的边按�
 
 具体流程：
 
-```
 1. 将图 G 看做一个森林，每个顶点为一棵独立的树。
 2. 将所有的顶点加入集合 S，即一开始 S = V，将所有的边加入最小堆。
 3. 从堆中拿出一条权重最小的边 (u, v)，如果顶点 u, v 不在同一棵树（即同一个集合）内，则合并 u, v 到同一棵树，同时将 (u, v) 加入生成树的边集 E'。
 4. 重复步骤 3 直到所有点属于同一棵树，边集 E' 就是一棵最小生成树。
-```
 
 ```java
 class KruskalMinimumSpanningTree {
     Edge[] mst;
-    double weight;
     DisjointSetForest.Node[] nodes;
 
     void minimumSpanningTree(Graph graph) {
         int V = graph.V;
         mst = new Edge[V - 1];
-        weight = 0;
         int N = 0;
         P328_DisjointSetForest disjointSetForest = new P328_DisjointSetForest();
         nodes = new P328_DisjointSetForest.Node[V];
@@ -67,7 +63,6 @@ class KruskalMinimumSpanningTree {
             Vertex v = graph.vertices[e.other(u.id)];
             if (disjointSetForest.findSet(nodes[u.id]) != disjointSetForest.findSet(nodes[v.id])) {
                 mst[N++] = e;
-                weight += e.weight;
                 disjointSetForest.union(nodes[u.id], nodes[v.id]);
             }
         }
