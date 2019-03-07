@@ -92,9 +92,7 @@ Prim 算法的工作原理与 Dijkstra 的最短路径算法相似。Prim 算法
 
 2. 初始化：V<sub>new</sub> = {x}，其中 x 为集合 V 中的任一节点（起始点），E<sub>new</sub> = {}。
 
-3. 重复下列操作，直到 V<sub>new</sub> = V：
-在集合 E 中选取权值最小的边 (u, v)，其中 u 为集合 V<sub>new</sub> 中的元素，而 v 则是 V 中没有加入 V<sub>new</sub> 的顶点（如果存在有多条满足前述条件即具有相同权值的边，则可任意选取其中之一）；  
-将 v 加入集合 V<sub>new</sub> 中，将 (u, v) 加入集合 E<sub>new</sub> 中。
+3. 重复下列操作，直到 V<sub>new</sub> = V：在集合 E 中选取权值最小的边 (u, v)，其中 u 为集合 V<sub>new</sub> 中的元素，而 v 则是 V 中没有加入 V<sub>new</sub> 的顶点（如果存在有多条满足前述条件即具有相同权值的边，则可任意选取其中之一）。将 v 加入集合 V<sub>new</sub> 中，将 (u, v) 加入集合 E<sub>new</sub> 中。
 
 4. 输出：使用集合 V<sub>new</sub> 和 E<sub>new</sub> 来描述所得到的最小生成树。
 
