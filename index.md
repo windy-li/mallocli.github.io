@@ -42,9 +42,7 @@
 * [不相交集合 (Disjoint Set)](data-structures/disjoint-set.md)
 
 
-### 算法设计工具
-
-* [递归与迭代 (Recursion and Iteration)](advanced-design-and-analysis-techniques/recursion-and-iteration.md).
+### 动态规划和贪心算法
 
 * [动态规划 (Dynamic Programming)](advanced-design-and-analysis-techniques/dynamic-programming.md).
 
