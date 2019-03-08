@@ -38,7 +38,6 @@ void bfs(Graph graph, int rootId) {
     Vertex root = graph.vertices[rootId];
     root.visited = true;
     root.d = 0;
-    root.pre = null;
     Queue<Vertex> queue = new LinkedList<>();
     queue.add(root);
     while (!queue.isEmpty()) {
