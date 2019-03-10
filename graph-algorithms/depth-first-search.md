@@ -172,7 +172,6 @@ class KosarajuStronglyConnectedComponents {
     LinkedList<Vertex>[] components;
     int count = 0;
     Stack<Vertex> stack = new Stack<>();
-    Digraph resultDigraph;
 
     void stronglyConnectedComponents(Digraph digraph) {
         int V = digraph.V;
@@ -207,8 +206,6 @@ class KosarajuStronglyConnectedComponents {
             Vertex u = tDigraph.vertices[i];
             components[u.componentId].add(u);
         }
-
-        resultDigraph = tDigraph;
     }
 
     void dfs(Digraph digraph, Vertex u, boolean isT) {
