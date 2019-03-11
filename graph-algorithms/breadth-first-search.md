@@ -77,13 +77,13 @@ void bfs(Graph graph, int rootId) {
 ```java
 void printPath(Vertex src, Vertex dest) {
     if (src == dest) {
-        System.out.println(src + " ");
+        System.out.print(src + " ");
     } else {
         if (dest.pre == null) {
             System.out.println("No path from " + src + " to " + dest + " exists");
         } else {
             printPath(src, dest.pre);
-            System.out.println(dest + " ");
+            System.out.print(dest + " ");
         }
     }
 }
