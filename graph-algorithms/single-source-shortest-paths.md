@@ -169,17 +169,17 @@ Dijkstra 算法解决的是带权重的有向图上单源最短路径问题，�
 Dijkstra 算法在运行过程中维持的关键信息是一组结点集合 S。从源结点 s 到该集合中每个结点之间的最短路径已经被找到。算法重复从结点集 V - S 中选择最短路径估计最小的结点 u，将 u 加入到集合 S，然后对所有从 u 发出的边进行松弛。在下面的实现中，我们使用一个最小优先队列 Q 来保存结点集合，每个结点的关键值为其 d 值。
 
 ```java
-PriorityQueue<Vertex> minPriorityQueue = new PriorityQueue<>();
+MinPriorityQueue Q = new MinPriorityQueue();
 
-void dijkstra(Digraph digraph, int rootId) {
-    Vertex root = digraph.vertices[rootId];
-    initializeSingleSource(digraph, root);
+void dijkstra(Digraph digraph, int srcId) {
+    Vertex src = digraph.vertices[srcId];
+    initializeSingleSource(digraph, src);
     Set<Vertex> S = new HashSet<>();
     for (Vertex u : digraph.vertices) {
-        minPriorityQueue.add(u);
+        Q.insert(u);
     }
-    while (!minPriorityQueue.isEmpty()) {
-        Vertex u = minPriorityQueue.remove();
+    while (!Q.isEmpty()) {
+        Vertex u = Q.extractMin();
         S.add(u);
         for (Edge e : digraph.adj[u.id]) {
             Vertex v = digraph.vertices[e.other(u.id)];
@@ -195,9 +195,7 @@ void relax(Digraph digraph, Edge e) {
     Vertex v = digraph.vertices[e.other(u.id)];
     int weight = e.weight;
     if (v.d > u.d + weight) {
-        v.d = u.d + weight;
-        minPriorityQueue.remove(v);
-        minPriorityQueue.add(v);
+        Q.decreaseKey(v, u.d + weight);
         v.pre = u;
     }
 }
