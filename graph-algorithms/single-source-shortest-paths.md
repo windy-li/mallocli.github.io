@@ -162,6 +162,34 @@ Bellman-Ford 算法的执行过程。源结点为 s，结点中的数值为该�
 
 由于算法 initializeSingleSource 的初始化操作所需时间为 Θ(V)，第 1 个外层 for 循环的循环体每次的运行时间为 Θ(E)，且一共要进行 ∣V∣ - 1 次循环，第 2 个外层 for 循环所需时间为 O(E)，Bellman-Ford 算法的总运行时间为 O(VE)。
 
+### 有向无环图的单源最短路径问题
+
+根据结点的拓扑排序来对带权重的有向无环图 G = (V, E) 进行边的松弛操作，我们可以在 Θ(V + E) 的时间内计算出从单个源结点到所有结点之间的最短路径。在有向无环图中，即使存在权重为负值的边，但因为没有权重为负值的环路，最短路径都是存在的。
+
+我们的算法首先对有向无环图进行拓扑排序，以便确定结点之间的一个线性次序。如果有向无环图包含从结点 u 到结点 v 的一条路径，则 u 在拓扑排序的次序中位于结点 v 的前面。我们只需要按照拓扑排序的次序对结点进行一遍处理即可。每次对一个结点进行处理时，我们对从该结点发出的所有的边进行松弛操作。
+
+```java
+void dagShortestPaths(Digraph digraph, int rootId) {
+    LinkedList<Vertex> sortedVertices = topologicalSort(digraph);
+    Vertex root = digraph.vertices[rootId];
+    initializeSingleSource(digraph, root);
+    for (Vertex sortedVertex : sortedVertices) {
+        Vertex u = digraph.vertices[sortedVertex.id];
+        for (Edge e : digraph.adj[u.id]) {
+            relax(digraph, e);
+        }
+    }
+}
+```
+
+下图描述的是 dagShortestPaths 的执行过程。
+
+![](../assets/images/part4/single-source-shortest-path6.png)
+
+在有向无环图上执行最短路径算法 dagShortestPaths 的过程。图中的结点从左至右以拓扑排序的次序排列。源结点为 s，每个结点中的数值为 d 值，加了阴影的边表示 pre 值。(a) 在算法的外层 for 循环开始前的场景。(b) ~ (g) 外层 for 循环在每次执行后的场景。每次循环时新变为黑色的结点作为该次循环里的 u 结点。图 (g) 中所显示的各种值都是最后的取值。
+
+该算法的运行时间非常容易分析。拓扑排序时间为 Θ(V + E)，initializeSingleSource 所需时间为 Θ(V)，第 1 个外层 for 循环对每个结点执行一遍，因此，其内部的 for 循环对每条边刚好松弛一次。因为内循环每次的运行时间为 Θ(1)，算法的总运行时间为 Θ(V + E)。对于以邻接链表法表示的图来说，这个时间为线性级。
+
 ### Dijkstra 算法
 
 Dijkstra 算法解决的是带权重的有向图上单源最短路径问题，该算法要求所有边的权重都为非负值。因此，我们假定对于所有的边 (u, v) ∈ E，都有 w(u, v) >= 0。我们稍后将看到，如果所采用的实现方式合适，Dijkstra 算法的运行时间要低于 Bellman-Ford 算法的运行时间。
