@@ -45,27 +45,26 @@ Kruskal算法是基于贪心的思想得到的。首先我们把所有的边按�
 ```java
 class KruskalMinimumSpanningTree {
     Edge[] mst;
-
+    
     void minimumSpanningTree(Graph graph) {
         int V = graph.V;
         mst = new Edge[V - 1];
-        DisjointSetForest disjointSetForest = new DisjointSetForest();
-        DisjointSetForest.Node[] nodes = new DisjointSetForest.Node[V];
+        DisjointSetForest disjointSetForest = new DisjointSetForest(V);
         for (int i = 0; i < V; i++) {
-            nodes[i] = disjointSetForest.makeSet(i);
+            disjointSetForest.makeSet(i);
         }
-        PriorityQueue<Edge> minPriorityQueue = new PriorityQueue<>();
+        MinPriorityQueue Q = new MinPriorityQueue();
         for (Edge e : graph.allEdges()) {
-            minPriorityQueue.add(e);
+            Q.insert(e);
         }
         int i = 0;
-        while (!minPriorityQueue.isEmpty()) {
-            Edge e = minPriorityQueue.remove();
+        while (!Q.isEmpty()) {
+            Edge e = Q.extractMin();
             Vertex u = graph.vertices[e.either()];
             Vertex v = graph.vertices[e.other(u.id)];
-            if (disjointSetForest.findSet(nodes[u.id]) != disjointSetForest.findSet(nodes[v.id])) {
+            if (disjointSetForest.findSet(u.id) != disjointSetForest.findSet(v.id)) {
                 mst[i++] = e;
-                disjointSetForest.union(nodes[u.id], nodes[v.id]);
+                disjointSetForest.union(u.id, v.id);
             }
         }
     }
