@@ -56,21 +56,21 @@ arr[parent(i)] <= arr[i]
 
 maxHeapify 是维护最大堆性质的关键，它的输入为一个下标 i。在调用 maxHeapify 的时候，我们假定根节点为 left(i) 和 right(i) 的二叉树都是最大堆，但这时 arr[i] 有可能小于其孩子，这样就违背了最大堆的性质。maxHeapify 通过让 arr[i] 的值在最大堆中逐级下降，从而使得以下标 i 为根节点的子树重新遵循最大堆的性质。
 
-```java
-void maxHeapify(int[] arr, int i) {
-    int l = left(i);
-    int r = right(i);
-    int largest = i;
-    if (l < heapSize && arr[l] > arr[largest]) {
-        largest = l;
-    }
-    if (r < heapSize && arr[r] > arr[largest]) {
-        largest = r;
-    }
-    if (largest != i) {
-        Util.swap(arr, largest, i);
-        maxHeapify(arr, largest);
-    }
+```c++
+void MaxHeapify(std::vector<int>& a, int i) {
+  int l = Left(i);
+  int r = Right(i);
+  int largest = i;
+  if (l < size_ && a[l] > a[largest]) {
+    largest = l;
+  }
+  if (r < size_ && a[r] > a[largest]) {
+    largest = r;
+  }
+  if (largest != i) {
+    std::swap(a[i], a[largest]);
+    RecursiveMaxHeapify(a, largest);
+  }
 }
 ```
 
@@ -82,25 +82,25 @@ void maxHeapify(int[] arr, int i) {
 
 maxHeapify 的代码效率较高，但递归调用可能除外，它可能使某些编译器产生低效的代码，可以使用循环控制结构取代递归，重写 maxHeapify 如下：
 
-```java
-void maxHeapify(int[] arr, int i) {
-    while (true) {
-        int l = left(i);
-        int r = right(i);
-        int largest = i;
-        if (l < heapSize && arr[l] > arr[largest]) {
-            largest = l;
-        }
-        if (r < heapSize && arr[r] > arr[largest]) {
-            largest = r;
-        }
-        if (largest != i) {
-            Util.swap(arr, i, largest);
-            i = largest;
-        } else {
-            return;
-        }
+```c++
+void MaxHeapify(std::vector<int>& a, int i) {
+  while (true) {
+    int l = Left(i);
+    int r = Right(i);
+    int largest = i;
+    if (l < size_ && a[l] > a[largest]) {
+      largest = l;
     }
+    if (r < size_ && a[r] > a[largest]) {
+      largest = r;
+    }
+    if (largest != i) {
+      std::swap(a[i], a[largest]);
+      i = largest;
+    } else {
+      return;
+    }
+  }
 }
 ```
 
@@ -108,13 +108,13 @@ void maxHeapify(int[] arr, int i) {
 
 我们可以使用自底向上的方式利用 maxHeapify 把一个长度为 n 的数组转化为最大堆，子数组 arr[n/2...n-1] 的元素都是树的叶节点，每个叶节点都可以看成只包含一个元素的堆。
 
-```java
-void buildMaxHeap(int[] arr) {
-    int n = arr.length;
-    heapSize = n;
-    for (int i = n / 2 - 1; i >= 0; i--) {
-        maxHeapify(arr, i);
-    }
+```c++
+void BuildMaxHeap(std::vector<int>& a) {
+  int n = a.size();
+  size_ = n;
+  for (int i = size_ / 2 - 1; i >= 0; i--) {
+    IterativeMaxHeapify(a, i);
+  }
 }
 ```
 
@@ -126,14 +126,15 @@ void buildMaxHeap(int[] arr) {
 
 初始时候，堆排序算法利用 buildMaxHeap 将输入数组 arr[0...n-1] 建成最大堆，其中 n = arr.length。因为数组中的最大元素总在根节点 arr[0] 中，通过把它与 arr[n - 1] 进行互换，我们可以让该元素放到正确的位置。这时候，我们从堆中去掉节点 n - 1，这一操作可以通过减少 heapSize 的值来实现，剩余的节点中，原来根的孩子节点仍然是最大堆，而新的根节点可能会违背最大堆的性质。为了维护最大堆的性质，我们要做的是调用 maxHeapify(arr, 0)，从而在 arr[0...n-2] 上构造一个新的最大堆。堆排序算法不断重复这一过程，直到堆的大小从 n 降到 1。
 
-```java
-void heapSort(int[] arr) {
-    buildMaxHeap(arr);
-    for (int i = arr.length - 1; i > 0; i--) {
-        Util.swap(arr, 0, i);
-        heapSize--;
-        maxHeapify(arr, 0);
-    }
+```c++
+void Sort(std::vector<int>& nums) {
+  BuildMaxHeap(nums);
+  int n = nums.size();
+  for (int i = n - 1; i > 0; i--) {
+    std::swap(nums[0], nums[i]);
+    size_--;
+    IterativeMaxHeapify(nums, 0);
+  }
 }
 ```
 
@@ -147,16 +148,24 @@ heapSort 的时间复杂度是 O(n lgn)，因为每次调用 buildMaxHeap 的时
 
 堆排序是一个优秀的算法，但在实际应用中，快速排序的性能一般会优于堆排序。尽管如此，堆这一数据结构仍然有很多应用，下面我们将介绍堆的一个常见应用：作为高效的优先队列。和堆一样，优先队列也有两种形式：最大优先队列和最小优先队列。在这里，我们关注于如何基于最大堆实现最大优先队列。
 
-```java
-class MaxPriorityQueue {
-    int heapSize;
-    int[] arr;
-    
-    MaxPriorityQueue(int capacity) {
-        heapSize = 0;
-        arr = new int[capacity];
+```c++
+class MaxHeap {
+ public:
+  MaxHeap() : size_(0) {}
+
+  void Sort(std::vector<int>& nums) {
+    BuildMaxHeap(nums);
+    int n = nums.size();
+    for (int i = n - 1; i > 0; i--) {
+      std::swap(nums[0], nums[i]);
+      size_--;
+      IterativeMaxHeapify(nums, 0);
     }
-}
+  }
+
+ private:
+  int size_;
+};
 ```
 
 优先队列（priority queue）是一种用来维护由一组元素构成的集合 S 的数据结构，其中的每一个元素都有一个相关的值，称为关键字（key）。一个最大优先队列支持以下操作：
