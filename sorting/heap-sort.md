@@ -11,17 +11,17 @@
 （二叉）堆是一个数组，它可以被看成是一个近似的完全二叉树，树上的每一个节点对应数组中的一个元素。除了最底层外，该树是完全充满的，而且是从左向右填充。表示堆的数组 arr 包括两个属性：length 给出数组元素的个数，heapSize 表示有多少个堆元素存储在该数组中。也就是说，虽然 arr[0...arr.size()-1] 可能都存有数据，但只有 arr[0...heapSize-1] 中存放的是堆的有效元素，这里 0 <= heapSize <= arr.length。树的根节点是 arr[0]。给定一个节点的下标 i，我们很容易计算得到它的父节点、左孩子和右孩子的下标。
 
 ```c++
-  int Parent(int i) {
-    return (i  -1) / 2;
-  }
+int Parent(int i) {
+  return (i  -1) / 2;
+}
 
-  int Left(int i) {
-    return 2 * i + 1;
-  }
+int Left(int i) {
+  return 2 * i + 1;
+}
 
-  int Right(int i) {
-    return 2 * i + 2;
-  }
+int Right(int i) {
+  return 2 * i + 2;
+}
 ```
 
 ![](../assets/images/part1/heap-sort.png)
