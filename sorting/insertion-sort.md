@@ -84,7 +84,7 @@ int BinarySearch(const std::vector<int>& nums, int low, int high, int key) {
   while (low <= high) {
     int mid = (low + high) / 2;
     if (key == nums[mid]) {
-      return nums[mid];
+      return mid;
     } else if (key < nums[mid]) {
       high = mid - 1;
     } else {
@@ -149,7 +149,7 @@ int BinarySearch(const std::vector<int>& nums, int low, int high, int key) {
 void ShellSort(std::vector<int>& nums) {
   int n = nums.size();
   for (int gap = n / 2; gap > 0; gap /= 2) {
-    for (int j = gap; j < n; j++) {
+    for (int j = gap; j < n; ++j) {
       int key = nums[j];
       int i = j - gap;
       while (i >= 0 && nums[i] > key) {
