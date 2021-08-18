@@ -75,11 +75,11 @@ void Merge(std::vector<int>& nums, int p, int q, int r) {
   for (int i = 0; i < n1; ++i) {
     left[i] = nums[p + i];
   }
-  left[n1] = INT_MAX;
+  left[n1] = std::numeric_limits<int>::max();
   for (int i = 0; i < n2; ++i) {
     right[i] = nums[q + 1 + i];
   }
-  right[n2] = INT_MAX;
+  right[n2] = std::numeric_limits<int>::max();
   int i = 0, j = 0;
   for (int k = p; k <= r; ++k) {
     if (left[i] <= right[j]) {
